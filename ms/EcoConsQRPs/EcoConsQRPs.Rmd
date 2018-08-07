@@ -13,7 +13,9 @@ author:
     affiliation: School of BioSciences, University of Melbourne
   - name: Fiona Fidler
     email: fidlerfm@unimelb.edu.au
-    affiliation: School of BioSciences, University of Melbourne, School of Historical and Philosophical Studies, University of Melbourne
+    affiliation: 
+      -  School of BioSciences, University of Melbourne, 
+      -  School of Historical and Philosophical Studies, University of Melbourne
 address:
   - code: School of BioSciences, University of Melbourne
     address: Department, Street, City, State, Zip
@@ -23,7 +25,7 @@ abstract: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
   
 author_summary: |
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+  TBC.
 
 bibliography: EcoConsQRPs.bib
 output: rticles::plos_article
@@ -36,7 +38,50 @@ _Text based on plos sample manuscript, see [http://journals.plos.org/ploscompbio
 
 # Introduction
 
+## Reproducibility crisis
+
+- Reproducibility crisis in science, ecology (Fidler, Fraser, Parker, Nakagawa).
+- questionable research practices in science, ecology (Fraser)
+
+## Identifying reproducibility issues for decision support in ecology and conservation: non-hypothesis testing based research
+
+- Implications of irreproducible research in ecology and conservation (and hence, why examining reproducibility in this field of science is imperitive) 
+- angle of the paper is on applied ecological research. so even if the research methods explored in this paper aren't modelling decisions directly, the evidence the primary research generates is used to inform decisions.
+
+- Non-NHST research methods in ecology and conservation science common, and to date, most repro research is NHST based.
+
+## Defining QRPs for non-NHST scientific methods
+
+Turning to existing literature in CDM and Enviro modelling - "Good Modelling Practice", gives us some insight into how we might define QRPs for non-NHST research.
+
+- models
+- decisions
+
+A questionable research practice is an action by a researcher that increases the chance that you end up with an informative model. For decisions, it is a modelling or other research practice that allows the decision-maker to discriminate between, and choose between a set of decision alternatives, when, without the practice, you wouldn't be able to.
+The result is that the model appears more favourable than it really is, and readers or users of the model place increased and unwarrented confidence in the model's ability.
+
+Importantly, outfright fraud or bad scientific practice does not constitute a QRP.
+
 # Materials and Methods
+
+## Respondant List Generation and Sampling Design
+
+- How many respondants should we aim for?
+
+## Survey Design
+
+### sub-fields and methods
+
+How did we choose these (e.g. Bayesian)?
+
+### Survey questions - how did we choose these?
+
+## Data Analysis
+
+What analyses?
+
+- Response rate (total emailed, total responses, by method).
+
 
 # Results
 
