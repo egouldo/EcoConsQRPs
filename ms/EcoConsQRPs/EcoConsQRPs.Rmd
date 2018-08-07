@@ -1,0 +1,50 @@
+---
+title: Questionable Research Practices in Ecology and Conservation
+author:
+  - name: Elise Gould
+    email: elise.gould@unimelb.edu.au
+    affiliation: School of BioSciences, University of Melbourne
+    corresponding: elise.gould@unimelb.edu.au
+  - name: Hannah Fraser
+    email: hannahsfraser@gmail.com
+    affiliation: School of BioSciences, University of Melbourne
+  - name: Libby Rumpff
+    email: lrumpff@unimelb.edu.au
+    affiliation: School of BioSciences, University of Melbourne
+  - name: Fiona Fidler
+    email: fidlerfm@unimelb.edu.au
+    affiliation: School of BioSciences, University of Melbourne, School of Historical and Philosophical Studies, University of Melbourne
+address:
+  - code: School of BioSciences, University of Melbourne
+    address: Department, Street, City, State, Zip
+  - code: School of Historical and Philosophical Studies
+    address: Department, Street, City, State, Zip
+abstract: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+  
+author_summary: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+
+bibliography: EcoConsQRPs.bib
+output: rticles::plos_article
+csl: plos.csl
+---
+
+_Text based on plos sample manuscript, see [http://journals.plos.org/ploscompbiol/s/latex](http://journals.plos.org/ploscompbiol/s/latex)_
+
+(Full title (250 char), and short title (100 char))
+
+# Introduction
+
+# Materials and Methods
+
+# Results
+
+# Discussion
+
+# Conclusions (section is optional according to [http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission](http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission))
+
+Here are two sample references: @Feynman1963118 [@Dirac1953888].
+# Acknowledgements {#acknowledgements .unnumbered}
+
+# References {#references .unnumbered}
