@@ -40,17 +40,35 @@ _Text based on plos sample manuscript, see [http://journals.plos.org/ploscompbio
 
 ## Reproducibility crisis
 
-- Reproducibility crisis in science, ecology (Fidler, Fraser, Parker, Nakagawa).
-- questionable research practices in science, ecology (Fraser)
+- Reproducibility crisis in science, ecology (Fidler, Fraser, Parker, Nakagawa) (mini overview, 1 - 2 pgphs)
+
+- questionable research practices in science, ecology (Other QRP papers, Fraser) (1 pgph)
 
 ## Identifying reproducibility issues for decision support in ecology and conservation: non-hypothesis testing based research
 
-- Implications of irreproducible research in ecology and conservation (and hence, why examining reproducibility in this field of science is imperitive) 
-- angle of the paper is on applied ecological research. so even if the research methods explored in this paper aren't modelling decisions directly, the evidence the primary research generates is used to inform decisions.
-
 - Non-NHST research methods in ecology and conservation science common, and to date, most repro research is NHST based.
 
-## Defining QRPs for non-NHST scientific methods
+The reproducibility literature has focused exclusively on hypothesis-testing, whether that be Bayesian or frequentist. This also applies to initial reproducibility research focusing on ecology and evolution. However, Fidler et al [-@Fidler:2016wv] correctly identify that in applied ecological research, particularly in conservation science, non-hypothesis testing methods, such as decision-theory, cost-effectiveness analysis, optimization and other scientific computing methods are common. These approaches come with their own set of reproducibility issues. However, a full understanding of the types of reproducibility issues, as well as their impact on either the evidence-base, or the decisions informed by the evidence-base, is yet to emerge.
+
+Most formal decision-support systems for ecology and conservation lie outside of the typical hypothetico-deductive model of science. Although the concept of reproducibility is not inherently specific to that model, the causes and solutions to the reproducibility crisis have focused exclusively on this model. For instance, QRP’s including p-hacking, cherry picking, and HARKing are specific to Null-hypothesis significance testing (NHST) (Fraser et al. 2018). Solutions to the reproducibility crisis, such as preregistration of analysis plans, are specifically targeted at addressing the cognitive biases that foster these QRPs, and so also adhere to this model of science. Measures of reproducibility, such as those employed by the COS reproducibility project for psychology have also focused on the hypothetico-deductive model of science, but not all.
+
+- Implications of irreproducible research in ecology and conservation (and hence, why examining reproducibility in this field of science is imperitive) 
+
+
+Concerns about transparency and even model reporting practices in ecology and conservation are not new. CDM literature. Often fall under the banner of good or robust modelling practice.
+
+## Paper Aims
+
+This work aims to identify and characterise the prevalence of questionable research practices for non-hypothesis testing research in ecology and conservation.
+
+This work aims to expand the focus of current reproducibility research beyond the  non-hypothetico-deductive model of science, and to advance initial meta-research attempts on transparency and reproducibility in Ecology and Conservation (Fraser et al. 2018). It seeks to constitute one element of an emerging roadmap of reproducibility issues occuring in ecology and conservation. Ultimately, this work aims to provide the foundation for futher work in proposing standards and technical solutions for mitigating QRPs in Ecology and Conservation.
+
+This paper will constitute (from what I am aware of) the first attempt to investigate reproducibility issues for non-hypothesis testing based research. To this extent, the knowledge resulting from this chapter should also be applicable to other fields of science beyond ecology and conservation where translational research and non-hypothesis testing methods are prevalent. It will also build on the work of Fraser et al. (2018) in advancing research on reproducibility and transparency in ecology.
+
+- scope / angle of the paper: is on applied ecological research. so even if the research methods explored in this paper aren't modelling decisions directly, the evidence the primary research generates is used to inform decisions.
+
+
+# Defining QRPs for non-NHST scientific methods
 
 Turning to existing literature in CDM and Enviro modelling - "Good Modelling Practice", gives us some insight into how we might define QRPs for non-NHST research.
 
@@ -74,11 +92,44 @@ Importantly, outfright fraud or bad scientific practice does not constitute a QR
 
 How did we choose these (e.g. Bayesian)?
 
-### Survey questions - how did we choose these?
+### Survey questions
+
+```
+1. What methods do you have most experience in?
+a. Structured Decision Making
+b. Bayesian statistics
+c. Multiple models / model dredging
+d. Field data collection / study design
+
+Repeat the following questions for each research practice:
+
+*Text describing research practice*
+
+2. Of the times that you have used method X(Q1), have you ever engaged in this research practice?
+
+3. Of all the studies / papers employing method X(Q1), what proportion of them did the research practice 
+
+```
 
 ## Data Analysis
 
-What analyses?
+### Expected raw data structure
+
+```
+response_id <int> length = 1: 1 to N(number of responses)
+expert_method <factor> c(a,b,c,d) length: 1:4 depending on response
+nonexpert_method <factor> c(a,b,c,d) length: 1:4 depending on response
+method <factor> length: 1
+research_practice <factor> length:1
+self_report <logical> T,F length:1
+prevalence_estimate <double> 0 to 100% length:1
+consequence_best <numeric> some range, length:2
+consequence_worst <numeric> some range, length:2
+consequence_average <numeric> some range, length:2
+value_judgment <factor> c(Yes, No, Depends), length: 1
+comments <chr> length:1
+```
+### Analyses?
 
 - Response rate (total emailed, total responses, by method).
 
