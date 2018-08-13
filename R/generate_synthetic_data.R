@@ -1,7 +1,3 @@
-set.seed(1234)
-library(wakefield)
-library(tidyverse)
-
 generate_synthetic_survey_data <- function(n_participants = 1000) {
   # Generate Synthetic Dataset for Data Management Plan
   
@@ -25,8 +21,8 @@ generate_synthetic_survey_data <- function(n_participants = 1000) {
   }
   
   gen_impact_values <- function(ave = 20, s.d. = 30){
-          sd_val <- rnorm(n = 1, mean = s.d., 5)
-          impact_bounds <- c(ave - sd_val, ave + sd_val)
+          sd_val <- abs(rnorm(n = 1, mean = s.d., 5))
+          impact_bounds <- abs(c(ave - sd_val, ave + sd_val))
           return(impact_bounds)
   }
   
@@ -45,7 +41,7 @@ generate_synthetic_survey_data <- function(n_participants = 1000) {
                           dplyr::left_join(., QRP_key, by = c("expert_method" = "method")) %>%
                           dplyr::group_by(response_id, expert_method) %>%
                           dplyr::mutate(self_report =  wakefield::answer(n = last(QRP_key)),
-                                        prevalence_estimate = rnorm(n = 10, mean = 50, sd = 20),
+                                        prevalence_estimate = abs(rnorm(n = 10, mean = 50, sd = 20)),
                                         value_judgment = wakefield::answer(n = last(QRP_key), c("Yes", "No", "Depends")),
                                         comments = wakefield::lorem_ipsum(n = last(QRP_key)),
                                         consequence_best = list(gen_impact_values()),
@@ -59,7 +55,7 @@ generate_synthetic_survey_data <- function(n_participants = 1000) {
                                   dplyr::left_join(., QRP_key, by = c("non_expert_method" = "method")) %>%
                                   dplyr::group_by(response_id, non_expert_method) %>%
                                   dplyr::mutate(self_report =  wakefield::answer(n = last(QRP_key)),
-                                                prevalence_estimate = rnorm(n = 10, mean = 50, sd = 20),
+                                                prevalence_estimate = abs(rnorm(n = 10, mean = 50, sd = 20)),
                                                 value_judgment = wakefield::answer(n = last(QRP_key), c("Yes", "No", "Depends")),
                                                 comments = wakefield::lorem_ipsum(n = last(QRP_key)),
                                                 consequence_best = list(gen_impact_values()),
