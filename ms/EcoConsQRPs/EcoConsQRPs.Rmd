@@ -143,17 +143,40 @@ QRP_key <fac> 1:length(count(QRP, by = method))
 QRP_description <chr> one per QRP_key
 method <fac> one per QRP_key, each set of QRPs is unique to method
 ```
-### Analyses?
+### Planned Analyses
 
 ```{r generate-synthetic-data, message=FALSE,warning=FALSE}
-  set.seed(1234)
-  suppressPackageStartupMessages(library(wakefield))
-  suppressPackageStartupMessages(library(tidyverse))
+set.seed(1234)
+suppressPackageStartupMessages(library(wakefield))
+suppressPackageStartupMessages(library(tidyverse))
 source("../../R/generate_synthetic_data.R")
 dat <- generate_synthetic_survey_data(n_participants = 1000)
 ```
 
-- Response rate (total emailed, total responses, by method).
+- Response rate (total emailed, total responses, by method)
+
+**proportion self-reporting each QRP**
+
+- facet by method
+- Group by method, then QRP and compute proportion responding "Yes" (y-axis)
+- QRP_key (x-axis)
+- colour fill by expert vs. non-expert method
+
+```{r self-report-analyses}
+dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>% 
+        dplyr::tally() %>% 
+        group_by(method, QRP_key, expert_status) %>% 
+        dplyr::mutate(total = sum(n), proportion_self_report = n/total,
+                      lower = binom.confint(n, total, method=c("wilson"),type="central")$lower,
+                      upper = binom.confint(n, total, method=c("wilson"),type="central")$upper) %>%
+        ggplot(aes(x = QRP_key, y = proportion_self_report, fill = expert_status)) +
+        geom_col(position = "dodge") +
+        facet_grid(~ method) +
+        theme_bw() +
+                geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2) 
+```
+
+
 
 # Results
 
