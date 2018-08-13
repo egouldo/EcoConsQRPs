@@ -169,6 +169,7 @@ dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>%
         dplyr::mutate(total = sum(n), proportion_self_report = n/total,
                       lower = binom.confint(n, total, method=c("wilson"),type="central")$lower,
                       upper = binom.confint(n, total, method=c("wilson"),type="central")$upper) %>%
+        dplyr::filter(self_report == "Yes") %>%
         ggplot(aes(x = QRP_key, y = proportion_self_report, fill = expert_status)) +
         geom_col(position = "dodge") +
         facet_grid(~ method) +
