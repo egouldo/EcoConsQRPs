@@ -146,9 +146,11 @@ method <fac> one per QRP_key, each set of QRPs is unique to method
 ### Planned Analyses
 
 ```{r generate-synthetic-data, message=FALSE,warning=FALSE}
-set.seed(1234)
-suppressPackageStartupMessages(library(wakefield))
-suppressPackageStartupMessages(library(tidyverse))
+set.seed(54321)
+suppressPackageStartupMessages(library(wakefield)) # generating synthetic data
+suppressPackageStartupMessages(library(tidyverse)) # data manipulation and ggplot
+suppressPackageStartupMessages(library(binom)) # 95% CI's for proportions
+suppressPackageStartupMessages(library(Rmisc)) # 95% CI's for means
 source("../../R/generate_synthetic_data.R")
 dat <- generate_synthetic_survey_data(n_participants = 1000)
 ```
