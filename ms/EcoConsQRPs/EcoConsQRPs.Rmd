@@ -174,7 +174,7 @@ dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>%
         geom_col(position = "dodge") +
         facet_grid(~ method) +
         theme_bw() +
-                geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2) 
+                geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, position = position_dodge(width = 0.9))
 ```
 
 
