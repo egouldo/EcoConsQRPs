@@ -182,6 +182,23 @@ dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>%
                                       position_dodge(width = 0.9))
 ```
 
+**Estimated Percentage of papers where QRP is undertaken**
+
+```{r estimated-percentage-prevalence}
+dat %>% 
+        dplyr::group_by(method, QRP_key, expert_status) %>% 
+        dplyr::summarise(stats = data_frame(stat = names(Rmisc::CI(prevalence_estimate)), 
+                                            value = Rmisc::CI(prevalence_estimate)) %>% list()) %>% 
+        unnest() %>% 
+        tidyr::spread(key = stat, value = value) %>%
+        ggplot(aes(x = QRP_key, y = mean, fill = expert_status)) +
+        geom_col(position = "dodge") +
+        facet_grid(~ method) +
+        theme_bw() +
+        geom_errorbar(aes(ymin = lower, ymax = upper), 
+                      width = 0.2, 
+                      position = position_dodge(width = 0.9))
+```
 
 
 # Results
