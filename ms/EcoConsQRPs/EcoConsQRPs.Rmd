@@ -113,7 +113,11 @@ Repeat the following questions for each research practice:
 
 ## Data Analysis
 
-### Expected raw data structure
+### Expected data structure
+
+**survey output**
+
+Lengths below refer to the number of values captured per question.
 
 ```
 response_id <int> length = 1: 1 to N(number of responses)
@@ -129,10 +133,27 @@ consequence_average <numeric> some range, length:2
 value_judgment <factor> c(Yes, No, Depends), length: 1
 comments <chr> length:1
 ```
+
+**QRP key dataframe**
+
+Contains the list of QRPs that participants are to be surveyed about. 
+
+```
+QRP_key <fac> 1:length(count(QRP, by = method))
+QRP_description <chr> one per QRP_key
+method <fac> one per QRP_key, each set of QRPs is unique to method
+```
 ### Analyses?
 
-- Response rate (total emailed, total responses, by method).
+```{r generate-synthetic-data, message=FALSE,warning=FALSE}
+  set.seed(1234)
+  suppressPackageStartupMessages(library(wakefield))
+  suppressPackageStartupMessages(library(tidyverse))
+source("../../R/generate_synthetic_data.R")
+dat <- generate_synthetic_survey_data(n_participants = 1000)
+```
 
+- Response rate (total emailed, total responses, by method).
 
 # Results
 
