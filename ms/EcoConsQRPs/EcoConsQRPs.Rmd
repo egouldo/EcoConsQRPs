@@ -157,24 +157,27 @@ dat <- generate_synthetic_survey_data(n_participants = 1000)
 
 **proportion self-reporting each QRP**
 
-- facet by method
-- Group by method, then QRP and compute proportion responding "Yes" (y-axis)
-- QRP_key (x-axis)
-- colour fill by expert vs. non-expert method
-
 ```{r self-report-analyses}
 dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>% 
         dplyr::tally() %>% 
         group_by(method, QRP_key, expert_status) %>% 
         dplyr::mutate(total = sum(n), proportion_self_report = n/total,
-                      lower = binom.confint(n, total, method=c("wilson"),type="central")$lower,
-                      upper = binom.confint(n, total, method=c("wilson"),type="central")$upper) %>%
+                      lower = binom.confint(n, 
+                                            total, 
+                                            method=c("wilson"),
+                                            type="central")$lower,
+                      upper = binom.confint(n, 
+                                            total, 
+                                            method=c("wilson"),
+                                            type="central")$upper) %>%
         dplyr::filter(self_report == "Yes") %>%
         ggplot(aes(x = QRP_key, y = proportion_self_report, fill = expert_status)) +
         geom_col(position = "dodge") +
         facet_grid(~ method) +
         theme_bw() +
-                geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, position = position_dodge(width = 0.9))
+                geom_errorbar(aes(ymin = lower, ymax = upper), 
+                              width = 0.2, position = 
+                                      position_dodge(width = 0.9))
 ```
 
 
