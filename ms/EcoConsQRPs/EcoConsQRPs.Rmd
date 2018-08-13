@@ -189,6 +189,11 @@ dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>%
 # Conclusions (section is optional according to [http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission](http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission))
 
 Here are two sample references: @Feynman1963118 [@Dirac1953888].
-# Acknowledgements {#acknowledgements .unnumbered}
 
-# References {#references .unnumbered}
+
+```{r session-info}
+sessionInfo()
+```
+
+
+# References
