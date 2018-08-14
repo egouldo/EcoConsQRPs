@@ -82,15 +82,30 @@ Importantly, outfright fraud or bad scientific practice does not constitute a QR
 
 # Materials and Methods
 
-## Respondant List Generation and Sampling Design
+## Expert Selection
 
 - How many respondants should we aim for?
+
+Knol et al. [-@Knol:2009dh] used a recruitment-type scheme of nominators. But instead of following on with the request to nominate other researchers, I could do something similar. Or use this as an exclusion category after doing a trawl of authors on web of science...
+
+> (a) first, second and last authors that had published at least two papers within the field of UFP and health in peer-reviewed journals (key words of literature search: ultrafine particles or particle number concentration or PM0.1 or UFP and epidemiology or health or effects or toxicology), as well as (b) scientists that participated in the WHO systematic review of air pollution and coordinators of leading EU projects in this research field (based on information at http://www.ec.europa.eu/research/).
 
 ## Survey Design
 
 ### sub-fields and methods
 
 How did we choose these (e.g. Bayesian)?
+
+### Choosing the QRPs
+
+Look at the retreat list... but I do think it's worth reading some more literature on both Bayesian and SDM QRPs.. look through downloaded / read literature on:
+
+- model misspecification
+- TRACE for ecological models decision support
+- SDM paper on false conclusions in JSDMS
+- PVA paper opn reproducibility
+- good modelling practice papers
+- robust evidence base and evidenced based conservation decision-making
 
 ### Survey questions
 
@@ -110,6 +125,11 @@ Repeat the following questions for each research practice:
 3. Of all the studies / papers employing method X(Q1), what proportion of them did the research practice 
 
 ```
+
+### Expert Elicitation Protocol for estimating the consequence of QRP
+
+See Morgan [-@Morgan:2014fn] for justification for a detailed approach to designing the expert elicitiation protocol.
+Also see for ideas about how to design, and important considerations during the design phase.
 
 ## Data Analysis
 
@@ -137,6 +157,8 @@ comments <chr> length:1
 **QRP key dataframe**
 
 Contains the list of QRPs that participants are to be surveyed about. 
+
+- Once all survey questions are decided, this should be a table in the paper.
 
 ```
 QRP_key <fac> 1:length(count(QRP, by = method))
