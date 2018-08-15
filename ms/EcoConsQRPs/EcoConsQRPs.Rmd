@@ -13,8 +13,8 @@ author:
     affiliation: School of BioSciences, University of Melbourne
   - name: Fiona Fidler
     email: fidlerfm@unimelb.edu.au
-    affiliation: 
-      -  School of BioSciences, University of Melbourne, 
+    affiliation:
+      -  School of BioSciences, University of Melbourne,
       -  School of Historical and Philosophical Studies, University of Melbourne
 address:
   - code: School of BioSciences, University of Melbourne
@@ -23,7 +23,7 @@ address:
     address: Department, Street, City, State, Zip
 abstract: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
-  
+
 author_summary: |
   TBC.
 
@@ -70,6 +70,44 @@ This paper will constitute (from what I am aware of) the first attempt to invest
 
 # Defining QRPs for non-NHST scientific methods
 
+## in NHST research
+
+In hypothetico-deductive scientific research, questionable research practices (QRPs) are methodological and statistical practices that spuriously increase the chance of a false positive, or incorrectly rejecting the null hypothesis (type I error) [@John:2012eo]. QRPs include such practices as: p-hacking, cherry-picking, and HARKing, or *hypothesising after results are known* [@Fraser:2018cl]. Importantly, outright fraud and misconduct, such as fabrication, falsification and plagiarism do not constitute QRPs. QRPs fall into an 'ethical gray zone' between acceptable and unacceptable, and by definition, there is disagreemnt about what research practices fall into this category [@Butler:2017ks]. 
+
+The impetus to engage in these 'questionable' research practices is not borne out of ill-intent, but rather is the result of human cognitive biases and heuristics fostered within a publish-or-perish environment and pressure to publish positive findings. "Most researchers embrace the norms of science and aim to do the most rigorous work that they can  (52)" [@Nosek:2018eg]. 
+
+Simmons [-@Simmons:2011iw] demonstrate the effects of a construct they term *researcher degrees of freedom* on finding a type I error. They describe 
+
+Analytic and methodological decisions.
+
+- flexibility in data collection analysis as well as a lack of transparency around reporting.
+
+Simmons flexibility-ambiguity.
+
+(a) ambiguity in how best to make these decisions and (b) the researcher’s desire to find a statistically significant result. 
+
+This is superimposed / occurs against a backdrop of desire and external pressure to publish positive findings (lack of incentives to publish negative findings).
+
+For example, Simmons [-@Simmons:2011iw] assert that due to a construct they term , 
+
+braoder conditions: lack of standards for transparent reporting practices.
+
+
+
+Cause / conditions: 
+- the broader set of conditions fostering their occurrence and prevalence, such as a lack of transparency and publication bias in a publish-or-perish environment [@Parker:2016hc]
+- construct of researcher degrees of freedom [@Simmons:2011iw] under broader set of conditions: - standards for reporting practices data collection and analyses weak.
+
+Effect / implications 
+- Biases the scietnific literature and undermines the credibility and reproducibility of research findings. [@Agnoli:2017kl].
+- potential to diminish the credibility of whole fields [@Simmons:2011iw].
+
+
+self-deception? John.
+
+
+
+
 Turning to existing literature in CDM and Enviro modelling - "Good Modelling Practice", gives us some insight into how we might define QRPs for non-NHST research.
 
 - models
@@ -80,11 +118,14 @@ The result is that the model appears more favourable than it really is, and read
 
 Importantly, outfright fraud or bad scientific practice does not constitute a QRP.
 
+**End this section with paragraph / a few wentences covering recent research on prevalence of QRPs**
+
 # Materials and Methods
 
 ## Expert Selection
 
 - How many respondants should we aim for?
+- How to generate the list for sending the survey to?
 
 Knol et al. [-@Knol:2009dh] used a recruitment-type scheme of nominators. But instead of following on with the request to nominate other researchers, I could do something similar. Or use this as an exclusion category after doing a trawl of authors on web of science...
 
@@ -94,7 +135,7 @@ Knol et al. [-@Knol:2009dh] used a recruitment-type scheme of nominators. But in
 
 ### sub-fields and methods
 
-How did we choose these (e.g. Bayesian)?
+How did we choose these (e.g. Bayesian, SDM)?
 
 ### Choosing the QRPs
 
@@ -226,6 +267,9 @@ dat %>%
 # Results
 
 # Discussion
+
+Interpreting the self-report data:
+- [@John:2012eo] Page 1: "As with any unethical or socially stigmatized behavior, self-reported survey data are likely to underrepresent true prevalence." Some studies implement incentives for truth-telling into their study design in order to improve the chance of finding truly representative estimates of QRPs, e.g. [@John:2012eo] and ... was there another?. Since our study won't do this, it is likely that will under-estimate the prevalence of QRPs among researchers in applied ecology and conservation.
 
 # Conclusions (section is optional according to [http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission](http://journals.plos.org/plosone/s/submission-guidelines#loc-parts-of-a-submission))
 
