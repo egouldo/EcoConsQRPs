@@ -172,6 +172,8 @@ Repeat the following questions for each research practice:
 See Morgan [-@Morgan:2014fn] for justification for a detailed approach to designing the expert elicitiation protocol.
 Also see for ideas about how to design, and important considerations during the design phase.
 
+
+
 ## Data Analysis
 
 ### Expected data structure
@@ -206,6 +208,10 @@ QRP_key <fac> 1:length(count(QRP, by = method))
 QRP_description <chr> one per QRP_key
 method <fac> one per QRP_key, each set of QRPs is unique to method
 ```
+
+
+# Results
+
 ### Planned Analyses
 
 ```{r generate-synthetic-data, message=FALSE,warning=FALSE}
@@ -264,8 +270,6 @@ dat %>%
                       position = position_dodge(width = 0.9))
 ```
 
-
-# Results
 
 # Discussion
 
