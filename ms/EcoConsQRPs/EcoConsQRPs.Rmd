@@ -118,7 +118,7 @@ The result is that the model appears more favourable than it really is, and read
 
 Importantly, outfright fraud or bad scientific practice does not constitute a QRP.
 
-**End this section with paragraph / a few wentences covering recent research on prevalence of QRPs**
+**End this section with paragraph / a few sentences covering recent research on prevalence of QRPs**
 
 # Materials and Methods
 
