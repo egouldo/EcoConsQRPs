@@ -223,9 +223,10 @@ dat <- generate_synthetic_survey_data(n_participants = 1000)
 **proportion self-reporting each QRP**
 
 ```{r self-report-analyses}
-dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>% 
+dat %>% dplyr::filter(expert_status=="expert") %>%
+        dplyr::group_by(method, QRP_key, self_report) %>% 
         dplyr::tally() %>% 
-        group_by(method, QRP_key, expert_status) %>% 
+        group_by(method, QRP_key) %>% 
         dplyr::mutate(total = sum(n), proportion_self_report = n/total,
                       lower = binom.confint(n, 
                                             total, 
@@ -236,7 +237,7 @@ dat %>% dplyr::group_by(method, QRP_key, expert_status, self_report) %>%
                                             method=c("wilson"),
                                             type="central")$upper) %>%
         dplyr::filter(self_report == "Yes") %>%
-        ggplot(aes(x = QRP_key, y = proportion_self_report, fill = expert_status)) +
+        ggplot(aes(x = QRP_key, y = proportion_self_report)) +
         geom_col(position = "dodge") +
         facet_grid(~ method) +
         theme_bw() +
