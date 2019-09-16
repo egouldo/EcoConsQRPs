@@ -1,0 +1,12 @@
+﻿,Approach 1,Approach 2,Approach 3
+Input / Survey Data Type,Incidence Data,Count Data,Count Data
+Analysis Level,"Engagement and prevalence among researchers, post-hoc computation of number of papers affected by QRP",Engagement + Proportion of Papers per individual + Num Papers affected across sample,Engagement + Proportion of Papers per Individual + Num papers affected across sample
+Covariates,Participant level only,"Participant + possibly paper covariates, but aggregated across papers per author",Participant + paper covariates
+Question Framing,"""Have you ever <QRP> on at least one occasion between 2015 + 2019? How many papers did you author between 2015 - 2019?""","How many papers did you author between 2015 - 2019? Of those X papers, how many did you do <QRP> in?","How many papers did you author between 2015 - 2019? For each paper ask question about the paper level covariates (e.g. number of citations), and whether QRPs 1:N were used."
+Summary Analyses - QRP-specific,1. Probability of Individual Engagement ~f(author covariates),,
+Summary Analyses - Individual Specific,,,
+Posterior Estimate,,,
+Prior specification,,,
+Risks,"Least risky in terms of attrition, missing data, and perceived risks to participants. But is only a coarse level assessment of the risk of QRPs to the overall body of literature. In terms of the thesis as a whole, this is maybe ok, since the systematic review will evaluate transparency of individual papers. So the resolution of analysis is complementary.",,"Participant may feel persecuted / that may be able to be identified. But also, attrition if too many questions. Potential for missing data."
+Feasibility,Modelling: This is an approach I could implement already -- just need the data. ,"Will need some assistance in specifying the model, i.e. how to handle ",
+Approach Assumptions,Post-hoc estimation of number of papers affected assumes that an author is equally likely to do the QRP on every single paper. Approach 2 alleviates this problem. Could possibly drop estimation of num papers affected,,

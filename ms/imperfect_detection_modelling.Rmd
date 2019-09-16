@@ -1,0 +1,190 @@
+---
+title: "Imperfect Detection Modelling - DRAFT IN PROGRESS"
+author: "Elise Gould"
+date: "16/09/2019"
+bibliography: ./EcoConsQRPs/EcoConsQRPs.bib
+output: 
+  html_document:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Modelling QRP Engagement as an Occuprancy-Detection Problem
+
+
+We can re-cast the multi-species, single-survey occupancy-detection problem in terms appropriate for modelling QRP engagement:
+
+| Ecology   | QRP        |
+|:---------:|:----------:|
+|Survey     | Survey     |
+|Site       | Participant|
+|Individual?| Paper ?    |
+|Species    | QRP        |
+|Detection  | Admission  |
+
+- Engagement as Occupancy So occupancy as whether the species is present or not at a site, is equivalent in concept to 'engagement', whether an individual engaged in the QRP or not.
+- Admission as detection: so instead of imperfect detection, we have imperfect admission.
+
+
+## Two processes: Engagement and Admission
+
+Note that *admission* is not the same as *engagement*.
+
+**Individual Level**
+
+The individual has intrinsic characteristics that affect both engagement and admission relative to comparable surveys of other individuals. Heterogeneity in engagement across individuals is likely to be determined by awareness of reproducibility problems, attitudes towards defensibility of the practice.
+
+Admission of these practices are also possibly mediated by these same things. 
+
+heterogeneity in admission across individuals will likely be determined by 
+
+**Paper Level**
+
+**Survey Level**
+
+Because we are only conducting one survey, we won't have to explicitly model them in this analysis.
+However, it is important for interpreting the results, and also for intepreting differences in results should the survey be repeated again in the future. Survey design (such as the way questions are asked), and timing of the survey could plausibly affect admission rates. Timing could be an important factor because should there be broad-scale institutional changes in poractices such as changes in journal policy around transparency and openness, awareness of QRPs and their problems might also increase, and change peoples willingness to admit to them. E.g. if people's attitude towards the defensibility of a practice changes to the negative due to increased awaresness of QRPs, it could go either way that they are more likely or less likely to admit them. Should people feel that there is a culture of persecution rather than reform, then this would certainly affect admission rates. 
+
+*Dealing with a single survey*
+
+In ecological studyes, a single survey replicate is problematic because of imperfect detection - the proportion of species undetected can be high, and temporal replication improves the resolution of diversity estimates at a site. I don't think this is such a problem for our engagement problem though - repeated and subsequent sampling is unlikely to affect people's admission rates. The only reason that it would change is because of large cultural shifts in thinking and awareness about QRPs and the reproducibility problem.
+
+## Why a 'multi-species' or 'multi-QRP' approach?
+
+
+As a result of imperfect detection / admission, the set of QRPs committed by an individual at any moment in a multi-individual survey comprise several categories:
+
+1. QRPs admitted by an individual
+2. QRPs not admitted by the individual but admitted by other individuals
+3. QRPs not detected at any surveyed individual, but which are known to, or could occur across the suite of questionable research practices. So these could include survey items within our list, which are known to occur (based on my literature reviews generating the roadmaps) but that no one answered 'yes' to in the survey.
+
+One issue is that the set of QRPs in the third category is constrained by the number, type and generality of QRPs within our survey. So essentially we are doing 'targeted' monitoring.
+
+- [ ] Is there a hierarchical detection-based modelling method that accounts for 'targeted' monitoring? Or should we phrase our QRP description in a generalisable enough way that it could capture several different QRPs?
+
+**"Individual level view of the metacommunity" and effects of sampling effort**
+
+From Figure 2 of [@Iknayan:2014jw]:
+
+- Category 1 is always known, and this is known as 'traditional alpha richness'
+- Category 2 is estimated using species-specific detectibility traits from other sites
+- Category 3 is estimated based on the distribution of detection frequencies for all known species.
+
+As more and more individuals or sites are sampled, the proportion of category 3 QRPs decreases relative to Category 2 QRPs. Increasing the number of participants should not affect alpha richness, but supposedly increasing the number of surveys will. 
+
+**Predict First, Assemble Later**
+
+"Predict First, Assemble Later" approach to modelling combined engagement in multiple QRPs [@Iknayan:2014jw]:
+Allows occupancy or engagement to be modelled with individual-specific covarates, however modelling QRPs individually 'restricts inferences about diversity to species that have been detected multiple times, which excludes species that are rare or are undetected across all sites.' SO we model multiple-QRPs together, and explicitly rather than modelling each QRP engagement / prevalence rate separately. Although separate QRP-specific models that we assemble 
+
+**Assemble and Predict Together**
+
+"Because of the limitations of aggregating over single-species occupancy models, estimation of diversity metrics in a detection-based modeling framework typically take an 'assemble and predict together' approach using a hierarchical community occupancy model." [@Iknayan:2014jw].
+
+Through the inclusion of one or multiple detection covaraites, we can explicitly account for the effects of survey-, site-, species- and individual-level factors affecting detectability.
+
+These models can be analysed using either frequentist or Bayesian methods, but most currently available software packages are Bayesian.
+
+Although engagement histories are stratified by QRP and site within the data, the hierarchical approach allows data from the entire sample to inform estimates of diversity. The admission and engagement probabilities of each QRP are assumed to come from a community-level distribution  [Figure 1, purple distribution in @Iknayan:2014jw].
+
+"Typically, a normal distribution on the logit scale is often used for convenience, with a mean and variance as hyper parameters. This is equivalent to treating each different QRP as a random effect. The community-level hyper parameters facilitate the modelling of all QRPs, including rare ones, through a property often referred to as 'borrowing strength', or 'Bayesian shrinkage'" [@Iknayan:2014jw]. Each QRP estimate informs the overall (community level) mean and variance and, as a result, estimates of individual QRPs are pulled (i.e. shrunk) towards the community mean. This 'information sharing' allows for 'data to be used more efficiently compared with single-species models and individual QRP estimates are improved' [@Iknayan:2014jw]. Aside from improving parameter estimation using Bayesian shrinkage, it can also aid in estimating participant-level engagement for rarely detected QRPs even if there are limited numbers of detections. However, estimates for infrequently encountered QRPs will be pulled more toward the metacommunity mean because they are estimated with less precision and inform the ocmmunity-level mean less than QRPs that are frequently admitted." [@Iknayan:2014jw].
+
+# Overview of "Assemble and Predict Together" Modelling Process for QRP engagement
+
+We use a single-season MSOM approach to account for QRP-specific differences in admission and engagement across individuals. I've adapted the text below from box 2 in [@Iknayan:2014jw]
+
+## Inputs
+
+One or more explanatory covariates can be incorporated at the QRP or participant level (we exclude covariates for the survey process for reasons described above).
+
+Multi-QRP survey data are organised into a 2D dataframe: participant (k) x species (i), and includes the 'encounter' histories for all observed QRPs. 
+
+Continuous covariates are to be standardised, which improves MCMC performance but also increases interpretability of model output when comparing across covariate effects.
+
+## Modelling Specification and MCMC Sampling
+
+Engagement ($\psi$) and admission ($p$) parameters can be generalised such that they vary according to explanatory covariates. Typically, this is usually modelled with a "linear model on the logit scale, where regression coefficients are modelled as QRP-specific random effects derived from community-level distribution." Before MCMC sampling is implemented, prior distributions are specified for the hyperparameters of the community-level distributions, for the hyperdistributions themselves, and for $\Omega$, the parameter that determines "membership in the metacommunity from the superpopulation".. "In practice non-informative priors are often used."
+
+## Model output of posterior estimates and summary analyses
+
+The model returns posterior estimates for QRP-specific engagement and admission probabilities, and the QRP-specific effects of covariates.
+
+"derived community-level metrics" can also have their posterior distributions returned. For occupancy modelling, such metrics could include: "richness of the metacommunity, richness of indicidual sites, or richness of sets of sites, as well as richness of different functional groups at those spatial levels."
+
+"These estimates can be used in summary analyses to investigate relatinoships with covariates or to compare metacommunities."
+
+- [ ] What are some equivalent 'derived community level measures' for this casting of the problem? 
+
+- 'Richness' (num QRPs) of individual participants 
+- Richness of sets of individuals (num QRPs, sets of sites could include artificial grouping, e.g. factors about the individual?)
+- 'Richness' of the whole set of individuals sampled individuals
+
+```{r session-info}
+sessionInfo()
+```
+
+### Co-variates
+
+Co-variates will be derived from two sources: demographic surveys of participants, and bibliometric analyses.
+Bibliometric analyses focuses on the analysis of publications and there are two main approaches: performance analysis and bibliometric mapping [@Nakagawa2019]. Performance analysis quantifies citation impacts and productivity using metrics such as h-index, and Journal Impact Factor. Whereas bibliometric mapping is focussed on the publication itself, rather than content within a publication [@Nakagawa2019] or attributes of an author or journal. Measures can include how often a paper has been cited. 
+
+
+Paper vs. individual level Metrics:
+
+Any of these measures could be used as co-variates. If we don't ask questions about a specific paper, we could look at whether an author has *at least one* highly cited paper or something like that.
+
+Number of co-authors on paper
+
+Number of publications
+Number of distinct collaborators
+
+**Demographics**
+
+- career stage
+- gender
+- country
+
+**Author-level bibliometrics**
+
+- H-index (not field weighted). SCopus, WoS, Google Scholar Citations
+- Field weighted citation impact (weighted by field). SciVal
+- Author-level eigenfactor
+- country
+
+**Publication level**
+
+- citations per publication "Citation Impact" (not field weighted) Tool: SciVal, InCites
+- category normalised citation impact (field weighted) Tool: InCites
+
+- impact factor of journal in which published
+- number of citations
+
+
+### Summary Analyses
+
+
+
+
+*Other analyses and lines of investigation:*
+
+- Do attitudes about defensibility determine whether people commit a QRP or not?
+
+How often do those that think the practice is defensible admit the QRP (and conversely, how often do those that think the practice is not defensible admit to the QRP?) ANd is this more than we would otherwise expect? See the presentation on Gender-based homophily by Carol Lee from the Metascience symposium for their bootstrapping method! Could apply this to this problem.
+
+- Co-occurrence of QRPs
+
+If you do one QRP are you more likely to do another QRP? What QRPs tend to cluster together when they occur?
+
+
+# The paper problem and ways to get around it...
+
+Estimating the prevalence of QRPs among researchers provides some useful information about the extent of the practice, and its potential impact on the literature. However, we aren't able to get an estimate of how many studies or papers might have been affected by this QRP -- and fundamentally, this is what we are interested in. The proportion of reserachers engaging in a practice will not translate very accurately or precisely to the proportion of the literature affected. So how do we deal with this?
+
+# Resources
+
+[https://libguides.library.qut.edu.au/c.php?g=427625&p=6529944](https://libguides.library.qut.edu.au/c.php?g=427625&p=6529944)
+
+# References
