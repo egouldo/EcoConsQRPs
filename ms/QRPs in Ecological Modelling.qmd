@@ -5,3 +5,117 @@ editor: visual
 bibliography: references.bib
 ---
 
+```{r}
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(gt)
+
+source(here::here("R/tidy_QRP_database.R"))
+source(here::here("R/make_table_data.R"))
+source(here::here("R/make_QRP_table.R"))
+
+```
+
+```{r}
+#| label: tbl-QRP
+#| result: asis
+
+library(gtExtras)
+
+tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        make_qrp_table_data() %>% 
+        make_QRP_table() %>% 
+        gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
+        gtExtras::gt_color_box(
+                columns = c(-ends_with("_coded"), -source, -target),
+                palette = c("lightgrey", "purple"), labels = FALSE,
+                domain = c(0, 1)
+        )
+        
+        
+```
+
+```{r}
+#| warning: false
+#| message: false
+library(ggforce)
+tbl_data <- 
+        tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        make_qrp_table_data() 
+
+tbl_data %>%  
+        rename(practice_source = source) %>% 
+        select(target, practice_coded, practice_source) %>% 
+        mutate(target = stringr::str_split(target, ", ")) %>% 
+        unnest(target) %>% 
+        ungroup() %>% 
+        mutate(amount = 1) %>% 
+        complete(practice_coded, target, fill = list(amount = 0)) %>% 
+        group_by(practice_coded) %>%
+        ungroup() %>% 
+        fill(practice_source, .direction = "up") %>% 
+        slice(1:15) %>% 
+        ggplot() +
+        geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, fill = target, amount = amount),
+                     stat = "pie",
+                     linewidth = 0) +
+        facet_grid(practice_coded ~ ., switch = "y", labeller = labeller(practice_coded = label_wrap_gen(width = 20))) +
+        coord_fixed() +
+        scale_fill_brewer(palette = "Set3") +
+        theme_no_axes() +
+        theme(strip.text.y.left = element_text(angle = 0,size = 5))
+
+```
+
+```{r}
+#| warning: false
+#| message: false
+# let's try create donuts for each modelling phase
+library(ggh4x)
+
+strip_theming <- ggh4x::strip_themed(
+        text_x = ggh4x::elem_list_text(angle = c(0,90)),
+        by_layer_x = TRUE
+)
+
+tbl_data %>%  
+        rename(practice_source = source) %>% 
+        select(-reason_coded,) %>% 
+        mutate(target = stringr::str_split(target, ", ")) %>% 
+        unnest(target) %>% 
+        ungroup() %>% 
+        mutate(amount = 1) %>% 
+        complete(practice_coded, target) %>% 
+        group_by(practice_coded) %>%
+        fill(practice_source, qrp_coded, .direction = "up") %>% 
+        mutate(across(where(is.double), ~ replace_na(., 0))) %>% 
+        select(-amount) %>% 
+        pivot_longer(cols = -c(practice_coded, 
+                               target, qrp_coded, 
+                               practice_source),
+                     names_to = "modelling_phase", 
+                     values_to = "amount") %>% 
+        separate(modelling_phase, into = c("modelling_phase", "modelling_subphase"), sep = " - ", remove = TRUE) %>%
+        ggplot() +
+        geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, fill = target, amount = amount),
+                     stat = "pie",
+                     linewidth = 0) +
+        facet_grid2(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
+                   labeller = labeller(practice_coded = label_wrap_gen(width = 50)),
+                   strip = strip_nested(bleed = TRUE,  
+                                        text_x = ggh4x::elem_list_text(angle = c(0,90)),
+                                        by_layer_x = TRUE, 
+                                        size = "variable")) +
+        # facet_nested(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
+        #            labeller = labeller(practice_coded = label_wrap_gen(width = 50)),
+        #            render_empty = FALSE,
+        #            strip = strip_theming) +
+        coord_fixed() +
+        scale_fill_brewer(palette = "Set3") +
+        theme_no_axes(base_family = "Roboto Condensed") +
+        theme(strip.text.y.left = element_text(angle = 0, size = 8),
+              panel.spacing = unit(0,'lines'))
+```
+
