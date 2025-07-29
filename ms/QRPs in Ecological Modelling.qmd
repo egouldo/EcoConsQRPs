@@ -1,0 +1,25 @@
+---
+title: "QRPs in Ecological Modelling"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+-   [@Shmueli2010]
+-   [@Nakagawa2017]
+-   [@lewis2023]
+-   [@Fourcade2018]
+-   [@Babel2019]
+-   [@Auspurg2021]
+-   [@McDermott2021]
+-   [@Pu2018]
+-   [@Nagy2025]
+-   [@Josefsson2020]
+-   [@hofman2023]
+-   [@feng2019]
+-   [@Liu2020]
+-   [@MacNally2000]
+-   [@Konijn2015]
+-   [@Hildebrandt2018]
+-   [@Bodner2020]
+-   [@Bennett2013]
