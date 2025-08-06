@@ -169,3 +169,52 @@ tbl_data_donuts %>%
 tbl_data
 ```
 
+*Diagram*
+
+-   QRPs on y-axis, model phase / subphase on x-axis (top facets), nested.
+-   There's mark (donut) if the QRP occurs in that phase / subphase.
+-   The donut is coloured according to the target of the QRP, from Figure 1: input/model/output.
+-   Have simplified the phases / subphases into broader categories
+
+*Questions*
+
+-   [ ] What QRP grouping categories can we drop? ONLY USE ONE CATEGORY for each
+
+-   [ ] What symbols to use?
+
+    \- Dumping ground catgegory 'Poor Practice': for QRPs that don't fit into the other categories
+
+    \- Examples of poor practice include: - Not validating the model on independent data: the location of the QRP is actually somewhere else... maybe with other users.
+
+    \- engaging in commonly used techniques / practices, but that are known to be problematic, e.g. using AUC as a performance metric
+
+    -   'incomplete' "application" or something similar. Where the full method is not applied.
+    -   Misuse/Misapplication of an existing metric.
+
+**Todo:**
+
+-   [ ] Can merge some phases / subphases
+-   [ ] Aggregate some QRPs, they are essentially the same
+
+For the main figure:
+
+-   [ ] only have single groups (of QRP categories / codes `qrp_coded` ) & simplify the text (i.e. the description of each QRP `practice_coded` ).
+-   [ ] For each broad category can have two example QRPs - either most important (worst outcome), and easiest to explain. Only include hard to explain QRP in if it's serious and common.
+
+fuzzy area - poor practice vs. QRP. Potentially consider dropping some QRPs from the list.
+
+'Not following best-modelling practice'.
+
+QRPs invisible? Harder to spot. Incomplete reporting + ~*dishonest*~*/ambiguous/misleading* framing.
+
+Other problems like (e.g. QRPs that are poor practice)
+
+Incomplete reporting (QRP problem) stops you from fairly evaluating the research that was done. So if people reported their modeling proces fully then we would be able to discriminate when people are *not* doing best practice, and when they are.
+
+-   [ ] just have table + text in supp mat.
+
+Here's the problem. 20 years of people illustrating best-practice.
+
+We're not going to address that.
+
+We can't fairly evaluate the literature because of this poor transparency. Don't have to force modellers to change, but can encourage reviewers editors to push modellers' to report their modelling process more fully. reference point for reviewers to give to editor. Ammunition for reviewers to push back. Giving them language to start calling these things out. FAIRLY EVALUATING SOMEONE's WORK. We're so hard we are on people who deviate from prereg plans.
