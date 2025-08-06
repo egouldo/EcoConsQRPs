@@ -8,11 +8,16 @@ bibliography: references.bib
 ---
 
 ```{r}
-
+#| label: setup
+#| warning: false
+#| message: false
 library(tidyverse)
 library(here)
 library(janitor)
 library(gt)
+library(gtExtras)
+library(ggh4x)
+library(ggforce)
 
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
@@ -40,12 +45,18 @@ tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
 ```
 
 ```{r}
-#| warning: false
-#| message: false
-library(ggforce)
+#| label: make-qrp-table-data
+
 tbl_data <- 
         tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
         make_qrp_table_data() 
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: sandbox
 
 tbl_data %>%  
         rename(practice_source = source) %>% 
@@ -72,10 +83,7 @@ tbl_data %>%
 ```
 
 ```{r}
-#| warning: false
-#| message: false
-# let's try create donuts for each modelling phase
-library(ggh4x)
+#| label: make-donut-table-data
 
 strip_theming <- ggh4x::strip_themed(
         text_x = ggh4x::elem_list_text(angle = c(0,90)),
