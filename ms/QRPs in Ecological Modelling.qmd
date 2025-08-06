@@ -85,12 +85,7 @@ tbl_data %>%
 ```{r}
 #| label: make-donut-table-data
 
-strip_theming <- ggh4x::strip_themed(
-        text_x = ggh4x::elem_list_text(angle = c(0,90)),
-        by_layer_x = TRUE
-)
-
-tbl_data %>%  
+tbl_data_donuts <- tbl_data %>%  
         rename(practice_source = source) %>% 
         select(-reason_coded,) %>% 
         mutate(target = stringr::str_split(target, ", ")) %>% 
@@ -107,25 +102,70 @@ tbl_data %>%
                                practice_source),
                      names_to = "modelling_phase", 
                      values_to = "amount") %>% 
-        separate(modelling_phase, into = c("modelling_phase", "modelling_subphase"), sep = " - ", remove = TRUE) %>%
+        separate(modelling_phase, 
+                 into = c("modelling_phase", "modelling_subphase"), 
+                 sep = " - ", remove = TRUE) 
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| include: false
+#| eval: false
+# let's try create donuts for each modelling phase
+# strip_theming <- ggh4x::strip_themed(
+#         text_x = ggh4x::elem_list_text(angle = c(0,90)),
+#         by_layer_x = TRUE
+# )
+
+
+tbl_data_donuts %>%
         ggplot() +
         geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, fill = target, amount = amount),
                      stat = "pie",
                      linewidth = 0) +
         facet_grid2(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
-                   labeller = labeller(practice_coded = label_wrap_gen(width = 50)),
-                   strip = strip_nested(bleed = TRUE,  
+                   labeller = labeller(practice_coded = label_wrap_gen(width = 70)),
+                   strip = 
+                           strip_nested(bleed = TRUE,  
                                         text_x = ggh4x::elem_list_text(angle = c(0,90)),
                                         by_layer_x = TRUE, 
-                                        size = "variable")) +
+                                        size = "variable"),) +
         # facet_nested(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
-        #            labeller = labeller(practice_coded = label_wrap_gen(width = 50)),
+        #            labeller = labeller(practice_coded = label_wrap_gen(width = 70)),
         #            render_empty = FALSE,
         #            strip = strip_theming) +
         coord_fixed() +
         scale_fill_brewer(palette = "Set3") +
-        theme_no_axes(base_family = "Roboto Condensed") +
+        theme_no_axes() +
         theme(strip.text.y.left = element_text(angle = 0, size = 8),
-              panel.spacing = unit(0,'lines'))
+              panel.spacing = unit(0,'lines'),
+              strip.background = element_rect(fill = "lightgrey", 
+                                              colour = "white", 
+                                              linewidth = 0.5),
+              ggh4x.facet.nestline = 
+                      element_line(colour = "black", 
+                                   linetype = 1, 
+                                   linewidth = 1))
+```
+
+```{r}
+#| results: asis
+#| label: tidy-check-qrp_coded
+tbl_data_donuts %>% 
+        ungroup %>% 
+        drop_na() %>% 
+        mutate(qrp_coded = str_split(qrp_coded, ", ")) %>% 
+        unnest(qrp_coded) %>% 
+        mutate(qrp_coded = 
+                       case_when(qrp_coded != "HARKing" ~ stringr::str_to_title(qrp_coded), 
+                                 TRUE ~ qrp_coded)) %>% 
+        distinct(qrp_coded) %>% 
+        gt::gt()
+```
+
+```{r}
+#| include: false
+tbl_data
 ```
 
