@@ -1,6 +1,8 @@
 ---
 title: "QRPs in Ecological Modelling"
-format: html
+format:
+  html:
+    page-layout: full
 editor: visual
 bibliography: references.bib
 ---
