@@ -20,6 +20,7 @@ library(gt)
 library(gtExtras)
 library(ggh4x)
 library(ggforce)
+library(waffle)
 
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
@@ -234,6 +235,54 @@ tbl_data_donuts %>%
 ```{r}
 #| include: false
 tbl_data
+```
+
+```{r}
+waffle_plot_data <- 
+        tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        filter(include) %>% 
+        select(-notes, -model_subphase, -source, -reason_coded, -include) %>% 
+        distinct() %>% #rm duplicate practice_coded #TODO next merge duplicates while keeping source
+        drop_na() %>% #interim approach until datachecks in place
+        mutate(model_phase = str_split(model_phase, ", "),
+               target = str_split(target, ", "),
+               values = 1) %>% 
+        unnest(model_phase) %>% 
+        unnest(target) %>% 
+        complete(practice_coded, 
+                 model_phase, 
+                 target, 
+                 fill = list(values = 0.0001) # see https://github.com/hrbrmstr/waffle/issues/66
+                 ) %>%  
+        group_by(practice_coded) %>% 
+        fill(qrp_coded, model_phase, .direction = "downup") %>% 
+        ungroup()
+
+
+waffle_plot_data %>% 
+        distinct() %>% 
+        ggplot(aes(fill = target, values = values)) +
+        geom_waffle(size = 0.05, 
+                    color = "white", 
+                    make_proportional = FALSE, 
+                    flip = TRUE) +
+        scale_x_discrete(expand = c(0,0)) +
+        scale_y_discrete(expand = c(0,0)) +
+        coord_equal() +
+        facet_grid(practice_coded ~ model_phase, 
+                   switch = "y", 
+                   labeller = labeller(practice_coded = 
+                                               label_wrap_gen(width = 100))) +
+        # theme_no_axes() +
+        theme(strip.text.y.left = element_text(angle = 0, size = 10),
+              strip.text.x = element_text(angle = 45)#, 
+              #plot.background = element_rect(fill = "white", colour = "white"),
+              #panel.background = element_rect(colour = "white", fill = "white")
+              ) +
+        waffle::theme_enhance_waffle() +
+        ggh4x::force_panelsizes(rows = unit(3, "cm"), cols = unit(1, "cm"))
+
+
 ```
 
 # Notes
