@@ -7,6 +7,8 @@ editor: visual
 bibliography: references.bib
 ---
 
+# Prepare Data
+
 ```{r}
 #| label: setup
 #| warning: false
@@ -52,6 +54,8 @@ tbl_data <-
         make_qrp_table_data() 
 ```
 
+# Testing visualisations on data subsets
+
 ```{r}
 #| warning: false
 #| message: false
@@ -81,6 +85,8 @@ tbl_data %>%
         theme(strip.text.y.left = element_text(angle = 0,size = 5))
 
 ```
+
+# Full Dataset Plot
 
 ```{r}
 #| label: make-donut-table-data
