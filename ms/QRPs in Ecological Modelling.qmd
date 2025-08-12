@@ -180,6 +180,41 @@ tbl_data_donuts %>%
 ```
 
 ```{r}
+
+tbl_data_donuts %>%
+    select(modelling_subphase, -practice_source, -qrp_coded) %>% 
+    distinct() %>% 
+    group_split() %>% 
+    pluck(1) %>% 
+        ggplot(aes(y = modelling_phase, fill = target, values = amount)) +
+        geom_waffle(make_proportional = FALSE, flip = FALSE, size = 1, 
+                    color = "white",na.rm = FALSE) +
+        coord_equal() 
+
+tbl_data_donuts %>%
+    select(-modelling_subphase, -practice_source, -qrp_coded) %>% 
+    distinct() %>% 
+    group_split() %>% 
+    pluck(1) %>% 
+        ggplot(aes(x = modelling_phase, fill = target, values = amount)) +
+        geom_waffle(make_proportional = FALSE, flip = F, size = 1, 
+                    color = "white") +
+        coord_equal() 
+
+tbl_data_donuts %>%
+        select(-modelling_subphase, -practice_source, -qrp_coded) %>% 
+        distinct() %>% 
+        ggplot(aes(fill = target, values = amount)) +
+        geom_waffle(size = 1, 
+                    color = "white", 
+                    make_proportional = FALSE, 
+                    flip = TRUE) +
+        coord_fixed() +
+        facet_grid(practice_coded ~ modelling_phase)
+        theme_no_axes() 
+        
+```
+```{r}
 #| results: asis
 #| label: tidy-check-qrp_coded
 tbl_data_donuts %>% 
