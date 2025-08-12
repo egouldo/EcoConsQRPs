@@ -214,6 +214,7 @@ tbl_data_donuts %>%
         theme_no_axes() 
         
 ```
+
 ```{r}
 #| results: asis
 #| label: tidy-check-qrp_coded
@@ -227,6 +228,7 @@ tbl_data_donuts %>%
                                  TRUE ~ qrp_coded)) %>% 
         distinct(qrp_coded) %>% 
         gt::gt()
+
 ```
 
 ```{r}
