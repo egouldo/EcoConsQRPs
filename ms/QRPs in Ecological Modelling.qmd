@@ -62,25 +62,35 @@ tbl_data <-
 #| echo: false
 #| label: sandbox
 
-tbl_data %>%  
-        rename(practice_source = source) %>% 
-        select(target, practice_coded, practice_source) %>% 
-        mutate(target = stringr::str_split(target, ", ")) %>% 
-        unnest(target) %>% 
-        ungroup() %>% 
-        mutate(amount = 1) %>% 
-        complete(practice_coded, target, fill = list(amount = 0)) %>% 
-        group_by(practice_coded) %>%
-        ungroup() %>% 
-        fill(practice_source, .direction = "up") %>% 
-        slice(1:15) %>% 
-        ggplot() +
-        geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, fill = target, amount = amount),
-                     stat = "pie",
-                     linewidth = 0) +
-        facet_grid(practice_coded ~ ., switch = "y", labeller = labeller(practice_coded = label_wrap_gen(width = 20))) +
-        coord_fixed() +
-        scale_fill_brewer(palette = "Set3") +
+tbl_data_subset <- 
+  tbl_data %>%  
+  rename(practice_source = source) %>% 
+  select(target, practice_coded, practice_source) %>% 
+  mutate(target = stringr::str_split(target, ", ")) %>% 
+  unnest(target) %>% 
+  ungroup() %>% 
+  mutate(amount = 1) %>% 
+  complete(practice_coded, target, fill = list(amount = 0)) %>% 
+  group_by(practice_coded) %>%
+  ungroup() %>% 
+  fill(practice_source, .direction = "up") %>% 
+  slice(1:15) 
+
+tbl_data_subset %>%        
+  ggplot() +
+  geom_arc_bar(
+    aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, 
+        fill = target, amount = amount),
+    stat = "pie",
+    linewidth = 0) +
+  facet_grid(practice_coded ~ ., switch = "y", 
+             labeller = labeller(practice_coded = 
+                                   label_wrap_gen(width = 20))) +
+  coord_fixed() +
+  scale_fill_brewer(palette = "Set3") +
+  theme_no_axes() +
+  theme(strip.text.y.left = element_text(angle = 0,size = 5))
+```
         theme_no_axes() +
         theme(strip.text.y.left = element_text(angle = 0,size = 5))
 
