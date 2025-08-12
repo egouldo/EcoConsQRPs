@@ -5,6 +5,8 @@ format:
     page-layout: full
 editor: visual
 bibliography: references.bib
+editor_options: 
+  chunk_output_type: inline
 ---
 
 # Prepare Data
@@ -54,6 +56,8 @@ gt_qrp
 
 ```{r}
 #| label: make-qrp-table-data
+#| warning: false
+#| message: false
 
 tbl_data <- 
         tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
@@ -99,7 +103,8 @@ tbl_data_subset %>%
 ```
 
 ```{r}
-
+#| label: waffle_plot_subset
+#| error: true
 tbl_data_subset %>% 
         ggplot(aes(fill = target, values = amount)) +
         geom_waffle(size = 1, 
@@ -116,9 +121,12 @@ tbl_data_subset %>%
 
 # Full Dataset Plot
 
+## Donut Plots
+
+(Output suppressed)
+
 ```{r}
 #| label: make-donut-table-data
-
 tbl_data_donuts <- tbl_data %>%  
         rename(practice_source = source) %>% 
         select(-reason_coded, -notes) %>% 
@@ -146,12 +154,13 @@ tbl_data_donuts <- tbl_data %>%
 #| message: false
 #| include: false
 #| eval: false
+#| label: donut_plot
+#| results: hide
 # let's try create donuts for each modelling phase
 # strip_theming <- ggh4x::strip_themed(
 #         text_x = ggh4x::elem_list_text(angle = c(0,90)),
 #         by_layer_x = TRUE
 # )
-
 
 tbl_data_donuts %>%
         ggplot() +
@@ -185,8 +194,12 @@ tbl_data_donuts %>%
                                    linewidth = 1))
 ```
 
-```{r}
+## Waffle Plot
 
+```{r}
+#| results: hide
+#| label: waffle_plot_sandbox_all
+#| error: true
 tbl_data_donuts %>%
     select(modelling_subphase, -practice_source, -qrp_coded) %>% 
     distinct() %>% 
@@ -222,29 +235,10 @@ tbl_data_donuts %>%
 ```
 
 ```{r}
-#| results: asis
-#| label: tidy-check-qrp_coded
-tbl_data_donuts %>% 
-        ungroup %>% 
-        drop_na() %>% 
-        mutate(qrp_coded = str_split(qrp_coded, ", ")) %>% 
-        unnest(qrp_coded) %>% 
-        mutate(qrp_coded = 
-                       case_when(qrp_coded != "HARKing" ~ stringr::str_to_title(qrp_coded), 
-                                 TRUE ~ qrp_coded)) %>% 
-        distinct(qrp_coded) %>% 
-        gt::gt()
-
-```
-
-```{r}
-#| include: false
-tbl_data
-```
-
-```{r}
 #| label: waffle_data_prep
-#| echo: false
+#| echo: true
+#| message: false
+#| warning: false
 waffle_plot_data <- 
         tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
         filter(include) %>% 
@@ -269,6 +263,8 @@ waffle_plot_data <-
 ```{r}
 #| label: fig-waffle_plot
 #| fig-cap: "Where QRPs occur in the modelling cycle and their targets."
+#| fig-width: 15
+#| fig-height: 15
 waffle_plot_data %>% 
         distinct() %>% 
         ggplot(aes(fill = target, values = values)) +
@@ -291,6 +287,13 @@ waffle_plot_data %>%
               ) +
         waffle::theme_enhance_waffle() +
         ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm"))
+```
+
+```{r}
+#| label: tbl-QRP-categories
+waffle_plot_data %>% 
+        distinct(qrp_coded) %>% 
+        knitr::kable(caption = "QRP categories")
 ```
 
 # Notes
@@ -319,12 +322,12 @@ waffle_plot_data %>%
 
 **Todo:**
 
--   [ ] Can merge some phases / subphases
--   [ ] Aggregate some QRPs, they are essentially the same
+-   [x] Can merge some phases / subphases
+-   [x] Aggregate some QRPs, they are essentially the same
 
 For the main figure:
 
--   [ ] only have single groups (of QRP categories / codes `qrp_coded` ) & simplify the text (i.e. the description of each QRP `practice_coded` ).
+-   [x] only have single groups (of QRP categories / codes `qrp_coded` ) & simplify the text (i.e. the description of each QRP `practice_coded` ).
 -   [ ] For each broad category can have two example QRPs - either most important (worst outcome), and easiest to explain. Only include hard to explain QRP in if it's serious and common.
 
 fuzzy area - poor practice vs. QRP. Potentially consider dropping some QRPs from the list.
