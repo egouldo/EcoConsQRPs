@@ -115,7 +115,7 @@ tbl_data_subset %>%
 
 tbl_data_donuts <- tbl_data %>%  
         rename(practice_source = source) %>% 
-        select(-reason_coded,) %>% 
+        select(-reason_coded, -notes) %>% 
         mutate(target = stringr::str_split(target, ", ")) %>% 
         unnest(target) %>% 
         ungroup() %>% 
