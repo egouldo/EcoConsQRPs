@@ -236,6 +236,8 @@ tbl_data_donuts %>%
 tbl_data
 ```
 
+# Notes
+
 *Diagram*
 
 -   QRPs on y-axis, model phase / subphase on x-axis (top facets), nested.
@@ -290,5 +292,4 @@ We can't fairly evaluate the literature because of this poor transparency. Don't
 
 Have weaned out a third of them that fit squarely in "poor modelling practice" (out of 42)
 
-
-But still not sure about some other ones. 
+But still not sure about some other ones.
