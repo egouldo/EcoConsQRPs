@@ -127,16 +127,18 @@ tbl_data_donuts <- tbl_data %>%
 
 tbl_data_donuts %>%
         ggplot() +
-        geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, fill = target, amount = amount),
+        geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0.5, r = 1, 
+                         fill = target, 
+                         amount = amount),
                      stat = "pie",
                      linewidth = 0) +
         facet_grid2(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
-                   labeller = labeller(practice_coded = label_wrap_gen(width = 70)),
-                   strip = 
-                           strip_nested(bleed = TRUE,  
-                                        text_x = ggh4x::elem_list_text(angle = c(0,90)),
-                                        by_layer_x = TRUE, 
-                                        size = "variable"),) +
+                    labeller = labeller(practice_coded = label_wrap_gen(width = 70)),
+                    strip = 
+                            strip_nested(bleed = TRUE,  
+                                         text_x = ggh4x::elem_list_text(angle = c(0,90)),
+                                         by_layer_x = TRUE, 
+                                         size = "variable")) +
         # facet_nested(practice_coded ~ modelling_phase + modelling_subphase, switch = "y", 
         #            labeller = labeller(practice_coded = label_wrap_gen(width = 70)),
         #            render_empty = FALSE,
