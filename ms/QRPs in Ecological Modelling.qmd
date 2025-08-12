@@ -238,6 +238,8 @@ tbl_data
 ```
 
 ```{r}
+#| label: waffle_data_prep
+#| echo: false
 waffle_plot_data <- 
         tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
         filter(include) %>% 
@@ -257,8 +259,11 @@ waffle_plot_data <-
         group_by(practice_coded) %>% 
         fill(qrp_coded, model_phase, .direction = "downup") %>% 
         ungroup()
+```
 
-
+```{r}
+#| label: fig-waffle_plot
+#| fig-cap: "Where QRPs occur in the modelling cycle and their targets."
 waffle_plot_data %>% 
         distinct() %>% 
         ggplot(aes(fill = target, values = values)) +
@@ -274,15 +279,13 @@ waffle_plot_data %>%
                    labeller = labeller(practice_coded = 
                                                label_wrap_gen(width = 100))) +
         # theme_no_axes() +
-        theme(strip.text.y.left = element_text(angle = 0, size = 10),
+        theme(strip.text.y.left = element_text(angle = 0, size = 10, ),
               strip.text.x = element_text(angle = 45)#, 
               #plot.background = element_rect(fill = "white", colour = "white"),
               #panel.background = element_rect(colour = "white", fill = "white")
               ) +
         waffle::theme_enhance_waffle() +
-        ggh4x::force_panelsizes(rows = unit(3, "cm"), cols = unit(1, "cm"))
-
-
+        ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm"))
 ```
 
 # Notes
