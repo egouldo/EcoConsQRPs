@@ -91,9 +91,21 @@ tbl_data_subset %>%
   theme_no_axes() +
   theme(strip.text.y.left = element_text(angle = 0,size = 5))
 ```
+
+```{r}
+
+tbl_data_subset %>% 
+        ggplot(aes(fill = target, values = amount)) +
+        geom_waffle(size = 1, 
+                    color = "white", 
+                    make_proportional = FALSE, 
+                    flip = TRUE) +
+        coord_equal() +
+        facet_grid(practice_coded ~ ., switch = "y", 
+             labeller = labeller(practice_coded = 
+                                   label_wrap_gen(width = 20))) +
         theme_no_axes() +
         theme(strip.text.y.left = element_text(angle = 0,size = 5))
-
 ```
 
 # Full Dataset Plot
