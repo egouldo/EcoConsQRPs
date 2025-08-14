@@ -265,14 +265,16 @@ waffle_plot_data <-
 #| fig-cap: "Where QRPs occur in the modelling cycle and their targets."
 #| fig-width: 15
 #| fig-height: 15
+
 waffle_plot_data %>% 
         distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
         mutate(model_phase = 
                        forcats::as_factor(model_phase) %>% 
                        forcats::fct_relevel( c("Data", 
                                                "Model Construction", 
+                                               "Model Evaluation",
                                                "Model Application"))) %>% 
-        arrange(model_phase) %>% 
+        arrange(model_phase, qrp_coded) %>% 
         ggplot(aes(fill = target, values = values)) +
         geom_waffle(size = 0.05, 
                     color = "white", 
@@ -281,13 +283,28 @@ waffle_plot_data %>%
         scale_x_discrete(expand = c(0,0)) +
         scale_y_discrete(expand = c(0,0)) +
         coord_equal() +
-        facet_grid(practice_coded ~ model_phase, 
-                   switch = "y", 
-                   labeller = labeller(practice_coded = 
-                                               label_wrap_gen(width = 100))) +
+        facet_nested(qrp_coded + practice_coded ~ model_phase, 
+                     switch = "y", 
+                     labeller = labeller(practice_coded =
+                                                 label_wrap_gen(width = 100, 
+                                                                multi_line = TRUE),
+                                         qrp_coded = 
+                                                 label_wrap_gen(width = 10, 
+                                                                multi_line = TRUE)),
+                     nest_line = element_line(linetype = 1),
+                     solo_line = TRUE,
+                     space = "free",
+                     strip = strip_nested(size = "variable",
+                                          clip = "off")
+                     ) +
+        # facet_grid(practice_coded ~ model_phase, 
+        #            switch = "y", 
+        #            labeller = labeller(practice_coded = 
+        #                                        label_wrap_gen(width = 100))) +
         # theme_no_axes() +
         theme(strip.text.y.left = element_text(angle = 0, size = 10, ),
-              strip.text.x = element_text(angle = 45)#, 
+              #strip.text.x = element_text(angle = 45), 
+              strip.background.y = element_blank()
               #plot.background = element_rect(fill = "white", colour = "white"),
               #panel.background = element_rect(colour = "white", fill = "white")
               ) +
@@ -297,7 +314,7 @@ waffle_plot_data %>%
 #DONE reorder the model process levels
 #TODO exclude less important QRPs
 #TODO recolour model object colours
-#TODO group the QRPs into their umbrella terms -- nested facets?
+#DONE group the QRPs into their umbrella terms -- nested facets?
 
 
 ```
@@ -306,6 +323,7 @@ waffle_plot_data %>%
 #| label: tbl-QRP-categories
 waffle_plot_data %>% 
         distinct(qrp_coded) %>% 
+        arrange(qrp_coded) %>% 
         knitr::kable(caption = "QRP categories")
 ```
 
