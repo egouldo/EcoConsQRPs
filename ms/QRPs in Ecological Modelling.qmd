@@ -225,3 +225,11 @@ We can't fairly evaluate the literature because of this poor transparency. Don't
 Have weaned out a third of them that fit squarely in "poor modelling practice" (out of 42)
 
 But still not sure about some other ones.
+
+# Session Info {.unnumbered}
+
+```{r}
+#| label: session-info
+
+devtools::session_info()
+```
