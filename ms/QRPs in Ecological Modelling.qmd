@@ -38,29 +38,6 @@ source(here::here("R/make_QRP_table.R"))
 
 ```
 
-```{r}
-#| label: tbl-QRP
-#| result: asis
-#| column: body-outset
-#| warning: false
-#| message: false
-
-gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
-  make_qrp_table_data() %>% 
-    select(-notes) %>% 
-  make_QRP_table() %>% 
-  gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
-  gtExtras::gt_color_box(
-    columns = c(-ends_with("_coded"), -source, -target),
-    palette = c("lightgrey", "purple"), labels = FALSE,
-    domain = c(0, 1)
-  ) %>% 
-  gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) 
-
-gt_qrp
-
-#gt_qrp %>% gt::gtsave(path = here::here("tables"), filename = "qrp_table_draft.pdf")
-```
 
 ```{r}
 #| label: make-qrp-table-data
@@ -346,6 +323,30 @@ waffle_plot_data %>%
         gt::gt() %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
         gtExtras::gt_theme_pff() 
+```
+
+```{r}
+#| label: tbl-QRP
+#| result: asis
+#| column: body-outset
+#| warning: false
+#| message: false
+
+gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+  make_qrp_table_data() %>% 
+    select(-notes) %>% 
+  make_QRP_table() %>% 
+  gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
+  gtExtras::gt_color_box(
+    columns = c(-ends_with("_coded"), -source, -target),
+    palette = c("lightgrey", "purple"), labels = FALSE,
+    domain = c(0, 1)
+  ) %>% 
+  gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) 
+
+gt_qrp
+
+#gt_qrp %>% gt::gtsave(path = here::here("tables"), filename = "qrp_table_draft.pdf")
 ```
 
 # Notes
