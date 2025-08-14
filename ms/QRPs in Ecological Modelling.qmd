@@ -266,7 +266,13 @@ waffle_plot_data <-
 #| fig-width: 15
 #| fig-height: 15
 waffle_plot_data %>% 
-        distinct() %>% 
+        distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
+        mutate(model_phase = 
+                       forcats::as_factor(model_phase) %>% 
+                       forcats::fct_relevel( c("Data", 
+                                               "Model Construction", 
+                                               "Model Application"))) %>% 
+        arrange(model_phase) %>% 
         ggplot(aes(fill = target, values = values)) +
         geom_waffle(size = 0.05, 
                     color = "white", 
@@ -287,6 +293,13 @@ waffle_plot_data %>%
               ) +
         waffle::theme_enhance_waffle() +
         ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm"))
+
+#DONE reorder the model process levels
+#TODO exclude less important QRPs
+#TODO recolour model object colours
+#TODO group the QRPs into their umbrella terms -- nested facets?
+
+
 ```
 
 ```{r}
