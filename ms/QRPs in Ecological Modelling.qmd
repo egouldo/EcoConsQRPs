@@ -146,22 +146,21 @@ waffle_plot_data %>%
 
 ```{r}
 #| label: tbl-QRP
-#| result: asis
+#| tbl-cap: "Full list of Questionable Research Practices identified from the literature. We categorised QRPs into broader classes"
 #| column: body-outset
 #| warning: false
 #| message: false
 
 gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
-  make_qrp_table_data() %>% 
-    select(-notes) %>% 
-  make_QRP_table() %>% 
-  gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
-  gtExtras::gt_color_box(
-    columns = c(-ends_with("_coded"), -source, -target),
-    palette = c("lightgrey", "purple"), labels = FALSE,
-    domain = c(0, 1)
-  ) %>% 
-  gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) 
+        make_qrp_table_data() %>% 
+        select(-notes) %>% 
+        group_by(qrp_coded) %>% 
+        arrange(qrp_coded) %>% 
+        make_QRP_table() %>% 
+        gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
+        gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) %>% 
+        gt::cols_label(qrp_coded = "QRP Class") %>% 
+        gtExtras::gt_theme_pff()
 
 gt_qrp
 
