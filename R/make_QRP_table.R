@@ -2,10 +2,14 @@
 
 make_QRP_table <- function(qrp_table_data) {
         qrp_tbl <- qrp_table_data %>% 
-                ungroup %>% 
+                group_by(qrp_coded) %>% 
                 select(-reason_coded) %>% 
-                dplyr::relocate(ends_with("_coded"), source, target, starts_with("Problem"), starts_with("Define"), starts_with("Data"), contains("Construction"), contains("Evaluation"), everything()) %>% 
-                gt() %>% 
+                dplyr::relocate(ends_with("_coded"), 
+                                source, 
+                                target, starts_with("Problem"), 
+                                starts_with("Define"), starts_with("Data"), 
+                                contains("Construction"), contains("Evaluation"), everything()) %>% 
+                gt(groupname_col = "qrp_coded") %>% 
                 tab_spanner("Model Construction", 
                             columns = starts_with("Model Construction")) %>%
                 tab_spanner("Data", 
