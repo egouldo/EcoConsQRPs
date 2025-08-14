@@ -18,12 +18,19 @@ editor_options:
 library(tidyverse)
 library(here)
 library(janitor)
+
 library(gt)
 library(gtExtras)
+
 library(ggh4x)
 library(ggforce)
 library(waffle)
 library(ggsci)
+library(hrbrthemes)
+
+library(extrafont)
+library(firasans)
+extrafont::loadfonts()
 
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
@@ -266,7 +273,9 @@ waffle_plot_data <-
 #| fig-cap: "Where QRPs occur in the modelling cycle and their targets."
 #| fig-width: 15
 #| fig-height: 15
+#| fig-height: 24
 
+# options(hrbrthemes.loadfonts = TRUE)
 waffle_plot_data %>% 
         distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
         mutate(model_phase = 
@@ -275,43 +284,55 @@ waffle_plot_data %>%
                                                "Model Construction", 
                                                "Model Evaluation",
                                                "Model Application"))) %>% 
-        arrange(model_phase, qrp_coded) %>% 
-        ggplot(aes(fill = target, values = values)) +
+        arrange(model_phase, 
+                qrp_coded) %>% 
+        ggplot(aes(fill = target, 
+                   values = values)) +
         geom_waffle(size = 2, 
                     color = "white", 
                     make_proportional = FALSE, 
                     flip = TRUE) +
         scale_x_discrete(expand = c(0,0)) +
         scale_y_discrete(expand = c(0,0)) +
-        ggsci::scale_fill_futurama() +
+        ggsci::scale_fill_futurama(name = "QRP Target") +
         coord_equal() +
         facet_nested(qrp_coded + practice_coded ~ model_phase, 
                      switch = "y", 
-                     labeller = labeller(practice_coded =
-                                                 label_wrap_gen(width = 100, 
-                                                                multi_line = TRUE),
-                                         qrp_coded = 
-                                                 label_wrap_gen(width = 10, 
-                                                                multi_line = TRUE)),
+                     labeller = 
+                             labeller(
+                                     practice_coded =
+                                             label_wrap_gen(width = 80,
+                                                            multi_line = TRUE),
+                                     qrp_coded =
+                                             label_wrap_gen(width = 10,
+                                                            multi_line = TRUE),
+                                     model_phase = 
+                                             label_wrap_gen(width = 10, 
+                                                            multi_line = TRUE)),
                      nest_line = element_line(linetype = 1),
                      solo_line = TRUE,
                      space = "free",
                      strip = strip_nested(size = "variable",
                                           clip = "off")
-                     ) +
+        ) +
         # facet_grid(practice_coded ~ model_phase, 
         #            switch = "y", 
         #            labeller = labeller(practice_coded = 
         #                                        label_wrap_gen(width = 100))) +
         # theme_no_axes() +
-         waffle::theme_enhance_waffle() +
-        theme(strip.text.y.left = element_text(angle = 0, size = 10),
+        hrbrthemes::theme_ipsum_rc() +
+        waffle::theme_enhance_waffle() +
+        theme(strip.text.y.left = element_text(angle = 0, 
+                                               size = 10),
+              strip.text.x = element_text(size = 14,vjust = 0),
+              strip.background.x = element_part_rect(side = "b"),
               strip.background.y = element_blank()
-              ) +
-        ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm")) 
-
+        ) +
+        ggh4x::force_panelsizes(rows = unit(1, "cm"), 
+                                cols = unit(3, "cm"))
 #DONE reorder the model process levels
 #TODO exclude less important QRPs
+#DONE Make strips pretty
 #DONE recolour model object colours
 #DONE group the QRPs into their umbrella terms -- nested facets?
 
