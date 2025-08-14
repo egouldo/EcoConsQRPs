@@ -23,6 +23,7 @@ library(gtExtras)
 library(ggh4x)
 library(ggforce)
 library(waffle)
+library(ggsci)
 
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
@@ -276,12 +277,13 @@ waffle_plot_data %>%
                                                "Model Application"))) %>% 
         arrange(model_phase, qrp_coded) %>% 
         ggplot(aes(fill = target, values = values)) +
-        geom_waffle(size = 0.05, 
+        geom_waffle(size = 2, 
                     color = "white", 
                     make_proportional = FALSE, 
                     flip = TRUE) +
         scale_x_discrete(expand = c(0,0)) +
         scale_y_discrete(expand = c(0,0)) +
+        ggsci::scale_fill_futurama() +
         coord_equal() +
         facet_nested(qrp_coded + practice_coded ~ model_phase, 
                      switch = "y", 
@@ -302,20 +304,16 @@ waffle_plot_data %>%
         #            labeller = labeller(practice_coded = 
         #                                        label_wrap_gen(width = 100))) +
         # theme_no_axes() +
-        theme(strip.text.y.left = element_text(angle = 0, size = 10, ),
-              #strip.text.x = element_text(angle = 45), 
+         waffle::theme_enhance_waffle() +
+        theme(strip.text.y.left = element_text(angle = 0, size = 10),
               strip.background.y = element_blank()
-              #plot.background = element_rect(fill = "white", colour = "white"),
-              #panel.background = element_rect(colour = "white", fill = "white")
               ) +
-        waffle::theme_enhance_waffle() +
-        ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm"))
+        ggh4x::force_panelsizes(rows = unit(1, "cm"), cols = unit(3, "cm")) 
 
 #DONE reorder the model process levels
 #TODO exclude less important QRPs
-#TODO recolour model object colours
+#DONE recolour model object colours
 #DONE group the QRPs into their umbrella terms -- nested facets?
-
 
 ```
 
