@@ -312,13 +312,17 @@ gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
         gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
         gtExtras::gt_theme_pff()
+```
 
 gt_qrp
+## References {.unnumbered}
 
 #gt_qrp %>% gt::gtsave(path = here::here("tables"), filename = "qrp_table_draft.pdf")
 ```
+::: {#refs}
+:::
 
-# Notes
+## Notes
 
 *Diagram*
 
