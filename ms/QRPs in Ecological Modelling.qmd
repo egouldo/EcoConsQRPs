@@ -212,8 +212,9 @@ waffle_plot_data <-
 #| fig-width: 15
 #| fig-height: 24
 
+# #| dev: "cairo_pdf" # when output is pdf
 # options(hrbrthemes.loadfonts = TRUE)
-waffle_plot_data %>% 
+waffle_plot <- waffle_plot_data %>% 
         distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
         mutate(model_phase = 
                        forcats::as_factor(model_phase) %>% 
@@ -267,6 +268,11 @@ waffle_plot_data %>%
         ) +
         ggh4x::force_panelsizes(rows = unit(1, "cm"), 
                                 cols = unit(3, "cm"))
+
+print(waffle_plot)
+
+
+
 #DONE reorder the model process levels
 #TODO exclude less important QRPs
 #DONE Make strips pretty
