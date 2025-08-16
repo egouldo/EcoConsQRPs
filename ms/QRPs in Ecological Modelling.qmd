@@ -284,12 +284,15 @@ print(waffle_plot)
 ```{r}
 #| label: tbl-QRP-categories
 #| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
+#| results: asis
+#| echo: false
 waffle_plot_data %>% 
         distinct(qrp_coded) %>% 
         arrange(qrp_coded) %>% 
         gt::gt() %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
-        gtExtras::gt_theme_pff() 
+        gtExtras::gt_theme_nytimes() %>% 
+  gt::as_raw_html()
 ```
 
 ```{r}
