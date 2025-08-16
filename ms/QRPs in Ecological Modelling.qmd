@@ -1,12 +1,72 @@
 ---
-title: "QRPs in Ecological Modelling"
+title: A Roadmap of Questionable Research Practices in Ecological Modelling
+running-head: Questionable Research Practices in Ecological Modelling
+author:
+  - name: Elliot Gould
+    email: elliot.gould@unimelb.edu.au
+    orcid: 0000-0002-6585-538X
+    url: https://github.com/egouldo
+    corresponding: true
+    affiliation:
+      - ref: 1
+  - name: Hannah S. Fraser
+    orcid: 0000-0003-2443-4463
+    affiliation:
+      - ref: 1
+  - name: Libby Rumpff
+    orcid: 0000-0001-9400-8086
+    affiliation:
+     -  ref: 1
+  - name: Fiona Fidler
+    orcid: 0000-0002-2700-2562
+    affiliation:
+      - ref: 2
+affiliations:
+  - id: 1
+    name: The University of Melbourne
+    department: School of Agriculture, Food and Ecosystem Sciences
+  - id: 2
+    name: The University of Melbourne
+    department: School of Historical and Philosophical Studies
 format:
+  preprint-typst:
+    keep-md: true
+    keep-typ: true
+    css-property-processing: translate
+    wordcount: true
+    execute:
+      echo: false
+      message: false
+      include-before-body:
+      - text: |
+          #show figure: set block(breakable: true)
+    # Common options - uncomment (and remove 'default') to use
+    # theme-jou: true              # Journal theme (2-column)
+    # line-number: true            # Line numbering
+    # fontsize: 11pt               # Font size
+    # leading: 0.6em               # Line spacing
+    # first-line-indent: 1.8em     # Paragraph indent
   html:
     page-layout: full
-editor: visual
+    title-block-banner: true
+    code-fold: true
+pdf-engine: xelatex
+abstract: |
+  1. Questionable research practices (QRPs), result in low rates of replicability and contribute to biased accounts of studied phenomena in the published literature, producing a literature full of apparently strong and conclusive results. Recent metaresearch has revealed that ecology is at risk of a ‘replicability crisis’ due to the presence of QRPs and a lack of transparency in published research. However, the work to date focusses on QRPs as they occur in hypothesis testing research which is not a good fit for use in ecology and related fields that conduct exploratory or predictive research using complex models. 
+  2. In order to protect against bias caused by QRPs in ecology, it is essential to identify QRPs relevant to model-based research and understand why they occur, how frequent they are and how severe the consequences might be. In this paper we propose a conceptual framework for describing QRPs in ecological model-based research. 
+  3. We describe a generalised workflow for model development, evaluation and analysis as it is typically undertaken in ecology and related fields. We develop a typology of QRPs that describes potential mechanisms for emergence of QRPs throughout the modelling process. From this conceptual framework, we derive a definition of QRPs that captures the specificities and features of the modelling process particular to ecology. Finally, we create a diagrammatic roadmap that map QRPs onto common decision-points in the modelling process, highlighting points of caution for modelers. 
+  4. Our analysis and framework highlight that QRPs in the modelling process are a threat to the credibility of model-based research. QRPs may target the model itself, or the outputs of model analyses, including model checking, or testing and evaluation performed on the model.  Finally, our proposed definition of QRPs de-emphasises the idea of finding false positive results and instead points to other measures of model credibility that affect publishability, such as the accuracy and precision of the model and or its outputs. 
+  5. In this paper we aim to raise awareness among modelers about the potential types of QRPs and their mechanisms for emergence in the modelling process. The roadmaps in this paper will help modelers to understand the risks of QRPs in their research so they are empowered to implement procedures and practices that can reduce the occurrence and impact of QRPs.
+keywords: 
+  - questionable research practices
+  - ecological modelling
+  - metaresearch
+  - transparency
+  - reproducibility
+  - model credibility
+  - researcher degrees of freedom
+date: last-modified
 bibliography: references.bib
-editor_options: 
-  chunk_output_type: inline
 ---
 
 # Prepare Data
