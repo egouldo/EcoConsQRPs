@@ -208,6 +208,36 @@ waffle_plot_data <-
         ungroup()
 ```
 
+```{r}
+#| label: tbl-QRP-categories
+#| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
+#| echo: false
+
+qrp_class_descriptions <- tribble(~ qrp_coded, ~ description,
+        "S-hacking", "S- or *statistic* hacking: Manipulating model inputs, outputs or the model itself to obtain a favourable value of a performance measure, usually by systematically altering the modelling until a desired level of a statistic or metric is obtained [@Nakagawa2025; @Nagy2025]. This can include changing random seeds, outcome variable and/or performance thresholds, or performance metrics. Likely to occur when there are threshold dependent binary (or even ordinal) outcomes that are linked to whether the model will be publishable or not, in such instances S-hacking is analagous to *p*-hacking. Examples of threshold-dependent performance measures include partial ROC, true skill statistic (TSS), sensitivity and specificity [@feng2019]. <br>When there are multiple criteria informing model performance or multiple model performance tests, the relative weighting may be changed after observing results to make the model appear more credible [@Benett2013] (Or is this over-hyping).",
+        "Overhyping", "Exaggerating or overstating the capabilities, generalisability, or reliability of a model beyond what is justified by the evidence. This can involve overstating a model's real-world applicability or predictive power.",
+        "Sample Curation", "Based on Nagy et al. [-@Nagy2025]. Selectively including, excluding, or modifying data points in the sample used to develop or evaluate a model, often to improve apparent model performance. This can include practices like cherry-picking favourable data or arbitrarily removing outliers.",
+        "Model Dredging", "Searching through a large number of possible model specifications or variable combinations without theoretical justification, in an attempt to find statistically significant or favourable results. This is sometimes referred to as 'fishing expeditions' in model space.",
+        "Selective Debugging", "The practice of only checking for and correcting errors in a model when results are unexpected or unfavourable, rather than performing systematic error checking regardless of outcomes.",
+        "Overfitting", "Developing a model that fits the training data too closely, including noise and peculiarities specific to that dataset, resulting in poor generalisability to new data. This often occurs when models are made overly complex relative to the amount of training data available.",
+        "Executing Alternative Analyses", "Conducting multiple different analyses or model variations and selectively reporting only those that yield favourable or statistically significant results, without disclosing the full range of analyses performed.",
+        "Selective Reporting", "Also termed *cherry-picking*. Choosing to report only certain results, metrics, or comparisons that support desired conclusions while omitting less favourable findings. This can create a misleading impression of model performance or study outcomes.")
+
+waffle_plot_data %>% 
+  distinct(qrp_coded) %>% 
+  arrange(qrp_coded) %>% 
+  left_join(qrp_class_descriptions, by = join_by(qrp_coded)) %>% 
+  gt::gt() %>% 
+  gt::cols_label(qrp_coded = "QRP Class") %>% 
+  gtExtras::gt_theme_nytimes() %>% 
+  gt::cols_width(
+    qrp_coded ~ gt::pct(15),
+    description ~ gt::pct(85)
+  ) %>% 
+  gt::fmt_markdown(columns = description) 
+
+```
+
 ### QRPs in the Modelling Process
 
 
@@ -287,17 +317,9 @@ print(waffle_plot)
 
 ```
 
-```{r}
-#| label: tbl-QRP-categories
-#| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
-#| echo: false
-waffle_plot_data %>% 
-        distinct(qrp_coded) %>% 
-        arrange(qrp_coded) %>% 
-        gt::gt() %>% 
-        gt::cols_label(qrp_coded = "QRP Class") %>% 
-        gtExtras::gt_theme_nytimes()
-```
+
+
+
 
 ::: {.landscape}
 
