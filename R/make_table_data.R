@@ -12,8 +12,10 @@ make_qrp_table_data <- function(qrp_data) {
     group_by(practice_coded) %>% 
     unite(col = model_phase_subphase, model_phase, model_subphase, sep = " - ") %>% 
     mutate(values = 1) %>% 
+      distinct() %>%  #TODO identify source of duplicates making pivot error
     pivot_wider(names_from = model_phase_subphase, 
-                values_from = values, values_fill = 0)
+                values_from = values, 
+                values_fill = list(values = 0))
   
   return(qrp_table_data)
 }
