@@ -284,16 +284,18 @@ print(waffle_plot)
 ```{r}
 #| label: tbl-QRP-categories
 #| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
-#| results: asis
 #| echo: false
 waffle_plot_data %>% 
         distinct(qrp_coded) %>% 
         arrange(qrp_coded) %>% 
         gt::gt() %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
-        gtExtras::gt_theme_nytimes() %>% 
-  gt::as_raw_html()
+        gtExtras::gt_theme_nytimes()
 ```
+
+::: {.landscape}
+
+`#show figure: set block(breakable: true)`{=typst}
 
 ```{r}
 #| label: tbl-QRP
@@ -311,14 +313,14 @@ gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
         gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
         gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
-        gtExtras::gt_theme_pff()
-```
+        gtExtras::gt_theme_nytimes()
 
 gt_qrp
+```
+:::
+
 ## References {.unnumbered}
 
-#gt_qrp %>% gt::gtsave(path = here::here("tables"), filename = "qrp_table_draft.pdf")
-```
 ::: {#refs}
 :::
 
@@ -381,7 +383,6 @@ Have weaned out a third of them that fit squarely in "poor modelling practice" (
 But still not sure about some other ones.
 
 # Session Info {.unnumbered}
-
 ```{r}
 #| label: session-info
 
