@@ -208,6 +208,10 @@ waffle_plot_data <-
         ungroup()
 ```
 
+### QRPs in the Modelling Process
+
+
+
 ```{r}
 #| label: fig-waffle_plot
 #| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (yellow squares), the model itself (red squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
