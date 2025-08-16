@@ -181,6 +181,8 @@ One principle underlying the classification of these practices as ‘questionabl
 
 ## A Roadmap of QRPs in the Ecological Modelling Process
 
+### Classes of QRPs
+
 ```{r}
 #| label: waffle_data_prep
 #| message: false
