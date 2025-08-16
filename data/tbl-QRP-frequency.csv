@@ -1,0 +1,11 @@
+﻿Category,Questionable Research Practice,Abbreviation ,Ecology,Evolution
+Cherry-picking,Not reporting response (outcome) variable that failed to reach statistical significance.,Omitting non-significant studies or variables.,64,64
+Cherry-picking,Not reporting covariates that failed to reach statistical significance (e.g. p <= 0.05) or some other desired statistical threshold.,Omitting non-significant covariates.,45,43
+Cherry-picking,Reporting an unexpected finding as having been predicted from the start.,HARKing.,49,54
+Cherry-picking,Reporting a set of results as the complete set of analyses when other analyses were also conducted.,Omitting analyses.,53,53
+P-hacking,Rounding off a p-value or other quantity to meet a pre-specified threshold.,Rounding p-values.,27,18
+P-hacking,Deciding to exclude data points after first checking the impact on statistical significance.,Data Exclusion (ARKing).,24,24
+P-hacking,Collecting more data after inspecting whether the results are statistically significant.,Data peeking.,37,51
+P-hacking,Changing to another type of statistical analysis after the analysis initially chosen failed to reach statistical significance (e.g. p<= 0.05) or some other desired statistical threshold.,Analysis gaming.,54,52
+Poor-practice,"Not disclosing known problems in the method, analysis or data quality that potentially impact conclusions.",Hiding methodological problems.,20,22
+Poor-practice,Filling in missing data points without identifying those data as simulated. ,Filling in missing data.,5,2
