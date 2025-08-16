@@ -209,8 +209,8 @@ waffle_plot_data <-
 ```{r}
 #| label: fig-waffle_plot
 #| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (yellow squares), the model itself (red squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
-#| fig-width: 15
-#| fig-height: 24
+#| fig-width: 14
+#| fig-height: 18
 
 # #| dev: "cairo_pdf" # when output is pdf
 # options(hrbrthemes.loadfonts = TRUE)
@@ -261,7 +261,7 @@ waffle_plot <- waffle_plot_data %>%
         hrbrthemes::theme_ipsum_rc() +
         waffle::theme_enhance_waffle() +
         theme(strip.text.y.left = element_text(angle = 0, 
-                                               size = 10),
+                                               size = 12),
               strip.text.x = element_text(size = 14,vjust = 0),
               strip.background.x = element_part_rect(side = "b"),
               strip.background.y = element_blank()
