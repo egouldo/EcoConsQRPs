@@ -173,9 +173,16 @@ QRP_tbl %>%
 :::
 :::::
 
+### Why QRPs in Hypothesis Testing don’t directly translate to modelling
+
+One principle underlying the classification of these practices as ‘questionable’ relates to data driven decision making. In contrast to hypothesis testers, modellers makes a series of analytic decisions on the basis of both objectively identified model performance criteria and subjective judgements [@Babel2019; @Bennett2013], wherein which they shift between subjecting the model to analysis, validation and testing, and refining the model in response to those results [@Getz2017]. This process is non-linear, iterative, and generates many interim versions of the model preceding publication [@Augusiak2014], unfolding much like the ‘survival of the fittest’ model(s) [@Prosperi2019] given a specified purpose and the available resources. In modelling, analytic decision-making is adaptive and data-dependent. The emphasis of existing QRP definitions on type I errors is unhelpful for model-based research. Firstly, multiple sources and types of error may arise in the modelling process - there is model structural uncertainty, uncertainty in parameter estimates, and uncertainty in predictions. What constitutes an ‘error’, what the source of that error is, as well as the relative weighting of those different errors, depend on some combination of the model’s purpose (prediction, explanation, description), the type of model used (phenomenological or mechanistic) and the context for the model. Rather than relying on p-value as a metric, model performance metrics consist of both qualitative and quantitative measures that incrementally build a subjective picture of model credibility rather than providing dichotomous responses assessing model credibility [@Augusiak2014; @Hamilton2019]. Since the publishability of a model-based study hinges on the collection of these model outputs and their contribution to overall model credibility, each of these model outputs may be susceptible to questionable research practices in order to strategically alter the perceived credibility of the model. What can be ‘tweaked’, ‘hacked’ or ‘exploited’ in hypothesis testing are *p*-values and whilst there may not be a direct counterpart in model-based research, we do expect similar a similar motivation from publishability to apply.
+
+## A Conceptual Framework of Questionable Research Practices in Ecological Modelling
+
+## A Roadmap of QRPs in the Ecological Modelling Process
+
 ```{r}
 #| label: waffle_data_prep
-#| echo: true
 #| message: false
 #| warning: false
 waffle_plot_data <- 
