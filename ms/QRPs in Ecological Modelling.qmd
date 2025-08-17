@@ -358,7 +358,7 @@ tidy_QRP_database(here::here("data",
                   "reason_coded", 
                   "notes"), 
                 ~ str_split(.x, ", ")),
-         spirce = str_split(source, "; ")
+         source = str_split(source, "; ")
          ) %>% 
   summarise(across(c(starts_with("model_"), 
                      "target",
@@ -371,7 +371,7 @@ tidy_QRP_database(here::here("data",
                   "target",  
                   "reason_coded", 
                   "notes"), 
-                ~ flatten_chr(.x) %>% 
+                ~ flatten_chr(unique(.x)) %>% 
                   unique() %>% 
                   str_flatten_comma(na.rm = TRUE)),
          source = list(source %>% 
@@ -379,7 +379,13 @@ tidy_QRP_database(here::here("data",
                          str_squish() %>% 
                          unique() %>% 
                          str_flatten("; ") %>% 
-                         str_c("[", ., "]"))) %>%  View()
+                         str_c("[", ., "]")),
+         across(ends_with("_source"), 
+                ~ str_squish(.x) %>% 
+                         str_flatten(collapse = "<br>"))) %>% 
+  gt::gt()
+
+
 ```
 :::
 
