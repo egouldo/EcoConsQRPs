@@ -9,7 +9,8 @@ tidy_QRP_database <- function(database_path) {
                 drop_na(model_phase, target, practice_coded) %>% 
                 mutate(source = str_remove(source, "\\[") %>% 
                                str_remove("\\]") %>% 
-                               str_remove("source_notes/"))
+                               str_remove("source_notes/"),
+                       across(starts_with("model_"), ~ stringr::str_trim(.x))) 
         
         return(qrp_data)
 }
