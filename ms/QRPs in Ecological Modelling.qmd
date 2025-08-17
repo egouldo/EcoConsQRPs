@@ -177,11 +177,16 @@ QRP_tbl %>%
 
 One principle underlying the classification of these practices as ‘questionable’ relates to data driven decision making. In contrast to hypothesis testers, modellers makes a series of analytic decisions on the basis of both objectively identified model performance criteria and subjective judgements [@Babel2019; @Bennett2013], wherein which they shift between subjecting the model to analysis, validation and testing, and refining the model in response to those results [@Getz2017]. This process is non-linear, iterative, and generates many interim versions of the model preceding publication [@Augusiak2014], unfolding much like the ‘survival of the fittest’ model(s) [@Prosperi2019] given a specified purpose and the available resources. In modelling, analytic decision-making is adaptive and data-dependent. The emphasis of existing QRP definitions on type I errors is unhelpful for model-based research. Firstly, multiple sources and types of error may arise in the modelling process - there is model structural uncertainty, uncertainty in parameter estimates, and uncertainty in predictions. What constitutes an ‘error’, what the source of that error is, as well as the relative weighting of those different errors, depend on some combination of the model’s purpose (prediction, explanation, description), the type of model used (phenomenological or mechanistic) and the context for the model. Rather than relying on p-value as a metric, model performance metrics consist of both qualitative and quantitative measures that incrementally build a subjective picture of model credibility rather than providing dichotomous responses assessing model credibility [@Augusiak2014; @Hamilton2019]. Since the publishability of a model-based study hinges on the collection of these model outputs and their contribution to overall model credibility, each of these model outputs may be susceptible to questionable research practices in order to strategically alter the perceived credibility of the model. What can be ‘tweaked’, ‘hacked’ or ‘exploited’ in hypothesis testing are *p*-values and whilst there may not be a direct counterpart in model-based research, we do expect similar a similar motivation from publishability to apply.
 
+
+
 ## A Conceptual Framework of Questionable Research Practices in Ecological Modelling
 
 ## A Roadmap of QRPs in the Ecological Modelling Process
 
-### Classes of QRPs
+### Method
+
+We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-typst ) and adopted new classes when there was no NHST-analogue. We coded the phase and sub-phases of modelling in which the practice occurs, as well as the model object (input, model, output) directly affected by the QRP, i.e. the *target* of the practice. After initial coding of the QRPs we refined the practice descriptions to encapsulate similar practices, as well as the broader QRP classes into which practices were grouped. Our coding is described in further detail in @sec-appendix-2.
+
 
 ```{r}
 #| label: waffle_data_prep
@@ -238,9 +243,21 @@ waffle_plot_data %>%
 
 ```
 
-### QRPs in the Modelling Process
+### Roadmap
 
+We summarise a subset of QRPs, their location in the modelling process, and their target modelling object in @fig-waffle_plot, highlighting a mixture of common practices, or practices that have the potential for critically influencing the perceived credibility of a model and its publishability. The complete set of QRPs identified is presented in @tbl-QRP.
 
+We grouped QRPs into broader classes described in @tbl-QRP-categories. We applied some umbrella terms identified by Nagy et al. [@Nagy2025] and Liu et al. [-@Liu2020], including: "Sample Curation", "Selective Reporting" or "Cherry-picking," "Overhyping" and "Executing Alternative Analyses." We used additional terms for groups of practices without an existing umbrella term, e.g. 'Overfitting' and 'Model Dredging', 'Selective Debugging'. In the same vein as Nagy et al.'s [-@Nagy2025] expansion of the concept of *p*-hacking to encompass other analysis metrics, we expanded the concept of *p*-hacking and renamed it "S-hacking", or statistic-hacking, encapsulating analogous practices that occur in modelling.
+
+HARKing (*hypothesising after results are known*) is a well-known type of QRP, but was not explicitly included in our final classification of QRPs. However, some practices, like Overhyping, could be considered a form of HARKing.
+
+Although overfitting is a common outcome of many QRPs, especially S-hacking and Sample Curation (see also @tbl-QRP for descriptions of the effects or impacts of each practice), we included Overfitting as a distinct class of QRPs because overfitting may also be the primary goal of the practice. Overfitting is like S-hacking but perhaps is less constrained in practice, because the 'model space' is less determined by a specific set of performance measures / statistics, whereas practices that specifically aim to 'overfit' the model to the calibration data operate on a much larger decision-space, so the risk of a spurious finding is greater.
+
+Similarly, Sample Curation includes practices that directly affect or target input data, but the intent of the practice might be to S-hack. For instance, Optional Stopping rules directly affect the input data, but indirectly target some performance measure by continuing to collect and update the data until some desirable threshold in the performance measure is met.
+
+We categorised QRPs according to the model object they directly target, i.e. the model inputs, the model itself, or the model outputs, corresponding to the the model objects in Figure X. 
+
+We also grouped QRPs according to the phase of the modelling process in which they occur, i.e. Data, Model Construction, Model Evaluation and Model Application. Some classes of QRPs can occur in multiple phases of the modelling process, e.g. Sample Curation can occur in both Data and Model Construction phases, and Overfitting can occur in Model Construction and Model Evaluation phases while S-hacking can occur during Model Construction, Evaluation and Application. More narrowly defined classes of QRPs are restricted to one phase, e.g. Selective Debugging occurs only in Model Evaluation, or one type of target, e.g. Overfitting and Model Dredging target the model itself. Sometimes the QRP might occur in a second iteration of the phase, e.g. after model evaluation, but during model specification, i.e. the model specification is revised based on observing model evaluation results. 
 
 ```{r}
 #| label: fig-waffle_plot
@@ -319,10 +336,14 @@ print(waffle_plot)
 
 
 
+# Discussion
 
+## References {.unnumbered}
 
-::: {.landscape}
+::: {#refs}
+:::
 
+::: landscape
 `#show figure: set block(breakable: true)`{=typst}
 
 ```{r}
