@@ -334,7 +334,9 @@ print(waffle_plot)
 
 ```
 
+## Takeaway messages
 
+Although the QRPs we identified are not exhaustive, they do represent a range of practices that can occur in model-based research. Just as QRPs threaten the credibility and reliability of NHST research, so too do they threaten the credibility of model-based research. Similarly to [@Liu2020], we found that QRPs can occur at any point in the modelling process and may affect different model objects, i.e. the model inputs, the model itself, or the model outputs. Except for Overfitting & Model Dredging, all classes of QRPs have analogous practices under NHST, but the practices themselves are not directly comparable. We expanded the concept of *p*-hacking to include practices that target model performance measures, and renamed it S-hacking, or statistic-hacking. In essence, any performance metric, with a threshold dependent outcome (e.g. TSS, partial ROC, sensitivity, specificity) will be subject to the same types of practices as p-hacking.
 
 # Discussion
 
