@@ -14,6 +14,6 @@ tidy_QRP_database <- function(database_path) {
                               ~ str_remove(.x, "\\[") %>% 
                                       str_remove("\\]") %>% 
                                       str_remove("source_notes/")),
-                       across(everything(), ~ stringr::str_trim(.x))) 
+                       across(-include, ~ stringr::str_trim(.x))) 
         return(qrp_data)
 }
