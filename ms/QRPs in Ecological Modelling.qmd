@@ -190,7 +190,7 @@ One principle underlying the classification of these practices as ‘questionabl
 waffle_plot_data <- 
         tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
         filter(include) %>% 
-        select(-notes, -model_subphase, -source, -reason_coded, -include) %>% 
+        select(-notes, -model_subphase, -source, -reason_coded, -include, -ends_with("_source")) %>% 
         distinct() %>% #rm duplicate practice_coded #TODO next merge duplicates while keeping source
         drop_na() %>% #interim approach until datachecks in place
         mutate(model_phase = str_split(model_phase, ", "),
