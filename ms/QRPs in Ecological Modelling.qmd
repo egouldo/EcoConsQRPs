@@ -344,6 +344,42 @@ gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
         gtExtras::gt_theme_nytimes()
 
 gt_qrp
+
+
+
+
+tidy_QRP_database(here::here("data", 
+                             "QRP_database.csv")) %>%
+  mutate(across(ends_with("_source"), 
+                ~ str_c(.x, source))) %>% #annotate `*_source` with `source`
+  group_by(qrp_coded, practice_coded) %>%
+  mutate(across(c(starts_with("model_"), 
+                  "target",
+                  "reason_coded", 
+                  "notes"), 
+                ~ str_split(.x, ", ")),
+         spirce = str_split(source, "; ")
+         ) %>% 
+  summarise(across(c(starts_with("model_"), 
+                     "target",
+                     "reason_coded",
+                     "notes",
+                     ends_with("source")), 
+                   list)) %>% 
+  rowwise() %>% 
+  mutate(across(c(starts_with("model_"), 
+                  "target",  
+                  "reason_coded", 
+                  "notes"), 
+                ~ flatten_chr(.x) %>% 
+                  unique() %>% 
+                  str_flatten_comma(na.rm = TRUE)),
+         source = list(source %>% 
+                         str_remove_all(pattern = c("\\[|\\]")) %>% 
+                         str_squish() %>% 
+                         unique() %>% 
+                         str_flatten("; ") %>% 
+                         str_c("[", ., "]"))) %>%  View()
 ```
 :::
 
