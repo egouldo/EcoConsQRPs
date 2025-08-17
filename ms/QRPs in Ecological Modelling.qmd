@@ -343,9 +343,7 @@ gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
         gt::cols_label(qrp_coded = "QRP Class") %>% 
         gtExtras::gt_theme_nytimes()
 
-gt_qrp
-
-
+# gt_qrp
 
 
 tidy_QRP_database(here::here("data", 
@@ -383,26 +381,66 @@ tidy_QRP_database(here::here("data",
          across(ends_with("_source"), 
                 ~ str_squish(.x) %>% 
                          str_flatten(collapse = "<br>"))) %>% 
-  gt::gt()
+  gt::gt(groupname_col = c("qrp_coded", "practice_coded")) %>% 
+  gt::cols_hide(source) %>% 
+  # gt::cols_width(ends_with("_source") ~ gt::pct(20),
+                 # reason_coded ~ gt::pct(20)) %>%
+  gtExtras::gt_theme_pff() %>% 
+  gt::tab_options(table.font.size = 8) %>% 
+  gt::fmt_markdown(columns = source)
 
 
 ```
 :::
 
-## References {.unnumbered}
+::: appendices
 
-::: {#refs}
-:::
+`#set heading(numbering: "1.")`{=typst}
 
+## Appendix 1: Modelling Process Literature Review {#sec-appendix-1}
 
+## Appendix 2: QRP Roadmap Literature Review {#sec-appendix-2}
 
-::: {.appendices}
+### Step 1 - Identify and collect QRPs
 
-# Session Info {.unnumbered}
+We unsystematically screened the published literature to generate an initial list of terms for QRPs in NHST research to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling: 
+- "`modelling_area` AND type I error" 
+- "`modelling_area` AND false positive" 
+- "`modelling_area` AND modelling choice" 
+- "`modelling_area` AND subjective judgment" 
+- "`modelling_area` AND prediction error" 
+- "`modelling_area` AND confirmation bias" - "`modelling_area` AND publication bias" 
+- "`modelling_area` AND questionable research practice" - "`modelling_area` AND researcher degrees of freedom" 
+- "`modelling_area` AND cherry picking" 
+- "`modelling_area` AND p-hacking" - "`modelling_area` AND HARKING" 
+- "`modelling_area` AND bias"
+- "`modelling_area` AND good modelling practice" - "`modelling_area` AND best modelling practice" 
+- "`modelling_area` AND bad modelling practice" 
+- Where `modelling_area` included 'predictive modelling', 'habitat modelling', 'Species Distribution Modelling (SDM)', 'Ecological Niche Modelling', 'Ecological Modelling', 'Environmental Modelling'.
+
+We inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, we took the logical inverse of these practices as the QRP. We ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for the culture of research practice to change. We excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
+
+**Collating & Coding**
+
+For each QRP identified, we collected a description of the research practice `practice_description`, the reason or justification for why the practice is 'questionable' `practice_reason`, including any quantitative and/or empirical evidence for: a) the negative consequences on research outcomes such as credibility, reliability, accuracy, precision, transparency, reproducibility and/or b) evidence for the use or occurrence of this practice; `practice_evidence`. We assigned each QRP to phases and sub-phases of the modelling process (section X) where the practice occurs. For each description, reason and evidence, we coded each into short descriptions of the practice `QRP_description`, reason for the practice's 'questionable' nature `QRP_reason`. Using the model phases and sub-phases identified in (Section X), we classified the location of the QRP in the modelling process, ascribing the `model_phase` and `model_subphase` in which the practice occurs. We then coded the `target` of the practice, i.e. the model object (Figure X) directly affected by the practice. Where mitigation measures or solutions to the practice were suggested alongside the description of the practice, we also coded the `practice_solution`.
+
+**Categorising QRPs into Classes**
+
+We adopt Nagy et al.'s [-@Nagy2025] approach and grouped QRPs consisting of the same family of research behaviours into broad classes of QRPs `QRP_coded`. Some umbrella terms were common QRPs in hypothesis testing research, some were hypothesis-testing analogues, while others were modelling-specific. Where possible we used existing umbrella terms used by Nagy et al. [-@Nagy2025] and others [e.g. @Liu2020], but created our own terms if no existing terms were applicable.
+
+### *Step 3 - Refine QRP and QRP Class descriptions, aggregate QRPs*
+
+We refined our coded descriptions of QRPs `QRP_description` into unifying or general descriptions effectively aggregating similar practices identified from different published sources. After categorising QRPs into broader classes of QRPs, we revised their description to be more modelling-specific, better reflecting the surveyed practices (Table X).
+
+### QRP Code-Book / Metadata
+
+-   [ ] TBD
+
+## Session Info {.unnumbered}
+
 ```{r}
 #| label: session-info
 
 devtools::session_info()
 ```
-
 :::
