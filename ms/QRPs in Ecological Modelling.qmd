@@ -354,6 +354,7 @@ gt_qrp
 
 
 
+::: {.appendices}
 
 # Session Info {.unnumbered}
 ```{r}
@@ -361,3 +362,5 @@ gt_qrp
 
 devtools::session_info()
 ```
+
+:::
