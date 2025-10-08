@@ -168,9 +168,9 @@ QRP_tbl_html
 ```
 :::
 
-::: {.content-visible when-format="typst"}
+::: {.content-visible unless-format="html"}
 ```{r}
-#| label: tbl-QRP-examples-typst
+#| label: tbl-QRP-examples
 #| column: body
 QRP_tbl %>% 
   gt::fmt_percent(
