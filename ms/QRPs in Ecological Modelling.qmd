@@ -118,7 +118,7 @@ QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
                                glue::glue("{Category}.png"))) %>%
   gt::gt(groupname_col = "Category",
          row_group_as_column = TRUE,
-         caption = 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.') %>% 
+         caption = 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research in Ecology and Evolutionary Biology. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.') %>% 
   gt::tab_footnote(footnote = "Makel et al. (2019)", 
                    locations = cells_column_labels(columns = Abbreviation)) %>% 
   gt::tab_footnote(footnote = gt::md("Fraser et al. (2018), $n=494$"), 
