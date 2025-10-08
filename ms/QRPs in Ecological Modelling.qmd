@@ -128,7 +128,7 @@ QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
                      fn = image_out
   ) %>% 
   gtExtras::gt_theme_nytimes() %>% 
-  gt::cols_hide("Evolution")
+gt::cols_align(align = "center", columns = "Category")
 
 
 QRP_tbl_html <- QRP_tbl %>% 
@@ -136,17 +136,26 @@ QRP_tbl_html <- QRP_tbl %>%
     fill = "purple",
     column = c("Ecology"),
     scaled = TRUE,
-    width = 150,
+    width = 100,
+    labels = TRUE,
+    background = "lightgrey"
+  ) %>% 
+          gtExtras::gt_plt_bar_pct(
+    fill = "purple",
+    column = c("Evolution"),
+    scaled = TRUE,
+    width = 100,
     labels = TRUE,
     background = "lightgrey"
   ) %>% 
   gt::cols_width(
     Category ~ gt::pct(10),
-    `Questionable Research Practice` ~ gt::pct(40),
-    Abbreviation ~ gt::pct(30),
-    Ecology ~ gt::pct(20)
+    `Questionable Research Practice` ~ gt::pct(30),
+    Abbreviation ~ gt::pct(2),
+    Ecology ~ gt::pct(20),
+    Evolution ~ gt::pct(20)
   ) %>% 
-  gt::tab_options(quarto.disable_processing = FALSE)
+  gt::tab_options(quarto.disable_processing = FALSE) 
 
 ```
 
