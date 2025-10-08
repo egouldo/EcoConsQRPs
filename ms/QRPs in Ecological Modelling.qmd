@@ -143,7 +143,6 @@ QRP_tbl_html <- QRP_tbl %>%
 
 ```
 
-::::: landscape
 ::: {.content-visible when-format="html"}
 ```{r}
 #| label: tbl-QRP-examples-html
@@ -164,7 +163,6 @@ QRP_tbl %>%
   )
 ```
 :::
-:::::
 
 ### Why QRPs in Hypothesis Testing don’t directly translate to modelling
 
