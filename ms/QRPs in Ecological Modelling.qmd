@@ -29,23 +29,6 @@ affiliations:
     name: The University of Melbourne
     department: School of Historical and Philosophical Studies
 format:
-  preprint-typst:
-    keep-md: true
-    keep-typ: true
-    css-property-processing: translate
-    wordcount: true
-    execute:
-      echo: false
-      message: false
-      include-before-body:
-      - text: |
-          #show figure: set block(breakable: true)
-    # Common options - uncomment (and remove 'default') to use
-    # theme-jou: true              # Journal theme (2-column)
-    # line-number: true            # Line numbering
-    # fontsize: 11pt               # Font size
-    # leading: 0.6em               # Line spacing
-    # first-line-indent: 1.8em     # Paragraph indent
   html:
     page-layout: full
     title-block-banner: true
@@ -395,8 +378,6 @@ Although the QRPs we identified are not exhaustive, they do represent a range of
 :::
 
 ::: landscape
-`#show figure: set block(breakable: true)`{=typst}
-
 ```{r}
 #| label: tbl-QRP
 #| tbl-cap: "Full list of Questionable Research Practices identified from the literature. We categorised QRPs into broader classes"
@@ -466,8 +447,6 @@ tidy_QRP_database(here::here("data",
 :::
 
 ::: appendices
-`#set heading(numbering: "1.")`{=typst}
-
 ## Appendix 1: Modelling Process Literature Review {#sec-appendix-1}
 
 ## Appendix 2: QRP Roadmap Literature Review {#sec-appendix-2}
