@@ -187,16 +187,55 @@ QRP_tbl %>%
 
 One principle underlying the classification of these practices as ‘questionable’ relates to data driven decision making. In contrast to hypothesis testers, modellers makes a series of analytic decisions on the basis of both objectively identified model performance criteria and subjective judgements [@Babel2019; @Bennett2013], wherein which they shift between subjecting the model to analysis, validation and testing, and refining the model in response to those results [@Getz2017]. This process is non-linear, iterative, and generates many interim versions of the model preceding publication [@Augusiak2014], unfolding much like the ‘survival of the fittest’ model(s) [@Prosperi2019] given a specified purpose and the available resources. In modelling, analytic decision-making is adaptive and data-dependent. The emphasis of existing QRP definitions on type I errors is unhelpful for model-based research. Firstly, multiple sources and types of error may arise in the modelling process - there is model structural uncertainty, uncertainty in parameter estimates, and uncertainty in predictions. What constitutes an ‘error’, what the source of that error is, as well as the relative weighting of those different errors, depend on some combination of the model’s purpose (prediction, explanation, description), the type of model used (phenomenological or mechanistic) and the context for the model. Rather than relying on p-value as a metric, model performance metrics consist of both qualitative and quantitative measures that incrementally build a subjective picture of model credibility rather than providing dichotomous responses assessing model credibility [@Augusiak2014; @Hamilton2019]. Since the publishability of a model-based study hinges on the collection of these model outputs and their contribution to overall model credibility, each of these model outputs may be susceptible to questionable research practices in order to strategically alter the perceived credibility of the model. What can be ‘tweaked’, ‘hacked’ or ‘exploited’ in hypothesis testing are *p*-values and whilst there may not be a direct counterpart in model-based research, we do expect similar a similar motivation from publishability to apply.
 
+We argue that a conceptual framework of QRPs in model-based research must account for certain kinds of data-dependent decisions that are an appropriate and justifiable part of the modelling process while highlighting the primacy of guarding against data-dependent decision-making at other decision-points that might be questionable. Moreover, the conceptual framework should de-emphasise the risk of type I errors and false positive findings to account for other biases more relevant to how complex models are evaluated and used.
 
+This paper aims to raise awareness among ecologists (and modelers within other disciplines) about the potential for QRPs at various points in the modelling process. Various solutions for mitigating the risk of QRPs have been proposed for hypothesis testing research, and in our conclusion, we adapt on expand on these to recommend tools and practices that may improve the reproducibility and reliability of model-based research. It will also facilitate future attempts to estimate the severity and extent of QRPs in ecology by providing a more comprehensive account of what constitutes questionable practice in non-hypothesis testing research.
 
 ## A Conceptual Framework of Questionable Research Practices in Ecological Modelling
+
+### What makes a model publishable? Identifying reasons for QRPs
+
+We begin with an exposition of ‘publishability’ of the modelling process, since these attributes are the primary targets of QRPs. In identifying these attributes we can consider what linked objects corresponding to those attributes might be the target of QRPs, just as p-values are for NHST research. From there we can explicate specific practices that target those attributes, and where in the modelling cycle those practices might emerge. Since ‘publishability’ seems to be the main target and motivator of QRPs, understanding how publishability is defined in MBR can help us identify the types and location of QRPs in the modelling process. What features of a modelling study might QRPs seek to target / work on? What publishable attributes does a QRP seek to ‘hack’, ‘tweak’ or ‘exploit’? What research objects / modelling outputs correspond to those different publishable attributes? From there we can identify potential practices that might seek to bias these different publishabile attributes. Understanding how publishability is defined in MBR and what modelling outputs or research objects correspond to different aspects of publishability can help us identify potential QRPs, and where those practices might emerge in the modelling process. Attributes of publishability \<-\> what research outputs correspond to these different attributes. And therefore what QRPs might exist for modelling, and where in the modelling process. By articulating different attributes of a model / modelling study that affect the publishability of a model we can identify potential practices that are vulnerable to QRPs. Below, we highlight and discuss several properties of a model that contribute to its publishability: that the model has a certain advantage over a prior art, and that the analysis of model application demonstrates the credibility of the model. The relative weighting of these properties in evaluating the model depends on the overarching model purpose (Eker et al., 2018; Guisan & Zimmermann, 2000; Hamilton et al., 2019), where model purpose includes the management, problem and project contexts (Hamilton et al. 2022). Depending on the particular purpose of the model / modelling study, different attributes of publishability are more or less important, and therefore depending on the purpose/weighting, different parts of the model / model outputs are likely to be the target of QRPs (this forms part of the exposition below).
+
+#### Advantage over the prior art
+
+Published ecological models are often extensions of existing tools or new modelling frameworks for a specific intended purpose because ecological modellers are disincentivised to test existing models on new data due to both publication bias and funder stipulations that rewards constructing new models and novel modelling approaches (Babel et al., 2019; Houlahan, 2016). Models are therefore often ‘sold’ on their improvement over previous models or modelling frameworks, either by amendments to a model’s conceptual scheme (the framing and abstraction and representation of the mental model of the problem), or by improvements to the mathematical formulation or computational implementation of the model (Alexandrov, 2011). For example, the model addresses new environmental situations that weren’t addressed by the prior model, the model code is more efficient than the prior model, or perhaps needs less initial information to generate outputs for analysis, or the specific parameterisation shows better performance than the prior model in addressing certain environmental conditions (Alexandrov, 2011).
+
+#### Model Credibility
+
+Model credibility arises gradually throughout the modelling process (Augusiak et al. 2014) and is based on a subjective confidence level or degree of trust that both the model and the model results can be used as claimed (Guisan & Zimmerman, 2000; Hamilton et al. 2019). Model credibility does not relate to the representational accuracy or ‘truth’ of the model, but rather that the model adequately captures the phenomenon of interest given existing evidence and the model purpose (Augusiak, 2014). A model is only one of many subjective and plausible representations of ecological phenomena and one representation may be preferable to another depending on how useful it is for a particular problem (Augusiak et al. 2014; Risbey, 2005). Thus, a model may be defined as credible if the user has sufficient confidence to support the relevant scientific or management decisions (Rykiel, 1996).
+
+*Adequacy*
+
+Model adequacy refers to the ability of the model to both “capture an underlying reality” (conceptual validity) and predict accurately. Determining model adequacy involves not only verifying that model output matches observations (Rykiel, 1996), but that the model’s “conceptual schema” is adequate for its purported application (Aldexandrov, 2011) – i.e. can the model adequately answer the research question (Christin et al. 2020)? It is common to have a range of scientific opinions regarding the ‘best’ representation of the model. Nevertheless, it is always possible to make the distinction between environmental conditions that may fall within the conceptual scope of the model and those that may not (Alexandrov, 2011).
+
+*Reliability*
+
+Reliability may be defined as “how much confidence to place in inferences about the real system that are based on model results” so that model inferences can be transferred to the real world (Schmolke, 2010). Reliability can be interpreted in several ways, typically it is thought of as the ability of a model’s prediction to fall within a specified range of accuracy (Alexandrov, 2011). But it also speaks to the model’s generalisability, versatility (Rykiel Jr, 1996) or transferability (Yates et al., 2018) — its ability to meet some specified threshold of performance in situations for which it was not originally designed, or to capture extreme conditions beyond which the calibration data do not reflect (Alexandrov, 2011). Regardless of whether reliability is referring to accuracy/precision of predictions in both its original scope or within a model transfer, evaluation of reliability is grounded within the model’s usefulness for its intended user, whether this be purely for scientific purposes, or for evidence-informed decision-making. The ultimate test of model reliability, is whether the model user has sufficient confidence in the model to use it to inform management decisions (Alexandrov, 2011).
+
+### What components of models are affected by QRPs?
+
+Here we outline the model development process and identify ‘model objects’ generated throughout the model development process. Various modelling outputs are generated throughout the model development process, including the model itself, model fit statistics and summary measures, and other model evaluation results (Figure 1). The outputs of model development, evaluation and analysis collectively inform the overall publishability and credibility of the model, and therefore are vulnerable to QRPs. Model outputs may be manipulated to improve the chances of model acceptance or publication, and the targeted outputs will depend on the model’s purpose. The purpose of this section is to 1. aid in identifying potential QRPs by highlighting model outputs that questionable practices seek to alter, 2. Lay the groundwork for an extension of Gelman and Loken’s mathematical formalism explaining the emergence of QRPs or the ‘garden of forking paths’ to model-based research, and 3. Identify steps and phases in the modelling process on which to build our QRP roadmaps.
+
+The ecological modelling literature is filled with prescriptive and normative accounts of the modelling process for different purposes and modelling contexts, and we acknowledge the plurality and lack of consensus among these accounts in terms of the overall process, as well as the linguistic terminology for different phases, steps and tasks within the modelling process. Rather than selecting a single taxonomy with which to generate multiple distinct process descriptions and model object ontologies for different categories of modelling, we describe a process that can be generalised across different model purposes, contexts, types and methods. Some aspects may not apply in every modelling problem, and the specific collection of model outputs, their relative importance on which any model-based reasoning is based, as well as the weighting of various publishable attributes of the model, will differ depending on the model purpose, context and approach of the modelling problem at hand. We step through key phases of the modelling process below.
+
+![During the model development process, the model undergoes specification, and testing, generating the following objects and attributes: i. Model specification or structure, M_s; ii. data collection; iii. parameterisation, yielding M_p and associated model parameters, iv. Model predictions, v. Model evaluation results including model fit statistics such as AIC, BIC, and model validation testing results such as confusion matrices, commission / commission rates and other measures of model validity, and sensitivity analyses. B. The suite of analyses from model evaluation v. and model predictions iv. collectively sum / contribute to the overall credibility of the model, which in turn determine the publishability, or appropriateness of the model for application in real-world decisions. In this description of the model development process, we distinguish between data / model input (yellow, y) and model output (green, j).](images/clipboard-2357433507.png){#fig-model-objects}
+
+#### Conceptual Model
+
+#### Model Specification
+
+#### Parameterised Model
+
+#### Model Evaluation
+
+### A Provisional Typology of QRPs
 
 ## A Roadmap of QRPs in the Ecological Modelling Process
 
 ### Method
 
 We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-typst ) and adopted new classes when there was no NHST-analogue. We coded the phase and sub-phases of modelling in which the practice occurs, as well as the model object (input, model, output) directly affected by the QRP, i.e. the *target* of the practice. After initial coding of the QRPs we refined the practice descriptions to encapsulate similar practices, as well as the broader QRP classes into which practices were grouped. Our coding is described in further detail in @sec-appendix-2.
-
 
 ```{r}
 #| label: waffle_data_prep
@@ -265,9 +304,9 @@ Although overfitting is a common outcome of many QRPs, especially S-hacking and 
 
 Similarly, Sample Curation includes practices that directly affect or target input data, but the intent of the practice might be to S-hack. For instance, Optional Stopping rules directly affect the input data, but indirectly target some performance measure by continuing to collect and update the data until some desirable threshold in the performance measure is met.
 
-We categorised QRPs according to the model object they directly target, i.e. the model inputs, the model itself, or the model outputs, corresponding to the the model objects in Figure X. 
+We categorised QRPs according to the model object they directly target, i.e. the model inputs, the model itself, or the model outputs, corresponding to the the model objects in Figure X.
 
-We also grouped QRPs according to the phase of the modelling process in which they occur, i.e. Data, Model Construction, Model Evaluation and Model Application. Some classes of QRPs can occur in multiple phases of the modelling process, e.g. Sample Curation can occur in both Data and Model Construction phases, and Overfitting can occur in Model Construction and Model Evaluation phases while S-hacking can occur during Model Construction, Evaluation and Application. More narrowly defined classes of QRPs are restricted to one phase, e.g. Selective Debugging occurs only in Model Evaluation, or one type of target, e.g. Overfitting and Model Dredging target the model itself. Sometimes the QRP might occur in a second iteration of the phase, e.g. after model evaluation, but during model specification, i.e. the model specification is revised based on observing model evaluation results. 
+We also grouped QRPs according to the phase of the modelling process in which they occur, i.e. Data, Model Construction, Model Evaluation and Model Application. Some classes of QRPs can occur in multiple phases of the modelling process, e.g. Sample Curation can occur in both Data and Model Construction phases, and Overfitting can occur in Model Construction and Model Evaluation phases while S-hacking can occur during Model Construction, Evaluation and Application. More narrowly defined classes of QRPs are restricted to one phase, e.g. Selective Debugging occurs only in Model Evaluation, or one type of target, e.g. Overfitting and Model Dredging target the model itself. Sometimes the QRP might occur in a second iteration of the phase, e.g. after model evaluation, but during model specification, i.e. the model specification is revised based on observing model evaluation results.
 
 ```{r}
 #| label: fig-waffle_plot
@@ -427,7 +466,6 @@ tidy_QRP_database(here::here("data",
 :::
 
 ::: appendices
-
 `#set heading(numbering: "1.")`{=typst}
 
 ## Appendix 1: Modelling Process Literature Review {#sec-appendix-1}
@@ -436,20 +474,25 @@ tidy_QRP_database(here::here("data",
 
 ### Step 1 - Identify and collect QRPs
 
-We unsystematically screened the published literature to generate an initial list of terms for QRPs in NHST research to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling: 
-- "`modelling_area` AND type I error" 
-- "`modelling_area` AND false positive" 
-- "`modelling_area` AND modelling choice" 
-- "`modelling_area` AND subjective judgment" 
-- "`modelling_area` AND prediction error" 
-- "`modelling_area` AND confirmation bias" - "`modelling_area` AND publication bias" 
-- "`modelling_area` AND questionable research practice" - "`modelling_area` AND researcher degrees of freedom" 
-- "`modelling_area` AND cherry picking" 
-- "`modelling_area` AND p-hacking" - "`modelling_area` AND HARKING" 
-- "`modelling_area` AND bias"
-- "`modelling_area` AND good modelling practice" - "`modelling_area` AND best modelling practice" 
-- "`modelling_area` AND bad modelling practice" 
-- Where `modelling_area` included 'predictive modelling', 'habitat modelling', 'Species Distribution Modelling (SDM)', 'Ecological Niche Modelling', 'Ecological Modelling', 'Environmental Modelling'.
+We unsystematically screened the published literature to generate an initial list of terms for QRPs in NHST research to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling:
+
+-   "`modelling_area` AND type I error"
+-   "`modelling_area` AND false positive"
+-   "`modelling_area` AND modelling choice"
+-   "`modelling_area` AND subjective judgment"
+-   "`modelling_area` AND prediction error"
+-   "`modelling_area` AND confirmation bias"
+-   "`modelling_area` AND publication bias"
+-   "`modelling_area` AND questionable research practice"
+-   "`modelling_area` AND researcher degrees of freedom"
+-   "`modelling_area` AND cherry picking"
+-   "`modelling_area` AND p-hacking"
+-   "`modelling_area` AND HARKING"
+-   "`modelling_area` AND bias"
+-   "`modelling_area` AND good modelling practice"
+-   "`modelling_area` AND best modelling practice"
+-   "`modelling_area` AND bad modelling practice"
+-   Where `modelling_area` included 'predictive modelling', 'habitat modelling', 'Species Distribution Modelling (SDM)', 'Ecological Niche Modelling', 'Ecological Modelling', 'Environmental Modelling'.
 
 We inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, we took the logical inverse of these practices as the QRP. We ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for the culture of research practice to change. We excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
 
