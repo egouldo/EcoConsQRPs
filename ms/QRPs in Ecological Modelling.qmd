@@ -33,6 +33,18 @@ format:
     page-layout: full
     title-block-banner: true
     code-fold: true
+  pdf:
+    documentclass: article
+    fontsize: 11pt
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    linkcolor: blue
+    echo: false
+    include: false
+    header-includes:
+    - \usepackage{mathtools}
+    - \usepackage{amssymb}
 custom-numbered-blocks:
   classes: 
     Box:
