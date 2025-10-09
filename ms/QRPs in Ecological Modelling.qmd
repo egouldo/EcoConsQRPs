@@ -229,6 +229,8 @@ The ecological modelling literature is filled with prescriptive and normative ac
 
 ![During the model development process, the model undergoes specification, and testing, generating the following objects and attributes: i. Model specification or structure, M_s; ii. data collection; iii. parameterisation, yielding M_p and associated model parameters, iv. Model predictions, v. Model evaluation results including model fit statistics such as AIC, BIC, and model validation testing results such as confusion matrices, commission / commission rates and other measures of model validity, and sensitivity analyses. B. The suite of analyses from model evaluation v. and model predictions iv. collectively sum / contribute to the overall credibility of the model, which in turn determine the publishability, or appropriateness of the model for application in real-world decisions. In this description of the model development process, we distinguish between data / model input (yellow, y) and model output (green, j).](images/clipboard-2357433507.png){#fig-model-objects}
 
+
+
 #### Conceptual Model
 
 #### Model Specification
@@ -239,11 +241,45 @@ The ecological modelling literature is filled with prescriptive and normative ac
 
 ### A Provisional Typology of QRPs
 
+
+```{r}
+#| label: tbl-QRP-typology
+#| tbl-cap: "The questionable practice may target different components of a publishable model (table columns) and it may alter either the model components directly, or indirectly (rows). Note that the colours red and green correspond to the model itself, (Red: $M_p$ ) or model outputs(Green: $M_j$).The final row represents the unambiguous ideal where no QRP occurs— analytical decisions are pre-specified."
+tibble::tibble(QRP_outcome = c("The Model or Model Outputs<br>$(M, M_j)$", "Model Credibility or Utility, via selective reporting or 'fishing'", "No QRP, e.g. pre-specified analytic decisions"),
+               QRP_target_M = c("$$C (y, M;\\phi (y,M))$$", 
+                                "$$C (y, M;{\\phi}^{best} (y,M)) $$", 
+                                "$$C (y, M;\\phi ) $$"),
+               QRP_target_Mj = c("$$ C (y, M;{\\phi}_{{M}_{j}} (y,M))$$",
+                                 "$$C (y, M;{{\\phi}_{{M}_{j}}}^{best} (y,M))$$",
+                                 "$$ C (y, M;{\\phi}_{{M}_{j}})$$"),
+               row_group = c("QRP", "QRP", "OK")) %>% 
+  gt::gt(
+    # caption = gt::md("The questionable practice may target different components of a publishable model (table columns) and it may alter either the model components directly, or indirectly (rows). Note that the colours red and green correspond to the model itself, (Red: $M_p$ ) or model outputs(Green: $M_j$).The final row represents the unambiguous ideal where no QRP occurs— analytical decisions are pre-specified.")
+) %>% 
+  gt::tab_spanner(label = "The practice may target:",
+                  columns = c(QRP_target_M, QRP_target_Mj),) %>% 
+  # gt::tab_row_group(label = "Questionable Research Practice", rows = row_group == "QRP" ) %>% 
+  #   gt::tab_row_group(label = "Acceptable Research Practice", rows = row_group == "OK" ) %>% 
+  gt::cols_label(QRP_outcome = "It may alter:",
+                 QRP_target_M = gt::md("The model $$M$$"),
+                 QRP_target_Mj = gt::md("Any model output $$M_j$$")) %>% 
+  gtExtras::gt_theme_nytimes() %>% 
+  gt::tab_style(style = gt::cell_fill(color = "#A02B93", alpha = 0.8),
+                locations = gt::cells_body(columns = QRP_target_M,  rows = row_group == "QRP")) %>% 
+  gt::tab_style(style = gt::cell_fill(color = "#4EA72E", alpha = 0.8),
+                locations = gt::cells_body(columns = QRP_target_Mj, rows = row_group == "QRP")) %>% 
+  gt::cols_hide(row_group) %>% 
+  gt::fmt_markdown(columns = c(QRP_outcome)) %>% 
+  gt::cols_align(columns = starts_with("QRP_target"),
+                 align = "center") #%>%
+  # gt::cols_width(everything() ~ px(170))
+```
+
 ## A Roadmap of QRPs in the Ecological Modelling Process
 
 ### Method
 
-We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-typst ) and adopted new classes when there was no NHST-analogue. We coded the phase and sub-phases of modelling in which the practice occurs, as well as the model object (input, model, output) directly affected by the QRP, i.e. the *target* of the practice. After initial coding of the QRPs we refined the practice descriptions to encapsulate similar practices, as well as the broader QRP classes into which practices were grouped. Our coding is described in further detail in @sec-appendix-2.
+We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-html @tbl-QRP-examples) and adopted new classes when there was no NHST-analogue. We coded the phase and sub-phases of modelling in which the practice occurs, as well as the model object (input, model, output) directly affected by the QRP, i.e. the *target* of the practice. After initial coding of the QRPs we refined the practice descriptions to encapsulate similar practices, as well as the broader QRP classes into which practices were grouped. Our coding is described in further detail in @sec-appendix-2.
 
 ```{r}
 #| label: waffle_data_prep
