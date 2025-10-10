@@ -90,7 +90,7 @@ library(hrbrthemes)
 
 library(extrafont)
 library(firasans)
-extrafont::loadfonts()
+# extrafont::loadfonts()
 
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
@@ -163,18 +163,15 @@ QRP_tbl_html <- QRP_tbl %>%
 
 ```
 
+::: {.Box title="Common QRPs associated with Null Hypothesis Significance Testing in Ecology" #boxqrps } 
 
-::: {.Box #boxqrps}
 ::: {.content-visible when-format="html"}
-### Common QRPs associated with Null Hypothesis Significance Testing in Ecology
-
-
-
 
 ```{r}
 #| label: tbl-QRP-examples-html
 QRP_tbl_html
 ```
+
 :::
 
 ::: {.content-visible unless-format="html"}
