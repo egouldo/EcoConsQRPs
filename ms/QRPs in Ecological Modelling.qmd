@@ -40,7 +40,6 @@ format:
     toc-depth: 2
     number-sections: true
     linkcolor: blue
-    echo: false
     include: false
     header-includes:
     - \usepackage{mathtools}
