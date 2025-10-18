@@ -109,33 +109,32 @@ SEE Box \ref{boxqrps}
 #| warning: false
 #| echo: false
 
+QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
+                show_col_types = FALSE) %>% 
+  mutate(Category = here::here("data", "icons", 
+                               glue::glue("{Category}.png"))) %>%
+  gt::gt(groupname_col = "Category",
+         row_group_as_column = TRUE
+           ) %>% 
+  gt::tab_footnote(footnote = "Makel et al. (2019)", 
+                   locations = cells_column_labels(columns = Abbreviation)) %>% 
+  gt::tab_footnote(footnote = "Fraser et al. (2018), n=494", 
+                   locations = cells_column_labels(columns = 
+                                                     c("Ecology", 
+                                                       "Evolution"))) %>% 
+  gt::cols_align(align = "center", columns = "Category")
+
 image_out <- function(x, height = 50){
   out <- map_chr(x, gt::local_image, height = height)
   out <- map(out, gt::html)
   out
 }
 
-QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
-                show_col_types = FALSE) %>% 
-  mutate(Category = here::here("data", "icons", 
-                               glue::glue("{Category}.png"))) %>%
-  gt::gt(groupname_col = "Category",
-         row_group_as_column = TRUE,
-         caption = 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research in Ecology and Evolutionary Biology. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.') %>% 
-  gt::tab_footnote(footnote = "Makel et al. (2019)", 
-                   locations = cells_column_labels(columns = Abbreviation)) %>% 
-  gt::tab_footnote(footnote = gt::md("Fraser et al. (2018), $n=494$"), 
-                   locations = cells_column_labels(columns = 
-                                                     c("Ecology", 
-                                                       "Evolution"))) %>% 
+QRP_tbl_html <- QRP_tbl %>% 
   gt::text_transform(locations = gt::cells_row_groups(everything()),
                      fn = image_out
   ) %>% 
-  gtExtras::gt_theme_nytimes() %>% 
-gt::cols_align(align = "center", columns = "Category")
-
-
-QRP_tbl_html <- QRP_tbl %>% 
+   gtExtras::gt_theme_nytimes() %>%
   gtExtras::gt_plt_bar_pct(
     fill = "green",
     column = c("Ecology"),
@@ -153,40 +152,108 @@ QRP_tbl_html <- QRP_tbl %>%
     background = "lightgrey"
   ) %>% 
   gt::cols_width(
-    Category ~ gt::pct(10),
+    Category ~ gt::pct(8),
     `Questionable Research Practice` ~ gt::pct(30),
-    Abbreviation ~ gt::pct(2),
-    Ecology ~ gt::pct(20),
-    Evolution ~ gt::pct(20)
-  ) %>% 
-  gt::tab_options(quarto.disable_processing = FALSE) 
+    Abbreviation ~ gt::pct(20),
+    Ecology ~ gt::pct(10),
+    Evolution ~ gt::pct(10)
+  )
 
+QRP_tbl_html %>% 
+  gt::gtsave(here::here("figures", "tbl-QRP-examples.png"), 
+             vwidth = 800,
+             vheight = 1000)
 ```
 
 ::: {.Box title="Common QRPs associated with Null Hypothesis Significance Testing in Ecology" #boxqrps } 
 
 ::: {.content-visible when-format="html"}
 
+
 ```{r}
 #| label: tbl-QRP-examples-html
+#| tbl-cap: 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research in Ecology and Evolutionary Biology. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.'
 QRP_tbl_html
 ```
 
 :::
 
-::: {.content-visible unless-format="html"}
+
+
+
+The table has been moved outside of the box to isolate whether the problem is a box / float one, or a gt one.
+
+
+
+A table
+
+:::
+
+
+:::{#box-1 .callout-box}
+
+
+
 ```{r}
+#| include: true
 #| label: tbl-QRP-examples
-#| column: body
+#| tbl-cap: "A test caption"
+#| echo: false
+#| out-width: "100"
+#| out-height: "100"
+magick::image_read(here::here("figures/tbl-QRP-examples.png") )
+```
+
+:::
+
+```{r}
+#| include: false
+#| eval: true
+#| results: asis
+#| echo: false
+#| label: table-QRP
+##| label: tbl-QRP-examples
+rm_icon_path <- function(x){
+  out <- map_chr(x, fs::path_file) %>% 
+    map_chr(fs::path_ext_remove)
+  out
+}
+
 QRP_tbl %>% 
+    gt::text_transform(locations = gt::cells_row_groups(everything()),
+                     fn = rm_icon_path ) %>% 
   gt::fmt_percent(
-    columns = Ecology,
+    columns = c(Ecology, Evolution),
     scale_values = FALSE,
     decimals = 0
-  )
+  ) %>% 
+  gt::cols_width(
+    Category ~ gt::px(65),
+    `Questionable Research Practice` ~ gt::px(250),
+    Abbreviation ~ gt::px(100),
+    Ecology ~ gt::px(60),
+    Evolution ~ gt::px(60)
+  ) %>% 
+   tab_style(
+    style = cell_text(size = pct(50)),
+    locations = cells_body()
+  ) %>% 
+  tab_style(
+    style = cell_text(size = pct(45)),
+    locations = cells_column_labels()
+  )   %>%
+   tab_style(
+    style = cell_text(size = pct(45)),
+    locations = cells_stub()
+  ) %>% 
+  gt::tab_options(
+    # table.font.size = "smaller",
+    quarto.disable_processing = TRUE,
+    quarto.use_bootstrap = TRUE) 
 ```
-:::
-:::
+
+
+
 
 ### Why QRPs in Hypothesis Testing don’t directly translate to modelling
 
