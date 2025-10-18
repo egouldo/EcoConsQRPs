@@ -72,6 +72,8 @@ date: last-modified
 bibliography: references.bib
 filters:
 - ute/custom-numbered-blocks
+- callout-box.lua
+- addcalloutnumber.lua
 ---
 
 ```{r}
