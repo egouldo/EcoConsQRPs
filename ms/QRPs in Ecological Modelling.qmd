@@ -34,7 +34,9 @@ format:
     title-block-banner: true
     code-fold: true
   pdf:
-    documentclass: article
+    keep-tex: true
+    documentclass: scrartcl
+    papersize: A4
     fontsize: 11pt
     toc: true
     toc-depth: 2
@@ -44,6 +46,8 @@ format:
     header-includes:
     - \usepackage{mathtools}
     - \usepackage{amssymb}
+    - \usepackage{xcolor}
+    - \usepackage{booktabs, caption, longtable, colortbl, array}
 custom-numbered-blocks:
   classes: 
     Box:
