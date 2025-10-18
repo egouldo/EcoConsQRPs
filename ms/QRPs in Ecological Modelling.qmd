@@ -373,7 +373,16 @@ waffle_plot <- waffle_plot_data %>%
                     flip = TRUE) +
         scale_x_discrete(expand = c(0,0)) +
         scale_y_discrete(expand = c(0,0)) +
-        ggsci::scale_fill_futurama(name = "QRP Target") +
+  scale_fill_manual(
+          name = "Target Model Object",
+          values = c("input" = "#0F9ED5", # blue
+                     "model" = "#A02B93", # purple
+                     "output" = "#4EA72E"), # green
+          labels = c("input" = "Model Input",
+                     "model" = "Model",
+                     "output" = "Model Output")
+        ) +
+        # ggsci::scale_fill_futurama(name = "QRP Target") +
         coord_equal() +
         facet_nested(qrp_coded + practice_coded ~ model_phase, 
                      switch = "y", 
