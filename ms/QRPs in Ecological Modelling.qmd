@@ -241,8 +241,9 @@ The ecological modelling literature is filled with prescriptive and normative ac
 
 ```{r}
 #| label: tbl-QRP-typology
+#| html-table-processing: none
 #| tbl-cap: |
-#|   Questionable Research Practices (QRPs) may affect different components of a model (table rows) indirectly altering the publishable attributes of a model by selectively reporting or directly altering objects generated throughout the modelling proces, targeting the model itself ($M$, purple cells) or model outputs ($M_j$, green cells). The final row represents the unambiguous ideal where no QRP occurs, that is, analytical decisions $\\phi$ are pre-specified rather than contingent on the model and/or data at that decision-point $\\phi(\\mathbf{X}, M)$.
+#|   A model-based typology of Questionable Research Practices (QRPs), based on @Gelman2013. QRPs may affect different components of a model (table rows) indirectly altering the publishable attributes of a model by selectively reporting or directly altering objects generated throughout the modelling proces, targeting the model itself ($M$, purple cells) or model outputs ($M_j$, green cells). The final row represents the unambiguous ideal where no QRP occurs, that is, analytical decisions $\\phi$ are pre-specified rather than contingent on the model and/or data at that decision-point $\\phi(\\mathbf{X}, M)$.
 tibble::tibble(QRP_outcome = c("The Model or Model Outputs<br>$(M, M_j)$", "Publishable Attributes of a model, via selective reporting or 'fishing'", "No QRP, e.g. pre-specified analytic decisions"),
                QRP_target_M = c("$$C (\\mathbf{X}, M;\\phi (\\mathbf{X},M))$$", 
                                 "$$C (\\mathbf{X}, M;{\\phi}^{best} (\\mathbf{X},M)) $$", 
