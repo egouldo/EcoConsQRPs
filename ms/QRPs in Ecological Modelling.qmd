@@ -226,8 +226,6 @@ The ecological modelling literature is filled with prescriptive and normative ac
 
 ![During the model development process, the model undergoes specification, and testing, generating the following objects and attributes: i. Model specification or structure, M_s; ii. data collection; iii. parameterisation, yielding M_p and associated model parameters, iv. Model predictions, v. Model evaluation results including model fit statistics such as AIC, BIC, and model validation testing results such as confusion matrices, commission / commission rates and other measures of model validity, and sensitivity analyses. B. The suite of analyses from model evaluation v. and model predictions iv. collectively sum / contribute to the overall credibility of the model, which in turn determine the publishability, or appropriateness of the model for application in real-world decisions. In this description of the model development process, we distinguish between data / model input (yellow, y) and model output (green, j).](images/clipboard-2357433507.png){#fig-model-objects}
 
-
-
 #### Conceptual Model
 
 #### Model Specification
