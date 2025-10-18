@@ -137,7 +137,7 @@ gt::cols_align(align = "center", columns = "Category")
 
 QRP_tbl_html <- QRP_tbl %>% 
   gtExtras::gt_plt_bar_pct(
-    fill = "purple",
+    fill = "green",
     column = c("Ecology"),
     scaled = TRUE,
     width = 100,
@@ -145,7 +145,7 @@ QRP_tbl_html <- QRP_tbl %>%
     background = "lightgrey"
   ) %>% 
           gtExtras::gt_plt_bar_pct(
-    fill = "purple",
+    fill = "blue",
     column = c("Evolution"),
     scaled = TRUE,
     width = 100,
