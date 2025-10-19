@@ -352,7 +352,7 @@ We surveyed the modelling literature to identify potential QRPs in ecological mo
 #| message: false
 #| warning: false
 waffle_plot_data <- 
-        tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        tidy_QRP_database(here::here("data", "QRP_database_cleaned.csv")) %>% 
         filter(include) %>% 
         select(-notes, -model_subphase, -source, -reason_coded, -include, -ends_with("_source")) %>% 
         distinct() %>% #rm duplicate practice_coded #TODO next merge duplicates while keeping source
@@ -493,7 +493,7 @@ waffle_plot <- waffle_plot_data %>%
 print(waffle_plot)
 
 
-
+#TODO update based on revised definitions
 #DONE reorder the model process levels
 #TODO exclude less important QRPs
 #DONE Make strips pretty
