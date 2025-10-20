@@ -9,7 +9,7 @@ tidy_QRP_database <- function(database_path) {
                 #        -source_file#, 
                 #        # -ends_with("_source")
                 #        ) %>% 
-                drop_na(model_phase, target, practice_coded) %>% 
+                drop_na(model_phase, practice_target, qrp_description) %>% 
                 mutate(across(ends_with("source"), 
                               ~ str_remove(.x, "\\[") %>% 
                                       str_remove("\\]") %>% 

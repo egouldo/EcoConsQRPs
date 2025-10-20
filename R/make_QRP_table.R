@@ -3,10 +3,10 @@
 make_QRP_table <- function(qrp_table_data) {
         qrp_tbl <- qrp_table_data %>% 
                 group_by(qrp_coded) %>% 
-                select(-reason_coded) %>% 
-                dplyr::relocate(ends_with("_coded"), 
+                select(-qrp_reason) %>% 
+                dplyr::relocate(starts_with("practice_"), 
                                 source, 
-                                target, starts_with("Problem"), 
+                                practice_target, starts_with("Problem"), 
                                 starts_with("Define"), starts_with("Data"), 
                                 contains("Construction"), contains("Evaluation"), everything()) %>% 
                 gt(groupname_col = "qrp_coded") %>% 
@@ -51,12 +51,12 @@ make_QRP_table <- function(qrp_table_data) {
                                             gsub("Define Conceptual Model - ", "", x)
                                     }) %>% 
                 gt::cols_label(.list = list(
-                        practice_coded = "Practice",
-                        target = "Target",
+                        qrp_description = "Practice",
+                        practice_target = "practice_target",
                         source = "Source"
                         # model_phase = "Model Phase",  
                         # model_subphase = "Model Subphase",
-                        # reason_coded = "Reason for QRP"
+                        # qrp_reason = "Reason for QRP"
                 )) %>%
                 gt::sub_missing(
                         columns = -ends_with("_coded"),

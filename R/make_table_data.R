@@ -9,7 +9,7 @@ make_qrp_table_data <- function(qrp_data) {
     arrange(model_phase, model_subphase) %>% 
     filter(length(model_phase) > 1 && length(model_phase) == length(model_subphase) | length(model_phase) == 1) %>%  # temporary hack to ensure equal lengths but drops data
     unnest(c(model_phase, model_subphase)) %>% 
-    group_by(practice_coded) %>% 
+    group_by(qrp_description) %>% 
     unite(col = model_phase_subphase, model_phase, model_subphase, sep = " - ") %>% 
     mutate(values = 1) %>% 
       distinct() %>%  #TODO identify source of duplicates making pivot error

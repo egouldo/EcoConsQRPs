@@ -435,7 +435,7 @@ We also grouped QRPs according to the phase of the modelling process in which th
 # #| dev: "cairo_pdf" # when output is pdf
 # options(hrbrthemes.loadfonts = TRUE)
 waffle_plot <- waffle_plot_data %>% 
-        distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
+        distinct() %>% #TODO identify duplicated rows - suspect non-unique practice_target coding is cause
         mutate(model_phase = 
                        forcats::as_factor(model_phase) %>% 
                        forcats::fct_relevel( c("Data", 
@@ -444,7 +444,7 @@ waffle_plot <- waffle_plot_data %>%
                                                "Model Application"))) %>% 
         arrange(model_phase, 
                 qrp_coded) %>% 
-        ggplot(aes(fill = target, 
+        ggplot(aes(fill = practice_target, 
                    values = values)) +
         geom_waffle(size = 2, 
                     color = "white", 
@@ -463,11 +463,11 @@ waffle_plot <- waffle_plot_data %>%
         ) +
         # ggsci::scale_fill_futurama(name = "QRP Target") +
         coord_equal() +
-        facet_nested(qrp_coded + practice_coded ~ model_phase, 
+        facet_nested(qrp_coded + qrp_description ~ model_phase, 
                      switch = "y", 
                      labeller = 
                              labeller(
-                                     practice_coded =
+                                     qrp_description =
                                              label_wrap_gen(width = 80,
                                                             multi_line = TRUE),
                                      qrp_coded =
@@ -482,9 +482,9 @@ waffle_plot <- waffle_plot_data %>%
                      strip = strip_nested(size = "variable",
                                           clip = "off")
         ) +
-        # facet_grid(practice_coded ~ model_phase, 
+        # facet_grid(qrp_description ~ model_phase, 
         #            switch = "y", 
-        #            labeller = labeller(practice_coded = 
+        #            labeller = labeller(qrp_description = 
         #                                        label_wrap_gen(width = 100))) +
         # theme_no_axes() +
         hrbrthemes::theme_ipsum_rc() +
@@ -603,14 +603,14 @@ However, we hesitate to designate all data-dependent analytic decisions as quest
 #| warning: false
 #| message: false
 
-gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+gt_qrp <- tidy_QRP_database(here::here("data/QRP_database_2025-10-20.csv")) %>%
         make_qrp_table_data() %>% 
-        select(-notes) %>% 
+        select(-practice_notes) %>% 
         group_by(qrp_coded) %>% 
         arrange(qrp_coded) %>% 
         make_QRP_table() %>% 
-        gt::fmt_markdown(columns = c(qrp_coded, practice_coded, source)) %>% 
-        gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) %>% 
+        gt::fmt_markdown(columns = c(qrp_coded, qrp_description, source)) %>% 
+        gt::cols_hide(columns = c(-starts_with("practice_"), -source, -practice_target) ) %>% 
         gt::cols_label(qrp_coded = "QRP Class") %>% 
         gtExtras::gt_theme_nytimes()
 
@@ -618,44 +618,44 @@ gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>%
 
 
 tidy_QRP_database(here::here("data", 
-                             "QRP_database.csv")) %>%
-  mutate(across(ends_with("_source"), 
-                ~ str_c(.x, source))) %>% #annotate `*_source` with `source`
-  group_by(qrp_coded, practice_coded) %>%
+                             "QRP_database_2025-10-20.csv")) %>%
+  select(-file_name, -description) %>% 
+  mutate(across(c(starts_with("practice_"), -practice_target), 
+                ~ str_c(.x, source))) %>% #annotate `practice_*` with `source`
+  group_by(qrp_coded, qrp_description) %>%
   mutate(across(c(starts_with("model_"), 
-                  "target",
-                  "reason_coded", 
-                  "notes"), 
+                  "practice_target",
+                  "qrp_reason", 
+                  "practice_notes"), 
                 ~ str_split(.x, ", ")),
          source = str_split(source, "; ")
          ) %>% 
   summarise(across(c(starts_with("model_"), 
-                     "target",
-                     "reason_coded",
-                     "notes",
-                     ends_with("source")), 
+                     "qrp_reason",
+                     "practice_notes",
+                     starts_with("practice_")), 
                    list)) %>% 
   rowwise() %>% 
   mutate(across(c(starts_with("model_"), 
-                  "target",  
-                  "reason_coded", 
-                  "notes"), 
+                  "practice_target",  
+                  "qrp_reason", 
+                  "practice_notes"), 
                 ~ flatten_chr(unique(.x)) %>% 
                   unique() %>% 
                   str_flatten_comma(na.rm = TRUE)),
-         source = list(source %>% 
-                         str_remove_all(pattern = c("\\[|\\]")) %>% 
+         source = list(
+                         str_remove_all(string = "source", pattern = c("\\[|\\]")) %>% 
                          str_squish() %>% 
                          unique() %>% 
                          str_flatten("; ") %>% 
                          str_c("[", ., "]")),
-         across(ends_with("_source"), 
+         across(c(starts_with("practice_"), -"practice_target"), 
                 ~ str_squish(.x) %>% 
                          str_flatten(collapse = "<br>"))) %>% 
-  gt::gt(groupname_col = c("qrp_coded", "practice_coded")) %>% 
+  gt::gt(groupname_col = c("qrp_coded", "qrp_description")) %>% 
   gt::cols_hide(source) %>% 
   # gt::cols_width(ends_with("_source") ~ gt::pct(20),
-                 # reason_coded ~ gt::pct(20)) %>%
+                 # qrp_reason ~ gt::pct(20)) %>%
   gtExtras::gt_theme_pff() %>% 
   gt::tab_options(table.font.size = 8) %>% 
   gt::fmt_markdown(columns = source)
