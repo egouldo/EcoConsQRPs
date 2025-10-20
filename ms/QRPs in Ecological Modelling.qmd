@@ -352,22 +352,22 @@ We surveyed the modelling literature to identify potential QRPs in ecological mo
 #| message: false
 #| warning: false
 waffle_plot_data <- 
-        tidy_QRP_database(here::here("data", "QRP_database_cleaned.csv")) %>% 
+        tidy_QRP_database(here::here("data/QRP_database_2025-10-20.csv")) %>% 
         filter(include) %>% 
-        select(-notes, -model_subphase, -source, -reason_coded, -include, -ends_with("_source")) %>% 
-        distinct() %>% #rm duplicate practice_coded #TODO next merge duplicates while keeping source
+        select(-practice_notes, -model_subphase, -source, -qrp_reason, -include, -starts_with("practice_"), -file_name, practice_target) %>% 
+        distinct() %>% #rm duplicate qrp_coded #TODO next merge duplicates while keeping source
         drop_na() %>% #interim approach until datachecks in place
         mutate(model_phase = str_split(model_phase, ", "),
-               target = str_split(target, ", "),
+               practice_target = str_split(practice_target, ", "),
                values = 1) %>% 
         unnest(model_phase) %>% 
-        unnest(target) %>% 
-        complete(practice_coded, 
+        unnest(practice_target) %>% 
+        complete(qrp_description, 
                  model_phase, 
-                 target, 
+                 practice_target, 
                  fill = list(values = 0.0001) # see https://github.com/hrbrmstr/waffle/issues/66
                  ) %>%  
-        group_by(practice_coded) %>% 
+        group_by(qrp_description) %>% 
         fill(qrp_coded, model_phase, .direction = "downup") %>% 
         ungroup()
 ```
