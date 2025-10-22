@@ -430,7 +430,7 @@ We also grouped QRPs according to the phase of the modelling process in which th
 #| label: fig-waffle_plot
 #| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (yellow squares), the model itself (red squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
 #| fig-width: 14
-#| fig-height: 18
+#| fig-height: 16
 
 # #| dev: "cairo_pdf" # when output is pdf
 # options(hrbrthemes.loadfonts = TRUE)
@@ -490,8 +490,8 @@ waffle_plot <- waffle_plot_data %>%
         hrbrthemes::theme_ipsum_rc() +
         waffle::theme_enhance_waffle() +
         theme(strip.text.y.left = element_text(angle = 0, 
-                                               size = 12),
-              strip.text.x = element_text(size = 14,vjust = 0),
+                                               size = 14),
+              strip.text.x = element_text(size = 16,vjust = 0),
               strip.background.x = element_part_rect(side = "b"),
               strip.background.y = element_blank()
         ) +
@@ -499,7 +499,13 @@ waffle_plot <- waffle_plot_data %>%
                                 cols = unit(3, "cm"))
 
 print(waffle_plot)
-
+loadfonts(device = "all")
+ggsave(waffle_plot, 
+       filename = here::here("figures/fig-waffle-QRPs-ecological-modelling.png"),
+       device = grDevices::png,
+       width = 14,
+       height = 16,
+       dpi = 600)
 
 #TODO update based on revised definitions
 #DONE reorder the model process levels
