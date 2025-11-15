@@ -37,6 +37,8 @@ format:
     page-layout: full
     title-block-banner: true
     code-fold: true
+    number-sections: true
+    number-depth: 3
   pdf:
     keep-tex: true
     documentclass: scrartcl
