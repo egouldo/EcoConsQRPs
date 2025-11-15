@@ -107,9 +107,11 @@ source(here::here("R/make_QRP_table.R"))
 
 # Introduction
 
-Self-report surveys of researchers’ statistical practices suggest high rates of Questionable Research Practices (QRPs e.g., p-hacking, cherry picking, see [@tbl-QRP-examples-html]{.content-visible when-format="html"} [@tbl-QRP-examples]{.content-visible unless-format="html"}) in several different disciplines: psychology (ref), education (ref) and ecology [@Fraser:2018cl]. 
-Widespread QRPs, accompanied by a lack of transparency and openness in research reporting [@culina2020] can leave disciplines at risk of a ‘reproducibility crisis’ [@Fidler:2017he] . To understand the implications of this for ecology, we need a more comprehensive account of what constitutes Questionable Research Practice. QRPs are a set of methodological and statistical practices that fall into an ‘ethical grey zone’ between ideal responsible research conduct and unacceptable research behaviours like fabrication and plagiarism [@Steneck2006] . When researchers are faced with ambiguous decisions where there is no single acceptable decision or strategy according to scientific standards and consensus, they are likely to select the decision that results in the most ‘favourable’ finding with “convincing self-justification” [@Hoffmann2021; @Simmons:2011iw]. QRPs may not be the product of conscious ‘fishing expeditions’ [@Gelman2013] but rather occur because researchers are motivated actors prone to cognitive biases incentivised by a ‘publish or perish’ research culture in which publication bias selects for particular types of findings [@Agnoli:2017kl]. These findings are generally significant results or ‘unexpected’ /surprising findings [@Nissen2016; @Nakagawa2025]. In NHST these are generally statistically significant findings, correlations rather than absence of correlations ‘unexpected’ findings (ref). Findings that are not deemed ‘publishable’ are either sent to the ‘file drawer’ or else subject to practices, such as ‘p-hacking,’ that make the results more likely to be published. Publication bias and the file drawer effect facilitate the dissemination of false knowledge, consequently, QRPs bias the literature and ultimately undermine the credibility and reproducibility of research findings [@Cockburn2020; @Agnoli:2017kl]. Current definitions of QRPs are focused on hypothesis testing research (specifically null-hypothesis significance testing), with QRPs typically defined as practices that inflate the chance of finding a false positive result (type I error) (ref? Simons maybe?). Common examples of QRPs are centred around practices that manipulate p-values. Whilst Null Hypothesis Significance Testing has been and still is in popular use in ecology [@Fidler:2017he; @Stephens2007], a large amount of applied problem-solving work in the field is model-based. Ecological modellers may be inclined to think that the concerns associated with QRPs and reproducibility do not apply to them. In practice, this work is quite different to null hypothesis significance testing: Instead of relying on a single quantitative measure, studies describing ecological models usually generate a suite of measures and analyses that pertain to different desirable attributes of the model and collectively inform claims about the model being sufficient to fulfil its intended purpose. This begs the question of whether QRPs are relevant to model-based research? If specific QRPs related to p-values, like p-hacking, don’t apply, are there parallel or counterpart practices that do? What form might they take? And where in the research process would we be likely to find them? This paper addresses each of these questions. Our primary aim in this paper is to highlight the range of particular decision-points and practices that could be questionable so as to identify potential QRPs in model-based research. We encourage modellers to pause at such junctions and assess for themselves what the relative risk of QRPs is.
-SEE Box \ref{boxqrps}
+Self-report surveys of researchers’ statistical practices suggest high rates of Questionable Research Practices (QRPs, e.g., p-hacking, cherry picking, @tbl-QRP-examples-html @tbl-QRP-examples) in several different disciplines: psychology [@John:2012eo], education [@Makel2023] and ecology [@Fraser:2018cl]. Widespread QRPs, accompanied by a lack of transparency and openness in research reporting [@culina2020], can leave disciplines at risk of a ‘reproducibility crisis’ [@Fidler:2017he]. QRPs are a set of methodological and statistical practices that fall into an “ethical grey zone” between ideal responsible research conduct and unacceptable research behaviours like fabrication and plagiarism [@Butler:2017ks p. 94]. Researchers are motivated actors prone to cognitive biases incentivised by a ‘publish or perish’ research culture in which publication bias selects for particular types of findings [@Agnoli:2017kl]. These findings are generally statistically significant results or ‘unexpected’ / ‘surprising’ findings [@Nissen2016; @Nakagawa2025]. Findings that are not deemed ‘publishable’ (in a Null-Hypothesis Significance Testing framework \[NHST\], these are often results with p values $\gt 0.05$) are either sent to the ‘file drawer’ or else subject to QRPs, such as ‘p-hacking,’ that make the results more likely to be published.
+
+@Fraser:2018cl surveyed ecology researchers, asking how often they used the Questionable Research Practices (QRPs) that have been identified in other fields. Many of these QRPs relate to p-values. The study found these practices were used at similar rates to other fields, but with notably higher rates of analysis gaming and cherry-picking [@John:2012eo; @Fraser:2018cl; @Makel2023; @Chin2023]. These differences may reflect the greater prevalence of model-based research in ecology, raising questions about whether, and in what contexts, these practices are problematic for modelling. Other research shows that the same pressures and motivations associated with QRPs in other fields are present in ecology, including publication pressure, pressure to obtain funding, and career incentives [@Fidler:2017he; @ODea2021a]. p-curve analysis has revealed the effects of both reporting and publication bias in ecology studies featuring p-values [@kimmel2023]. While @Ottaviani2023 found evidence of publication bias favouring novel results, with increasing use of novelty terms in ecological abstracts over time, especially in high-impact journals. In addition to selective reporting of results, ecological research is plagued by underpowered studies, which exaggerate effect sizes in the published literature \[ @Parker2023; @Yang2023c\]. These studies underscore the prevalence of reporting and publication bias in ecology, ultimately influencing conclusions drawn from the literature [@deressa2023].
+
+Current definitions and lists of QRPs are focused on hypothesis testing research (specifically NHST, @tbl-QRP-examples-html @tbl-QRP-examples), characterising these practices as those that inflate the probability of false positive findings [see Table 3 in @Nagy2025]. Which makes sense, since this is the primary statistical estimand on which a finding is deemed ‘publishable’ in null-hypothesis significance testing. This NHST-centric focus creates particular challenges for ecology, because, although Null Hypothesis Significance Testing is still popular in ecology [@Fidler:2017he; @Stephens2007], model-based methods in ecology are increasingly common, especially within applied research contexts [@Connolly2017; @Garcia-Diaz2019; @DeAngelis2021]. The emphasis of existing QRP definitions on Type I errors is unhelpful for model-based research. Multiple sources and types of error may arise in the modelling process — there is model structural uncertainty, uncertainty in parameter estimates and predictions, and uncertainty in scenarios [@Rounsevell2021; @Simmonds2024]. What constitutes ‘error’, what the source of that error is, as well as the relative weighting of those different errors, depend on some combination of the model’s purpose (prediction, explanation, description), the type of model used (correlative or mechanistic) and the context for the model. Ecological modellers may be inclined to think that the concerns associated with QRPs and reproducibility are irrelevant, since many of the practices described as questionable within an NHST context do not directly relate to their work.
 
 ```{r}
 #| label: create-QRP-table
@@ -118,12 +120,12 @@ SEE Box \ref{boxqrps}
 #| echo: false
 
 QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
-                show_col_types = FALSE) %>% 
+                           show_col_types = FALSE) %>% 
   mutate(Category = here::here("data", "icons", 
                                glue::glue("{Category}.png"))) %>%
   gt::gt(groupname_col = "Category",
          row_group_as_column = TRUE
-           ) %>% 
+  ) %>% 
   gt::tab_footnote(footnote = "Makel et al. (2019)", 
                    locations = cells_column_labels(columns = Abbreviation)) %>% 
   gt::tab_footnote(footnote = "Fraser et al. (2018), n=494", 
@@ -142,7 +144,7 @@ QRP_tbl_html <- QRP_tbl %>%
   gt::text_transform(locations = gt::cells_row_groups(everything()),
                      fn = image_out
   ) %>% 
-   gtExtras::gt_theme_nytimes() %>%
+  gtExtras::gt_theme_nytimes() %>%
   gtExtras::gt_plt_bar_pct(
     fill = "green",
     column = c("Ecology"),
@@ -151,7 +153,7 @@ QRP_tbl_html <- QRP_tbl %>%
     labels = TRUE,
     background = "lightgrey"
   ) %>% 
-          gtExtras::gt_plt_bar_pct(
+  gtExtras::gt_plt_bar_pct(
     fill = "blue",
     column = c("Evolution"),
     scaled = TRUE,
@@ -165,7 +167,9 @@ QRP_tbl_html <- QRP_tbl %>%
     Abbreviation ~ gt::pct(20),
     Ecology ~ gt::pct(10),
     Evolution ~ gt::pct(10)
-  )
+  ) %>% 
+  tab_style(style = cell_text(color = "black", size = "medium"),
+            locations = cells_column_labels())
 
 QRP_tbl_html %>% 
   gt::gtsave(here::here("figures", "tbl-QRP-examples.png"), 
@@ -173,35 +177,15 @@ QRP_tbl_html %>%
              vheight = 1000)
 ```
 
-::: {.Box title="Common QRPs associated with Null Hypothesis Significance Testing in Ecology" #boxqrps } 
-
 ::: {.content-visible when-format="html"}
-
-
 ```{r}
 #| label: tbl-QRP-examples-html
 #| tbl-cap: 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research in Ecology and Evolutionary Biology. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.'
 QRP_tbl_html
 ```
-
 :::
 
-
-
-
-The table has been moved outside of the box to isolate whether the problem is a box / float one, or a gt one.
-
-
-
-A table
-
-:::
-
-
-:::{#box-1 .callout-box}
-
-
-
+::: {.content-visible when-format="pdf"}
 ```{r}
 #| include: true
 #| label: tbl-QRP-examples
@@ -211,57 +195,15 @@ A table
 #| out-height: "100"
 magick::image_read(here::here("figures/tbl-QRP-examples.png") )
 ```
-
 :::
 
-```{r}
-#| include: false
-#| eval: true
-#| results: asis
-#| echo: false
-#| label: table-QRP
-##| label: tbl-QRP-examples
-rm_icon_path <- function(x){
-  out <- map_chr(x, fs::path_file) %>% 
-    map_chr(fs::path_ext_remove)
-  out
-}
+Building on these limitations, we argue that current QRP frameworks fail to address model-based research because the underlying research processes are fundamentally different. One principle underlying the classification of these practices as ‘questionable’ relates to data driven decision making. In contrast to hypothesis testers, modellers make a series of analytic decisions on the basis of both objectively identified model performance criteria and subjective judgements [@Babel2019; @Bennett2013], wherein which they shift between subjecting the model to analysis, validation and testing, and refining the model in response to those results [@Getz2017]. This process is non-linear, iterative, and generates many interim versions of the model preceding publication [@Augusiak2014], unfolding much like the ‘survival of the fittest’ models[@Prosperi2019], given a specified purpose and the available resources. In modelling, analytic decision-making is adaptive and data-dependent.
 
-QRP_tbl %>% 
-    gt::text_transform(locations = gt::cells_row_groups(everything()),
-                     fn = rm_icon_path ) %>% 
-  gt::fmt_percent(
-    columns = c(Ecology, Evolution),
-    scale_values = FALSE,
-    decimals = 0
-  ) %>% 
-  gt::cols_width(
-    Category ~ gt::px(65),
-    `Questionable Research Practice` ~ gt::px(250),
-    Abbreviation ~ gt::px(100),
-    Ecology ~ gt::px(60),
-    Evolution ~ gt::px(60)
-  ) %>% 
-   tab_style(
-    style = cell_text(size = pct(50)),
-    locations = cells_body()
-  ) %>% 
-  tab_style(
-    style = cell_text(size = pct(45)),
-    locations = cells_column_labels()
-  )   %>%
-   tab_style(
-    style = cell_text(size = pct(45)),
-    locations = cells_stub()
-  ) %>% 
-  gt::tab_options(
-    # table.font.size = "smaller",
-    quarto.disable_processing = TRUE,
-    quarto.use_bootstrap = TRUE) 
-```
+Rather than dichotomous inferences relying on almost exclusively on p-values, model performance metrics consist of both qualitative and quantitative measures that incrementally build a subjective picture of model credibility [@Augusiak2014; @Hamilton2019]. Since the publishability of a model-based study hinges on the collection of these model outputs and their contribution to overall model credibility, each of these model outputs may be susceptible to QRPs that aim to strategically alter the perceived credibility of the model.
 
+Therefore, we argue that a conceptual framework of QRPs in model-based research must account for certain kinds of data-dependent decisions, which are appropriate and justifiable aspects of the modelling process, while highlighting the primacy of guarding against data-dependent decision-making that might be questionable. Moreover, the conceptual framework should de-emphasise the risk of type I errors and false positive findings to account for other biases more relevant to how complex models are evaluated and used. This begs the question of whether QRPs are relevant to model-based research? If specific QRPs related to p-values do not apply, such as p-hacking, are there parallel or counterpart practices that do? What form might they take? And where in the research process would we be likely to locate them? This paper addresses each of these questions. Our primary aim is to highlight the range of specific practices that are problematic in some circumstances so as to identify QRPs and their decision-points in model-based research. We encourage modellers to pause at such junctions and assess for themselves what the risk of QRPs is, in their context. We aim to raise awareness among ecologists (and modellers within other disciplines) about the potential for QRPs throughout the modelling process and hope to facilitate future attempts to both estimate the severity and extent of QRPs and mitigate the risk of QRPs in in ecology by providing a more comprehensive account of what constitutes questionable practice in model-based research.
 
-
+------------------------------------------------------------------------
 
 ### Why QRPs in Hypothesis Testing don’t directly translate to modelling
 
