@@ -17,30 +17,34 @@ data <- tibble(
         abundance = abundance
 )
 
-# Define management scenarios
+# Define management scenarios & expected values under each scenario
 management_scenarios <- tibble(
         action = c("Action A", "Action B"),
         habitat_quality_mean = c(6.0, 6.5),  # Small difference initially
         habitat_quality_sd = c(0.5, 0.5)
 )
 
+habitat_values <- management_scenarios %>%
+        rowwise() %>%
+        mutate(habitat_values = list(rnorm(1000, 
+                                           habitat_quality_mean, 
+                                           habitat_quality_sd)))
+
 # Stage 1: Initial simple model (defensible)
 model_initial <- lm(abundance ~ habitat_quality, data = data)
 
 # Predict for management scenarios
-pred_initial <- management_scenarios %>%
-        rowwise() %>%
-        mutate(
-                habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                predictions = list(predict(model_initial, 
-                                           newdata = tibble(habitat_quality = habitat_values), 
-                                           interval = "prediction")),
+pred_initial <- habitat_values %>% 
+        rowwise() %>% 
+        mutate(predictions = list(
+                        predict(model_initial,
+                                newdata = tibble(habitat_quality = habitat_values), 
+                                interval = "prediction")),
                 pred_mean = mean(predictions[,1]),
                 pred_lower = quantile(predictions[,1], 0.025),
-                pred_upper = quantile(predictions[,1], 0.975)
-        ) %>%
-        select(action, pred_mean, pred_lower, pred_upper) %>%
-        mutate(model = "Initial Model", 
+                pred_upper = quantile(predictions[,1], 0.975),
+               predictions = list(predictions[,1]),
+               model = "Initial Model", 
                stage = "Stage 1: A Priori Model")
 
 # Stage 2: Overfitted model (model fishing)
@@ -49,105 +53,90 @@ model_overfitted <- lm(abundance ~ poly(habitat_quality, 3) +
                                I(habitat_quality^2 * (habitat_quality > 5)), 
                        data = data)
 
-pred_overfitted <- management_scenarios %>%
+pred_overfitted <- habitat_values %>% 
         rowwise() %>%
-        mutate(
-                habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                predictions = list(predict(model_overfitted, 
-                                           newdata = tibble(habitat_quality = habitat_values), 
-                                           interval = "prediction")),
-                pred_mean = mean(predictions[,1]),
-                pred_lower = quantile(predictions[,1], 0.025),
-                pred_upper = quantile(predictions[,1], 0.975)
-        ) %>%
-        select(action, pred_mean, pred_lower, pred_upper) %>%
-        mutate(model = "Overfitted Model", stage = "Stage 2: Model Fishing")
+        mutate(predictions = list(
+                predict(model_overfitted, 
+                        newdata = tibble(habitat_quality = habitat_values), 
+                        interval = "prediction")),
+               pred_mean = mean(predictions[,1]),
+               pred_lower = quantile(predictions[,1], 0.025),
+               pred_upper = quantile(predictions[,1], 0.975),
+               stage = "Stage 2: Model Fishing",
+               model = "Overfitted Model",
+               predictions = list(predictions[,1])
+        ) 
 
 # Stage 3: Scenario hacking - artificially increase difference
 management_scenarios_hacked <- management_scenarios %>%
         mutate(
                 habitat_quality_mean = case_when(
-                        action == "Action A" ~ 5.5,  # Artificially lowered
-                        action == "Action B" ~ 7.5   # Artificially raised
+                        action == "Action A" ~ 5.5,  # Artificially reduced
+                        action == "Action B" ~ 7.5   # Artificially increased
                 )
         )
 
 pred_hacked <- management_scenarios_hacked %>%
         rowwise() %>%
-        mutate(
-                habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                predictions = list(predict(model_initial, 
-                                           newdata = tibble(habitat_quality = habitat_values), 
-                                           interval = "prediction")),
-                pred_mean = mean(predictions[,1]),
-                pred_lower = quantile(predictions[,1], 0.025),
-                pred_upper = quantile(predictions[,1], 0.975)
-        ) %>%
-        select(action, pred_mean, pred_lower, pred_upper) %>%
-        mutate(
-                model = "Scenario Hacked", 
-                stage = "Stage 3: Scenario Hacking",
-                # Add color mapping for hacked actions
-                action_color = case_when(
-                        action == "Action A" ~ "#0072B2",  # Orange for hacked Action A
-                        action == "Action B" ~ "#2C5F41"   # Purple for hacked Action B
-                )
+        mutate(habitat_values = list(rnorm(1000, 
+                                           habitat_quality_mean, 
+                                           habitat_quality_sd)),
+               predictions = list(
+                       predict(model_initial,
+                               newdata = tibble(habitat_quality = habitat_values),
+                               interval = "prediction")),
+               pred_mean = mean(predictions[,1]),
+               pred_lower = quantile(predictions[,1], 0.025),
+               pred_upper = quantile(predictions[,1], 0.975),
+               stage = "Stage 3: Scenario Hacking",
+               model = "Scenario Hacked",
+               predictions = list(predictions[,1])
         )
+       
 
-# Combine results
+# Get descriptive statistics for violin plots
 all_predictions <- bind_rows(
-        pred_initial %>% mutate(action_color = case_when(
-                action == "Action A" ~ "#56B4E9",
-                action == "Action B" ~ "#009E73"
-        )),
-        pred_overfitted %>% mutate(action_color = case_when(
-                action == "Action A" ~ "#56B4E9", 
-                action == "Action B" ~ "#009E73"
-        )),
-        pred_hacked
-) %>%
-        mutate(stage = factor(stage, levels = c("Stage 1: A Priori Model", 
-                                                "Stage 2: Model Fishing", 
-                                                "Stage 3: Scenario Hacking")))
+        pred_hacked %>% 
+                select(model, action, pred_mean, pred_lower, pred_upper, stage) %>%
+                mutate(action_color = case_when(
+                        action == "Action A" ~ "#0072B2", 
+                        action == "Action B" ~ "#2C5F41"
+                )),
+        pred_initial %>%
+                select(model, action, pred_mean, pred_lower, pred_upper, stage) %>%
+                mutate(action_color = case_when(
+                        action == "Action A" ~ "#56B4E9",
+                        action == "Action B" ~ "#009E73"
+                )),
+        pred_overfitted %>% 
+                select(model, action, pred_mean, pred_lower, pred_upper, stage) %>% 
+                mutate(action_color = case_when(
+                        action == "Action A" ~ "#56B4E9", 
+                        action == "Action B" ~ "#009E73"
+                ))
+        ) %>%
+        mutate(stage = factor(stage, 
+                              levels = c("Stage 1: A Priori Model", 
+                                         "Stage 2: Model Fishing", 
+                                         "Stage 3: Scenario Hacking")))
 
 # Plot Coefficients
 # First, we need to generate the full prediction distributions
 pred_distributions <- bind_rows(
         # Stage 1: Initial model
-        management_scenarios %>%
-                rowwise() %>%
-                mutate(
-                        habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                        predictions = list(predict(model_initial, 
-                                                   newdata = tibble(habitat_quality = habitat_values))),
-                        stage = "Stage 1: A Priori Model"
-                ) %>%
-                unnest(predictions) %>%
-                select(action, predictions, stage),
-        
+        pred_initial %>% 
+
+                select(action, predictions, stage) %>% 
+                unnest(predictions),
         # Stage 2: Overfitted model  
-        management_scenarios %>%
-                rowwise() %>%
-                mutate(
-                        habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                        predictions = list(predict(model_overfitted, 
-                                                   newdata = tibble(habitat_quality = habitat_values))),
-                        stage = "Stage 2: Model Fishing"
-                ) %>%
-                unnest(predictions) %>%
-                select(action, predictions, stage),
-        
+        pred_overfitted %>%
+                rowwise() %>% 
+                select(action, predictions, stage) %>%
+                unnest(predictions),
         # Stage 3: Scenario hacked
-        management_scenarios_hacked %>%
-                rowwise() %>%
-                mutate(
-                        habitat_values = list(rnorm(1000, habitat_quality_mean, habitat_quality_sd)),
-                        predictions = list(predict(model_initial, 
-                                                   newdata = tibble(habitat_quality = habitat_values))),
-                        stage = "Stage 3: Scenario Hacking"
-                ) %>%
-                unnest(predictions) %>%
-                select(action, predictions, stage)
+       pred_hacked %>%
+               select(action, predictions, stage) %>%
+                unnest(predictions) 
 ) %>%
         mutate(
                 stage = factor(stage, levels = c("Stage 1: A Priori Model", 
@@ -214,7 +203,7 @@ model_comparison <- tibble(
                         model_type == "initial_pred" ~ "Initial Model",
                         model_type == "overfitted_pred" ~ "Overfitted Model"
                 )
-         )
+        )
 
 # eq_m_initial <- equatiomatic::extract_eq(model_initial)
 # eq_m_overfitted <- equatiomatic::extract_eq(model_overfitted, use_coefs = TRUE,ital_vars = TRUE,) %>% 
@@ -359,8 +348,9 @@ table_png <- png::readPNG(tmp, native = TRUE) # read tmp png file
 
 combined_plot <- p1 / (table_png ) / (p3)
 combined_plot <- combined_plot + plot_annotation(tag_levels = c("A"))
-ggsave(filename = "figures/synthetic_example_QRPs.png", 
-       combined_plot, 
-       width = 10, 
-       height = 12, 
-       dpi = 600)
+
+# ggsave(filename = "figures/synthetic_example_QRPs.png", 
+#        combined_plot, 
+#        width = 10, 
+#        height = 12, 
+#        dpi = 600)
