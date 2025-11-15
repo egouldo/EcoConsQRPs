@@ -223,8 +223,10 @@ model_comparison <- tibble(
 #         paste("$", ., "$", sep = "")
 
 p3 <- ggplot() +
-        geom_point(data = data, aes(x = habitat_quality, y = abundance), 
-                   alpha = 0.6, color = "grey50") +
+        geom_point(data = data, 
+                   aes(x = habitat_quality, y = abundance), 
+                   alpha = 0.6, 
+                   color = "grey50") +
         geom_line(data = model_comparison, 
                   aes(x = habitat_quality, y = prediction, 
                       color = model_type, linetype = model_type), 
@@ -232,28 +234,50 @@ p3 <- ggplot() +
         # Initial management actions
         geom_vline(xintercept = management_scenarios %>% 
                            pluck("habitat_quality_mean", 1), 
-                   linetype = "solid", color = "#56B4E9", size = 1, alpha = 0.7) +
+                   linetype = "solid", 
+                   color = "#56B4E9", 
+                   size = 1, 
+                   alpha = 0.7) +
         geom_vline(xintercept = management_scenarios %>% 
                            pluck("habitat_quality_mean", 2), 
-                   linetype = "solid", color = "#009E73", size = 1, alpha = 0.7) +
+                   linetype = "solid", color = "#009E73", 
+                   size = 1, 
+                   alpha = 0.7) +
         # Scenario hacked actions  
         geom_vline(xintercept = management_scenarios_hacked %>% 
                            pluck("habitat_quality_mean", 1), 
-                   linetype = "dashed", color = "#0072B2", size = 1.2) +
+                   linetype = "dashed", 
+                   color = "#0072B2", 
+                   size = 1.2) +
         geom_vline(xintercept = management_scenarios_hacked %>% 
                            pluck("habitat_quality_mean", 2), 
-                   linetype = "dashed", color = "#2C5F41", size = 1.2) +
+                   linetype = "dashed", 
+                   color = "#2C5F41", 
+                   size = 1.2) +
         # Arrows showing the manipulation
-        annotate("segment", x = management_scenarios %>% 
+        annotate("segment", 
+                 x = management_scenarios %>% 
                          pluck("habitat_quality_mean", 1), 
                  xend = management_scenarios_hacked %>% 
-                         pluck("habitat_quality_mean", 1), y = 16, yend = 16, 
-                 arrow = arrow(length = unit(0.3, "cm")), color = "#0072B2", size = 1) +
-        annotate("segment", x = management_scenarios %>% pluck("habitat_quality_mean", 2), xend = management_scenarios_hacked %>% pluck("habitat_quality_mean", 2), y = 16, yend = 16, 
-                 arrow = arrow(length = unit(0.3, "cm")), color = "#2C5F41", size = 1) +
+                         pluck("habitat_quality_mean", 1), 
+                 y = 16, 
+                 yend = 16, 
+                 arrow = arrow(length = unit(0.3, "cm")), 
+                 color = "#0072B2", 
+                 size = 1) +
+        annotate("segment", 
+                 x = management_scenarios %>% 
+                         pluck("habitat_quality_mean", 2), 
+                 xend = management_scenarios_hacked %>% 
+                         pluck("habitat_quality_mean", 2), 
+                 y = 16, 
+                 yend = 16, 
+                 arrow = arrow(length = unit(0.3, "cm")), 
+                 color = "#2C5F41", 
+                 size = 1) +
         labs(
                 # title = "Model Fishing and Scenario Hacking",
-                # subtitle = TeX( eq_m_overfitted),
+                # subtitle = TeX(eq_m_overfitted),
                 x = "Habitat Quality",
                 y = "Predicted Species Abundance",
         ) +
@@ -261,34 +285,62 @@ p3 <- ggplot() +
         theme(
                 legend.position = c(0.99, 0.01),  # Lower right corner
                 legend.justification = c(1, 0),   # Anchor point
-                legend.background = element_rect(fill = "white", color = "black", size = 0.5),
+                legend.background = element_rect(fill = "white", 
+                                                 color = "black", 
+                                                 size = 0.5),
                 legend.margin = margin(5, 5, 5, 5)
         ) +
-        scale_color_manual("Model Version", values = c("Initial Model" = "#E69F00",     # Forest Green
-                                      "Overfitted Model" = "#D55E00"))  + # Dark Orchid
-        scale_linetype_manual("Model Version", values = c("Initial Model" = "solid", 
+        scale_color_manual("Model Version", 
+                           values = c("Initial Model" = "#E69F00",    
+                                      "Overfitted Model" = "#D55E00"))  + 
+        scale_linetype_manual("Model Version", 
+                              values = c("Initial Model" = "solid", 
                                          "Overfitted Model" = "dashed")) +
         # Action labels
-        annotate("text", x = management_scenarios %>% 
-                         pluck("habitat_quality_mean", 1), y = 19, label = "Initial\nAction A", 
+        annotate("text", 
+                 x = management_scenarios %>% 
+                         pluck("habitat_quality_mean", 1), 
+                 y = 19, 
+                 label = "Initial\nAction A", 
                  color = "#56B4E9", size = 3, hjust = 1.1, fontface = "bold") +
-        annotate("text", x = management_scenarios %>% 
-                         pluck("habitat_quality_mean", 2), y = 19, label = "Initial\nAction B", 
-                 color = "#009E73", size = 3, hjust = -0.3, fontface = "bold") +
-        annotate("text", x = management_scenarios_hacked %>% 
-                         pluck("habitat_quality_mean", 1), y = 19, 
-                 label = "Hacked\nAction A", 
-                 color = "#0072B2", size = 3, hjust = 1.3, fontface = "bold") +
-        annotate("text", x = management_scenarios_hacked %>% 
+        annotate("text", 
+                 x = management_scenarios %>% 
                          pluck("habitat_quality_mean", 2),
-                 y = 19, label = "Hacked\nAction B", 
-                 color = "#2C5F41", size = 3, hjust = -0.3, fontface = "bold") 
+                 y = 19, 
+                 label = "Initial\nAction B", 
+                 color = "#009E73", 
+                 size = 3, 
+                 hjust = -0.3, 
+                 fontface = "bold") +
+        annotate("text",
+                 x = management_scenarios_hacked %>% 
+                         pluck("habitat_quality_mean", 1), 
+                 y = 19, 
+                 label = "Hacked\nAction A", 
+                 color = "#0072B2", 
+                 size = 3, 
+                 hjust = 1.3, 
+                 fontface = "bold") +
+        annotate("text", 
+                 x = management_scenarios_hacked %>% 
+                         pluck("habitat_quality_mean", 2),
+                 y = 19, 
+                 label = "Hacked\nAction B", 
+                 color = "#2C5F41", 
+                 size = 3, 
+                 hjust = -0.3,
+                 fontface = "bold") 
 
-performance_table <- performance::compare_performance(model_initial, 
-                                                      model_overfitted,rank = TRUE) %>% 
+performance_table <- 
+        performance::compare_performance(model_initial, 
+                                         model_overfitted,rank = TRUE) %>% 
         select(-Model) %>% 
-        mutate(Name = stringr::str_replace(Name, "model_overfitted", "Overfitted Model") %>% 
-                       stringr::str_replace(., "model_initial", "Initial Model")) %>% 
+        mutate(Name = stringr::str_replace(Name, 
+                                           "model_overfitted", 
+                                           "Overfitted Model") %>% 
+                       stringr::str_replace(., 
+                                            "model_initial", 
+                                            "Initial Model")) %>% 
         mutate(across(-c(Name), ~ round(.x,digits =  2))) %>% 
         gt::gt() %>% 
         gt::fmt_percent(columns = Performance_Score) %>%  
