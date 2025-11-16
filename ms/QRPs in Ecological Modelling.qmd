@@ -293,7 +293,7 @@ To summarise, a collection of model outputs are generated in modelling, which ma
 
 # Mapping QRPs onto the Modelling Process
 
-Here we present a taxonomy and map of QRPs derived from the modelling literature, which aims to illustrate the different types of QRPs that might occur throughout different points in the modelling process. We follow with a synthetic example that reveals how these different types of QRPs might look in practice (Box 2).
+Here we present a taxonomy and map of QRPs derived from the modelling literature, which aims to illustrate the different types of QRPs that might occur throughout different points in the modelling process. We follow with a synthetic example that reveals how these different types of QRPs might look in practice (Box \ref{boxsyntheg}).
 
 ## Methods
 
