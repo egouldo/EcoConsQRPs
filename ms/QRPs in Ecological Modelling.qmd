@@ -120,7 +120,7 @@ source(here::here("R/make_QRP_table.R"))
 
 # Introduction
 
-Self-report surveys of researchers’ statistical practices suggest high rates of Questionable Research Practices (QRPs, e.g., p-hacking, cherry picking, @tbl-QRP-examples-html @tbl-QRP-examples) in several different disciplines: psychology [@John:2012eo], education [@Makel2023] and ecology [@Fraser:2018cl]. Widespread QRPs, accompanied by a lack of transparency and openness in research reporting [@culina2020], can leave disciplines at risk of a ‘reproducibility crisis’ [@Fidler:2017he]. QRPs are a set of methodological and statistical practices that fall into an “ethical grey zone” between ideal responsible research conduct and unacceptable research behaviours like fabrication and plagiarism [@Butler:2017ks p. 94]. Researchers are motivated actors prone to cognitive biases incentivised by a ‘publish or perish’ research culture in which publication bias selects for particular types of findings [@Agnoli:2017kl]. These findings are generally statistically significant results or ‘unexpected’ / ‘surprising’ findings [@Nissen2016; @Nakagawa2025]. Findings that are not deemed ‘publishable’ (in a Null-Hypothesis Significance Testing framework \[NHST\], these are often results with p values $> 0.05$) are either sent to the ‘file drawer’ or else subject to QRPs, such as ‘p-hacking,’ that make the results more likely to be published.
+Self-report surveys of researchers’ statistical practices suggest high rates of Questionable Research Practices (QRPs, e.g., p-hacking, cherry picking, @tbl-QRP-examples-html @tbl-QRP-examples) in several different disciplines: psychology [@John:2012eo], education [@Makel2023] and ecology [@Fraser:2018cl]. Widespread QRPs, accompanied by a lack of transparency and openness in research reporting [@culina2020], can leave disciplines at risk of a ‘reproducibility crisis’ [@Fidler:2017he]. QRPs are a set of methodological and statistical practices that fall into an "ethical grey zone" between ideal responsible research conduct and unacceptable research behaviours like fabrication and plagiarism [@Butler:2017ks p. 94]. Researchers are motivated actors prone to cognitive biases incentivised by a ‘publish or perish’ research culture in which publication bias selects for particular types of findings [@Agnoli:2017kl]. These findings are generally statistically significant results or ‘unexpected’ / ‘surprising’ findings [@Nissen2016; @Nakagawa2025]. Findings that are not deemed ‘publishable’ (in a Null-Hypothesis Significance Testing framework \[NHST\], these are often results with p values $> 0.05$) are either sent to the ‘file drawer’ or else subject to QRPs, such as ‘p-hacking,’ that make the results more likely to be published.
 
 @Fraser:2018cl surveyed ecology researchers, asking how often they used the Questionable Research Practices (QRPs) that have been identified in other fields. Many of these QRPs relate to p-values. The study found these practices were used at similar rates to other fields, but with notably higher rates of analysis gaming and cherry-picking [@John:2012eo; @Fraser:2018cl; @Makel2023; @Chin2023]. These differences may reflect the greater prevalence of model-based research in ecology, raising questions about whether, and in what contexts, these practices are problematic for modelling. Other research shows that the same pressures and motivations associated with QRPs in other fields are present in ecology, including publication pressure, pressure to obtain funding, and career incentives [@Fidler:2017he; @ODea2021a]. p-curve analysis has revealed the effects of both reporting and publication bias in ecology studies featuring p-values [@kimmel2023]. While @Ottaviani2023 found evidence of publication bias favouring novel results, with increasing use of novelty terms in ecological abstracts over time, especially in high-impact journals. In addition to selective reporting of results, ecological research is plagued by underpowered studies, which exaggerate effect sizes in the published literature [@Parker2023; @Yang2023c]. These studies underscore the prevalence of reporting and publication bias in ecology, ultimately influencing conclusions drawn from the literature [@deressa2023].
 
@@ -228,7 +228,7 @@ Novelty is an important factor influencing the publishability of modelling resea
 
 ### Model Credibility
 
-Model Credibility is based on the subjective degree of confidence that both the model and model-derived inferences about the real system can be used as claimed [@Risbey2005; @Augusiak2014; @Hamilton2019]. That is, can the model adequately answer the research question (Christin et al 2020), and can it be used reliably to inform management decisions [@Alexandrov:2011iv]? Credibility emerges gradually throughout the modelling process, by demonstrated adequacy [conceptual validity and predictive accuracy, @RykielJr1996] and reliability [consistent performance and transferability, @Schmolke:2010fd; @Yates2018]. Unlike the binary nature of statistical significance, model credibility builds incrementally through multiple performance metrics and evaluation approaches (Figure 1, model outputs). This multi-faceted assessment creates numerous opportunities for statistic hacking, or “S-hacking” (Table 3 and 4), where researchers can manipulate:
+Model Credibility is based on the subjective degree of confidence that both the model and model-derived inferences about the real system can be used as claimed [@Risbey2005; @Augusiak2014; @Hamilton2019]. That is, can the model adequately answer the research question (Christin et al 2020), and can it be used reliably to inform management decisions [@Alexandrov:2011iv]? Credibility emerges gradually throughout the modelling process, by demonstrated adequacy [conceptual validity and predictive accuracy, @RykielJr1996] and reliability [consistent performance and transferability, @Schmolke:2010fd; @Yates2018]. Unlike the binary nature of statistical significance, model credibility builds incrementally through multiple performance metrics and evaluation approaches (Figure 1, model outputs). This multi-faceted assessment creates numerous opportunities for statistic hacking, or "S-hacking" (Table 3 and 4), where researchers can manipulate:
 
 -   Performance metric selection and thresholds,
 -   Validation approaches and data partitioning strategies, and
@@ -292,7 +292,7 @@ Once $M_p$ is considered plausible and fit for purpose, the modeller shifts to m
 
 To summarise, a collection of model outputs are generated in modelling, which may variously be the target of QRPs, including: point-estimates; such as means, medians and effect-sizes; uncertainty measures, like confidence intervals, prediction intervals, standard errors; model performance metrics, like $R^2$/AIC/BIC; inference results, like *p*-values, credible intervals, and significance determinations; predictions and forecasts, like future values or classification outcomes; or, the model itself.
 
-# Mapping QRPs onto the Modelling Process
+# Mapping QRPs onto the Modelling Process {#sec-QRP-roadmap}
 
 Here we present a taxonomy and map of QRPs derived from the modelling literature, which aims to illustrate the different types of QRPs that might occur throughout different points in the modelling process. We follow with a synthetic example that reveals how these different types of QRPs might look in practice (Box \ref{boxsyntheg}).
 
@@ -571,103 +571,15 @@ Above (@sec-modelling-objects) we illustrated that a suite of modelling objects 
 
 A modeller’s decision may target different types of objects $T$ generated throughout the modelling process, including the model itself$M$, or the model outputs $M_j$*.* Rather than describing data manipulation as a separate case, e.g. $\phi_{\boldsymbol{X}}$, we include it under cases of QRPs targeting either the model $M$ or model outputs $M_j$ for simplicity, since changing the data $\boldsymbol{X}$ may affect either.
 
-Here we synthesise our framework into a typology of QRPs from which we designate the practices as questionable or not (Table 2). The typology considers combinations of the decision-making mechanism (a priori, defensible and questionable data-dependent decision-making), the target $T$of the practice, and the nature of reporting (pre-specified or selective). This allow us to account for QRPs where the model and/or model outputs are directly affected by the questionable practice such that their realisations are different from what would have been observed if the practice was not undertaken (i.e. $M^*$ , $M_j^*$), as well as QRPs where the model and outputs remain similar, but are selectively reported.
+Here we synthesise our framework into a typology of QRPs from which we designate the practices as questionable or not (@tbl-typology). The typology considers combinations of the decision-making mechanism (a priori, defensible and questionable data-dependent decision-making), the target $T$of the practice, and the nature of reporting (pre-specified or selective). This allow us to account for QRPs where the model and/or model outputs are directly affected by the questionable practice such that their realisations are different from what would have been observed if the practice was not undertaken (i.e. $M^*$ , $M_j^*$), as well as QRPs where the model and outputs remain similar, but are selectively reported.
 
-Table 2 summarises the key distinctions resulting from the workings in Box \ref{boxformalism} , helping to distinguish between questionable and defensible data-dependent decision-making, and to identify different classes of QRPs, with which we provide formal examples. The rows in Table 2 discriminate between a priori and (defensible versus questionable) data-dependent decisions, while the columns distinguish between pre-specified and selective reporting.
+@tbl-typology summarises the key distinctions resulting from the workings in Box \ref{boxformalism} , helping to distinguish between questionable and defensible data-dependent decision-making, and to identify different classes of QRPs, with which we provide formal examples. The rows in @tbl-typology discriminate between a priori and (defensible versus questionable) data-dependent decisions, while the columns distinguish between pre-specified and selective reporting.
 
 No questionable practices occur when analytic and reporting decisions are made a priori (first row, first column) representing an idealised scenario (e.g. preregistered analyses), which is difficult to implement in practice for complex ecological modelling. Moving across to the right, all decisions about the modelling and analysis are made a priori, but the results are selectively reported to improve the apparent suitability of the model to the analysis problem (questionable).
 
 The subsequent row represents situations where there are data-dependent choices made by the modeller, representing most situations in ecological modelling. In the first instance, there is some process stipulated a priori for deciding on how the modeller will resolve any data-dependent decisions (e.g. ‘registered flexibility’, Chapter 6), and it is already decided what results will be reported (defensible). Moving to the next column over, the modeller uses registered flexibility to inform modelling choices, but in this case, they selectively report some results (questionable). In the first two rows, choices about the model and modelling analysis remain unaffected by QRPs, even when selective reporting occurs.
 
-The final row of Table 2 indicates QRPs, where data-contingent decisions are optimised for preferred results R\*, affecting either the model and/or modelling outputs. Because QRPs involve a degree of non-disclosure and intransparency by definition (Definition 1), we have merged the two columns that distinguish between the presence of selective reporting. We formally illustrate this with two example QRPs, model fishing (affecting the model $M$ itself), and S-hacking (affecting the model outputs $M_j$ only).
-
-```{r}
-typology <- tibble(
-                Decision = c(
-                "A priori",
-                "A priori",
-                 "A priori",
-                "Defensible",
-                "Defensible",
-                 "Defensible",
-                "Questionable",
-                "Questionable",
-                "Questionable"
-        ),
-        Constraint = c(
-                "$\\phi(T) \\in \\Phi_{\\text{fixed}}$",
-                 "$\\phi(T) \\in \\Phi_{\\text{fixed}}$",
-                "$\\phi(T) \\in \\Phi_{\\text{fixed}}$",
-                "$\\phi_D(T) \\in \\Phi(\\Omega)$",
-                "$\\phi_D(T) \\in \\Phi(\\Omega)$",
-                 "$\\phi_D(T) \\in \\Phi(\\Omega)$",
-                "$\\phi_Q(T) \\in \\Phi(R^*)$",
-                "$\\phi_Q(T) \\in \\Phi(R^*)$",
-                "$\\phi_Q(T) \\in \\Phi(R^*)$"
-                ),
-        Motivation = c(
-                "",
-                "",
-                "",
-                "*Systematic evaluation according to predetermined criteria*",
-                "*Systematic evaluation according to predetermined criteria*",
-                "*Systematic evaluation according to predetermined criteria*",
-                "*Optimising for preferred results $R^*$, rather than assessment*",
-                "*Optimising for preferred results $R^*$, rather than assessment*",
-                "*Optimising for preferred results $R^*$, rather than assessment*"
-        ),
-        Prespec_Reporting = c(
-                "$S_{\\text{pre}}(\\{C(X,M,\\phi\\})$",
-                "$S_{\\text{pre}}(\\{C(X,M,\\phi(M_j))\\})$",
-                "Decisions affecting the model $\\phi$ or model outputs $\\phi(M_j)$, and which analyses and results will be reported, are decided a priori.",
-                "$S_{\\text{pre}}(\\{C(X,M;\\phi_D\\})$",
-                "$S_{\\text{pre}}(\\{C(X,M;\\phi_D(M_j))\\})$",
-                "Data-dependent and defensible modelling decisions $C(\\boldsymbol{X}, T;\\phi_D)$, with pre-specified reporting choices $S_{\\text{pre}}$.",
-                "Model Fishing: $C(X,M;\\phi_Q(M))$",
-                "S-hacking: $C(X,M;\\phi_Q(M_j))$",
-                "Modelling and analysis decisions are opportunistic and therefore questionable."
-        ),
-        Selective_Reporting = c(
-                "Selective Reporting:<br>$S_Q\\{C(X,M,\\phi\\})$",
-                "$S_Q\\{C(X,M,\\phi(M_j))\\})$",
-                "A priori analysis decisions about the model $\\phi$ and model outputs $\\phi(M_j)$, but reporting choices are data-dependent, and are selectively reported $S_Q$",
-                "Selective Reporting:<br>$S_Q(\\{C(X,M;\\phi_D\\})$",
-                "$S_Q(\\{C(X,M;\\phi_D(M_j))\\})$",
-                "Modelling decisions are data-dependent and defensible, but subject to selective reporting.",
-                "By definition, desired outcomes $R^*$ and $\\phi_Q$ are undisclosed, and may be tacit rather than explicit.",
-                "",
-                ""
-        )
-) %>% 
-        mutate(Decision = glue::glue("{Decision} analytic decision, where:"))
-
-typology_tbl <- typology %>%
-        group_by(Decision, Constraint, Motivation) %>% 
-        gt(row_group_as_column = TRUE, 
-           process_md = TRUE, 
-           row_group.sep = "<br>"
-        ) %>%
-        cols_label(
-                Decision = "**Decision Type**",
-                Constraint = "**Constraint Set**",
-                Motivation = "**Motivation**",
-                Prespec_Reporting = "**With Pre-specified Reporting $S_{\\text{pre}}$**",
-                Selective_Reporting = "**With Selective Reporting $S_Q$**"
-        ) %>%
-        gtExtras::gt_theme_538(quiet = TRUE, ) %>% 
-        fmt_markdown(columns = everything()) %>%
-        cols_align(align = "left", columns = everything()) %>% 
-        gt::cols_label_with(fn = gt::md) %>% 
-        tab_stubhead(label = gt::md("**Analytic Decision Type and Motivation**")) %>% 
-        gt::tab_spanner(label = "Reporting Type") %>% 
-        gt::tab_style(style = cell_borders(style = "hidden",sides = "bottom"), 
-                      locations = cells_body(rows = c(1,2,4,5,7,8), 
-                                             columns = everything())) %>% 
-        gt::tab_style(style = cell_text(v_align = "top"),
-                      locations = cells_body(columns = everything(), 
-                                             rows = c(3,6)))
-gt::gtsave(typology_tbl, path = here::here("tables/"), filename = "QRP_typology.pdf")
-```
+The final row of @tbl-typology indicates QRPs, where data-contingent decisions are optimised for preferred results R\*, affecting either the model and/or modelling outputs. Because QRPs involve a degree of non-disclosure and intransparency by definition (Definition 1), we have merged the two columns that distinguish between the presence of selective reporting. We formally illustrate this with two example QRPs, model fishing (affecting the model $M$ itself), and S-hacking (affecting the model outputs $M_j$ only).
 
 ```{r}
 #| label: tbl-typology
@@ -677,10 +589,88 @@ gt::gtsave(typology_tbl, path = here::here("tables/"), filename = "QRP_typology.
 #| cache: true
 #| results: asis
 #| html-table-processing: none
-typology_tbl
-#magick::image_read_pdf(here::here("tables", "QRP_typology.pdf"))
+
+magick::image_read(here::here("tables", "QRP_typology.png"))
 
 ```
+
+In Table 3, we present formal descriptions and practical examples of the different types of QRP in our typology. While some example scenarios may appear to be defensible data-dependent decisions (for example, testing different functional forms under ‘model fishing’), we include corresponding formal descriptions to remind the reader of the distinction between systematic and opportunistic analytic decision-making which denotes when data-contingent decisions are questionable, or not. We elaborate on these practices in our QRP roadmap above (@sec-QRP-roadmap).
+
+::: {#def-QRP-modelling}
+In summary, based on our mathematical formalism and typology, we gain a clearer definition of QRPs in model-based research as occurring when a researcher makes **opportunistic** data-dependent *analytic* and/or *reporting* decisions; i.e.,
+
+> decisions that depend on an undisclosed desired outcome rather than a pre-specified objective decision criterion, and which artificially inflate the apparent, accuracy, precision or performance of a model and/or its outputs, such that the model is perceived to be more publishable than it would be if the QRP had not occurred.
+:::
+
+# Discussion
+
+Far from being irrelevant to model-based research, researcher degrees of freedom threaten the credibility and reliability of model-based research, just as they do in hypothesis testing research. Our framework and roadmap underscored that researcher degrees of freedom abound in the modelling process, providing ample opportunity for QRPs due to researchers’ drive to publish, aligning with Liu et al.’s [-@Liu2020] qualitative analysis of how researchers make analytic decisions when faced with arbitrary choices or analytic uncertainty in the context of a research culture that promotes publication bias. We showed that QRPs can occur at any point in the modelling process, and may affect different model objects, the model inputs, the model itself, or model outputs. While our analysis identified that all classes of QRPs are analogous to those in hypothesis-testing research,  we also showed that there are unique aspects of methodological practices in ecological modelling that mean we need to define ‘questionable’ research practices in our own terms – namely, the iterative and adaptive nature of the modelling process and the need to make data-based decisions when modelling. These features of model development and construction have resulted in significant resistance to the idea of QRPs in model-based research, and to the applicability of preregistration for mitigating them in ecological modelling [@MacEachern2019; @Dwork2015]. We explore these tensions below, emphasising how our conceptual framework provides a way forward through the tricky problem of delineating where the concept of QRPs apply in ecological modelling, and where it does not.
+
+## *Transparency* determines when "poor practices" are "questionable"
+
+Many of the practices we identified as "questionable" could simply be considered ‘poor practice,’ especially when those practices result in biased or overfitted models (i.e. QRPs in our typology that affect the model or model outputs, irrespective of the presence of selective reporting). The context of the modelling exercise, including constraints on feasibility, like data availability and coverage, and the stated model purpose (e.g. prediction vs. inference) will delineate when such practices are questionable or methodologically flawed. The fundamental issue with QRPs is that they remain *undisclosed* – as we specified earlier, QRPs are practices that artificially improve the way models are perceived, full transparency allows the reader to appraise the appropriateness of practices like altering data, changing model specifications, or calculating additional performance metrics, contingent on the modelling context [@Woo2017]. Transparent reporting is therefore a prerequisite for properly evaluating the credibility and suitability of the model for its intended application.
+
+## *Opportunism* determines when data-dependent analytic decisions are "questionable"
+
+Gelman and Loken’s [-@Gelman2013] formalism describing the garden of forking paths implies that data-dependent decisions are inherently questionable, which is fundamentally incompatible with ecological modelling because of its inherently adaptive nature. Our extension of the formalism to model-based research circumvents this incompatibility by distinguishing *opportunistic* from *systematic* data-dependent decisions. Based on our formalism, we argue that data-driven analysis decisions are not inherently questionable. *Questionable* practices occur when the decision is contingent on the observed results, *and* the choice is based on how well it serves undisclosed desired outcomes, whereas *defensible* data-contingent decisions follow a pre-specified decision rule.
+
+## Data constraints amplify the risk of QRPs
+
+The nature of ecological data confers specific vulnerabilities to QRPs during ecological modelling. Small datasets are prevalent in ecology and often have inconsistent structure due to being collected intermittently or on a one-off occasion [@todman2023], or there are spatial constraints. Additionally, data collection is highly constrained by budget and logistical feasibility, consequently field ecologists often take a ‘kitchen sink’ approach to data collection, whereby they "often measure almost everything they can" [@MacNally2000, p. 669]. Models that analyse small data are more likely to be overfitted due to the high number of parameters compared to the degrees of freedom in the data [@todman2023].
+
+These conditions provide substantial opportunity for unconstrained dredging of model space whereby modellers include covariates with little or no theoretical justification or ecological relevance, leading to biologically implausible models being considered [@Fourcade2018; @Shmueli2010; @Franks2025]. Although we classified these "causal salad" approaches to modelling [@McElreath2020] as ‘poor practice’ instead of QRPs, when modellers are engaged in model dredging without predetermined decision rules and criteria for selecting models in unconstrained model space, the risk of both poor and questionable practices, like model fishing, is heightened.
+
+The same data constraints that facilitate model dredging also inhibit the detection of resulting problems. When datasets are small or incomplete, there is often insufficient data to perform model evaluation on independent data [@Bodner2020; @Dietze2018; @Wood2020]. When models are evaluated on training data only, data leakage causes biased estimates of performance making overfitting hard to detect [@lewis2023; @Stock2023; @Christin2021; @Kapoor2023].
+
+## Impacts of QRPs
+
+Many identified practices—particularly overhyping claims and misreporting correlative findings with causal language—specifically target perceptions of model reliability, accuracy, and generalisability rather than traditional statistical thresholds. This supports our model-centric definition of QRPs as practices that “artificially inflate the apparent accuracy or precision of a model, its predictions, and/or evaluation tests.” The roadmap demonstrates that the mathematical formalism successfully captures the diverse ways researchers can manipulate both technical model properties and broader perceptions of model fitness for purpose, providing a comprehensive framework for understanding questionable practices in model-based research.
+
+QRPs collectively undermine the reliability and reproducibility of ecological modelling research in several ways:
+
+1.   **Inflated performance estimates** that do not reflect true performance and result in overfitting
+
+2.   **Spurious model selection** that identifies models based on chance rather than plausible biological mechanisms or predictive relationships.
+
+3.   **Reduced reproducibility** due to undisclosed researcher degrees of freedom.
+
+4.   **Compromised generalisability** from overfitted models that fail to transfer to new contexts or make accurate forecasts.
+
+5.   **False confidence** in ecological understanding and management recommendations.
+
+Overfitted models are fitted to both regular and irregular features of the sampled data but are unable to distinguish between them [@Pu2018], generating spurious predictions that poorly generalise to new data [@todman2023; @lewis2023]. In applied ecological modelling, where modelling is often focussed on generating anticipatory predictions to inform management or policy decisions, this is particularly problematic.
+
+The prevalence of these practices suggests systemic issues in training, incentives, and quality control within the ecological modelling community. The concentration of QRPs in the model construction and evaluation phases indicates particular vulnerabilities in how models are specified, fitted, and evaluated. The large number of decision-points where researchers can exercise degrees of freedom suggest that interventions and safeguards should target these critical phases of the modelling process.
+
+## Potential Solutions
+
+### Raising Awareness
+
+Awareness of the distinction between systematic and opportunistic data-dependent decisions is limited, and because some data-dependent decisions are an inherent and legitimate aspect of the modelling process it may seem that all data-dependent decisions are acceptable. The impact of data-dependent decisions in machine learning is increasingly understood and is encapsulated within the term ‘data leakage,’ whereas in ecological modelling more broadly, the equivalent problem of ‘model selection bias’ remains mostly overlooked [@Campbell2021] and underappreciated within applied research contexts [@Arnqvist2020] . Here we emphasise an intersecting problem that has been attributed as a major cause of science’s reproducibility crisis, where data-contingent decisions may be opportunistically exploited to increase the likelihood of publication. We have formalised the distinction between defensible and questionable research practices, facilitating a modelling-appropriate conceptualisation of QRPs. As a first step in addressing the threat of QRPs to the credibility of model-based research, we wish to draw attention to this distinction – and the possible consequences of QRPs – among the ecological modelling community
+
+The unconscious nature of cognitive biases, and researchers embedding as motivated actors in a publish-or-perish research culture means that awareness alone is insufficient for preventing QRPs [@Zvereva2021] – external interventions are therefore required to stop QRPs in their tracks.
+
+### Increasing Transparency
+
+Modelling in ecology is beset by poor transparency, with published modelling studies being so opaque that readers are unable to assess whether appropriate models were used or identify the primary research contribution [@Arnqvist2020] . Given that the threat of QRPs largely stems from a lack of disclosure, ecological modelling is at significant risk of QRPs. We echo broader calls for improving transparency in ecology [@Parker2016; @Powers2018; @ODea2021a], emphasising that transparency is a fundamental requirement for reducing the risk of QRPs in ecological modelling. We acknowledge that ecological modelling’s lack of transparency is driven by sociocultural and institutional norms that restrict the length of a paper, require a neat and coherent narrative and favour some data analysis techniques and results over others [@Rijnhart2021]. Consequently, broader methodological reform in research culture as well as specific tools are needed to achieve improvements in transparency.  
+
+Reporting checklists and guidelines outline a minimum set of methodological elements and results to include in published research and are increasingly being adopted by journals in ecology \[@Nature2018; @Fidler2018; @Hillebrand2013; @Haddaway2018a; @ODea2021\]. However, there are only a handful of reporting checklists developed for ecological modelling (see Chapter 1), and no ecology journals have encouraged or mandated modelling-specific checklists at the time of writing. We leave the work of defining the content of reporting checklists up to the ecological modelling community, however, we specifically reiterate repeated calls in the modelling community to articulate the model’s purpose, context and performance criteria, ideally before modelling begins [@Wood2020; @Bennett2013; @Jakeman2006]. We base this call on our roadmap analysis findings that the purpose and context of the model determine when practices are questionable, and that many QRPs target or alter model performance metrics – either through direct manipulation of the model and model outputs, or through selective reporting. Specifying these decisions a priori and reporting them reduces inadvertent engagement in QRPs and equips readers to evaluate the applicability and risk of QRPs.
+
+### Preregistration & Registered Reports
+
+Preregistration, and registered reports, have been hailed as a solution for preventing QRPs, and recent metaresearch empirically supports its efficacy [@burgman2023; @Purgar2024; @Nakagawa2025]. However, there has been substantial resistance in model-related fields [@MacEachern2019; @Dwork2015] because preregistration has been implemented in a way that prevents a NHST-focussed definition of QRPs, i.e. data-dependent analytic decisions. As we have argued in this paper, we must appreciate the distinction between systematic and opportunistic data-dependent analytic decisions in ecological modelling, where the latter constitute questionable practices. For preregistration to be applied to ecological modelling, its underlying internal logic must reflect the iterative nature of ecological modelling and alternative conceptualisations of QRPs that accommodate the data-contingent decisions inherent in the process. It must permit the potential for revising the model as needed during model construction, while avoiding premature commitment to one approach [@Hamalainen2016; @Benning2019; @Evans2023]. In Chapter 6, I develop, apply and evaluate *Adaptive Preregistration* as a method for preregistering model-based studies that prevents opportunism while permitting systematism in data-dependent decision-making. If a complete preregistration is impractical, then at the very least, specifying a minimum set of evaluation analyses, metrics, and their performance criteria *a priori* is essential for avoiding QRPs.
+
+## Future Research
+
+We have attempted to create a definition and roadmap of QRPs that is broadly applicable to the diversity of modelling purposes and approaches within ecology. However, a deeper understanding of where our definition and list of QRPs are, and are not, applicable across ecology would provide additional insights. For example, across subfields, methodological approaches or model purposes; do some QRPs pose more of a threat to reliability than others, are some more likely than others, and are there specific forms they assume? Suitable prevention measures and their relative applicability to subfields and methodological approaches will differ, potentially warranting distinct interventions for certain use-cases.
+
+Our list of QRPs is not exhaustive, future research would benefit from characterising QRPs that have not been described here, perhaps turning to other fields utilising model-based research to understand where questionable practices are more widely appreciated, such as Machine Learning [@Hildebrandt2018; @McDermott2021; @Stock2023; @Garbin2022; @rosenblatt2024; @Powell2016; @meding2024]. Further, an understanding of how frequently QRPs occur in ecological modelling would provide an estimate of the proportion of published research affected by QRPs and to help prioritise any reforms across the ecological modelling community. Metaresearch could take the form of self-report surveys, such as @Fraser:2018cl , but using our modelling-specific classification and list of QRPs. Empirical approaches to detecting the extent of QRPs might include approaches similar to *p*-curve analysis but investigating relevant model performance metrics [@white2023]. For instance, if we systematically sampled AUC values from published studies, would we see a clustering of reported values just above 0.8, indicating the broad presence of S-hacking?
+
+Lastly, as modelers, we can contribute to future research by reflexively applying our methodological frameworks and technical skills to characterise the extent, severity and impacts of QRPs within individual studies and across the literature [@McElreath2015; @Nissen2016].
+
+## Conclusion
+
+In this paper we aim to raise awareness among ecological modellers, and modellers among other scientific disciplines, about potential types of QRPs and their mechanisms for emergence in the modelling process. Our definition of QRPs proposed in this paper is the first to articulate how questionable research practices occur outside hypothesis testing research. Our application is specific to ecological modelling, but our definition will bring insights for modelling in other fields and other forms of non-hypothesis testing research. The conceptual framework and roadmap in this paper helps modellers to understand the risks of QRPs in their research, so they are empowered to implement procedures that can mitigate the occurrence of QRPs in their own research practice. Finally, meta-researchers and advocates of open-science can use our characterisation of the emergence, types and consequences of QRPs articulated in our conceptual framework to underpin the design of modelling-appropriate methodological reforms that improve the credibility and robustness of model-based research in ecology and other fields.
 
 # References {.unnumbered}
 
