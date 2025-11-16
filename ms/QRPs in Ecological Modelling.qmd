@@ -395,11 +395,15 @@ qrp_class_descriptions <- tribble(~ qrp_coded, ~ description,
 
 ```
 
+\newpage
+
 ```{r}
 #| label: fig-waffle_plot
 #| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (blue squares), the model itself (purple squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
 #| fig-width: 14
 #| fig-height: 16
+#| cache: true
+#| include: true
 
 # #| dev: "cairo_pdf" # when output is pdf
 # options(hrbrthemes.loadfonts = TRUE)
