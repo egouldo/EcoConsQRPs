@@ -255,8 +255,6 @@ p3 <- ggplot() +
                  color = "#2C5F41",
                  linewidth = 1) +
         labs(
-                # title = "Model Fishing and Scenario Hacking",
-                # subtitle = TeX(eq_m_overfitted),
                 x = "Habitat Quality",
                 y = "Predicted Species Abundance",
         ) +
