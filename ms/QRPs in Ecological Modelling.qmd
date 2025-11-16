@@ -157,7 +157,7 @@ QRP_tbl_html <- QRP_tbl %>%
   gt::text_transform(locations = gt::cells_row_groups(everything()),
                      fn = image_out
   ) %>% 
-  gtExtras::gt_theme_nytimes() %>%
+  gtExtras::gt_theme_538() %>%
   gtExtras::gt_plt_bar_pct(
     fill = "green",
     column = c("Ecology"),
