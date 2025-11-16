@@ -51,6 +51,7 @@ format:
     number-sections: true
     linkcolor: blue
     include: false
+    echo: false
     header-includes:
     - \usepackage{mathtools}
     - \usepackage{amssymb}
