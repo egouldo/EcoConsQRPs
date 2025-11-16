@@ -57,6 +57,7 @@ format:
     - \usepackage{amssymb}
     - \usepackage{xcolor}
     - \usepackage{booktabs, caption, longtable, colortbl, array}
+    - \usepackage[font=small,labelfont={bf,small}]{caption}
 custom-numbered-blocks:
   classes: 
     Box:
