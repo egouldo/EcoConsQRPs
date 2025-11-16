@@ -240,7 +240,7 @@ The subjective nature of credibility assessment also fosters *overhyping* (Tabl
 
 Models that serve different purposes are vulnerable to different QRPs and depending on the combination of modelling approach, model type (e.g. agnostic, correlative, or mechanistic) and purpose of the model, QRPs will target different *estimands* of interest [@Hoffmann2021] . For instance, explanatory models are more susceptible to practices targeting parameter estimates and goodness-of-fit measures, whilst predictive models face greater risks around forecast accuracy metrics and transferability claims, because in each case a different *estimand*, or "target quantity to be estimated in an analysis" [@Borger2025, p. 2], is sought after by the researchers. Different questionable practices are concentrated at different locations across modelling phases (Figure 2).
 
-## Which modelling objects (inputs, outputs, the model itself) might be affected by QRPs?
+## Which modelling objects (inputs, outputs, the model itself) might be affected by QRPs? {#sec-modelling-objects}
 
 To help conceptualise where in the modelling process QRPs might emerge, and which 'model objects' QRPs may affect, we first  give an overview of the modelling process, articulating various inputs and outputs, including the model itself, model fit statistics, summary measures and other evaluation results (Figure 1), to which we ascribe mathematical notation[^1]. This framework will also provide the foundations for extending Gelman and Loken’s [-@Gelman2013] mathematical formalism to modelling (which we do in section 4).
 
