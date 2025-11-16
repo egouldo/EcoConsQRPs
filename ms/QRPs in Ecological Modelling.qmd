@@ -358,7 +358,7 @@ waffle_plot_data <-
 ```
 
 ```{r}
-#| label: tbl-QRP-categories
+#| label: QRP-categories
 #| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
 #| echo: false
 
@@ -378,20 +378,20 @@ qrp_class_descriptions <- tribble(~ qrp_coded, ~ description,
         "Choosing to report only certain analyses, models, metrics, model results or comparisons that yield favourable results or desired conclusions without disclosing the full range of analyses performed, or their results.  This can create a misleading impression of model performance or study outcomes. In contrast to ‘fishing expeditions’, models have theoretical justification.",
         "HARKing", "May accompany fishing expeditions, or model dredging analyses and model selection procedures that have been selectively reported. The selected model(s) is presented as if it was pre-specified and theoretically justified before parameterisation, and/or, the model dredging process is not disclosed.")
 
-waffle_plot_data %>% 
-  distinct(qrp_coded) %>% 
-  filter(qrp_coded != "Poor Practice") %>% 
-  arrange(match(qrp_coded, c("Selective Reporting", "S-hacking", "Model Fishing", "Data Curation", "Overhyping"))) %>% 
-  left_join(qrp_class_descriptions, by = join_by(qrp_coded)) %>% 
-  bind_rows(qrp_class_descriptions %>% filter(qrp_coded == "HARKing")) %>% 
-  gt::gt() %>% 
-  gt::cols_label(qrp_coded = "QRP Class") %>% 
-  gtExtras::gt_theme_nytimes() %>% 
-  gt::cols_width(
-    qrp_coded ~ gt::pct(15),
-    description ~ gt::pct(85)
-  ) %>% 
-  gt::fmt_markdown(columns = description) 
+# waffle_plot_data %>% 
+#   distinct(qrp_coded) %>% 
+#   filter(qrp_coded != "Poor Practice") %>% 
+#   arrange(match(qrp_coded, c("Selective Reporting", "S-hacking", "Model Fishing", "Data Curation", "Overhyping"))) %>% 
+#   left_join(qrp_class_descriptions, by = join_by(qrp_coded)) %>% 
+#   bind_rows(qrp_class_descriptions %>% filter(qrp_coded == "HARKing")) %>% 
+#   gt::gt() %>% 
+#   gt::cols_label(qrp_coded = "QRP Class") %>% 
+#   gtExtras::gt_theme_nytimes() %>% 
+#   gt::cols_width(
+#     qrp_coded ~ gt::pct(15),
+#     description ~ gt::pct(85)
+#   ) %>% 
+#   gt::fmt_markdown(columns = description) 
 
 ```
 
