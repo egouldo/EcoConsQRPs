@@ -329,12 +329,13 @@ Although the overarching purpose of ecological modelling in applied contexts is 
 
 ### Overhyping
 
-Overhyping involves claims about the models’ performance that are not substantiated by model evaluation results, such as claiming the model has greater generalisability than it does. A specific form of overhyping involves misreporting correlative claims using causal language, which is particularly common in studies of conservation intervention evaluations using observational study designs [@Josefsson2020]. The practice of implying causation from correlation can cause false confidence in the intervention’s effectiveness while ignoring the real mechanisms for the observed effect. See @Corneille2023 for a summary of communication devices that may be used to overhype the results of a study.
+Overhyping involves claims about the models’ performance that are not substantiated by model evaluation results, such as claiming the model has greater generalisability than it does. A specific form of overhyping involves misreporting correlative claims using causal language, which is particularly common in studies of conservation intervention evaluations using observational study designs [@Josefsson2020]. The practice of implying causation from correlation can cause false confidence in the intervention’s effectiveness while ignoring the real mechanisms for the observed effect. See @Corneille2023 for a summary of communication devices that may be used to overhype the results of a study.
 
 ```{r}
 #| label: waffle_data_prep
 #| message: false
 #| warning: false
+#| cache: true
 waffle_plot_data <- 
         tidy_QRP_database(here::here("data/QRP_database_2025-10-20.csv")) %>% 
         filter(include) %>% 
