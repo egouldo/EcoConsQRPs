@@ -255,6 +255,8 @@ We divide the modelling process into three phases, 1) model construction, 2) mod
 #|   Three phases of model development: model construction, where the conceptual model $M_c$ is specified into the formal model (${M_c\rightarrow M}_s$) then parameterised ($M_s{\rightarrow M}_p$); model evaluation, where the calibration and validation fits are evaluated, possibly leading to re-specification and re-parameterisation (dashed arrow); and model application, where the model is analysed to answer the research question. <br><br>
 #|   Modelling generates objects, including the conceptual, specified and parameterised model, ($\boldsymbol{M}=\left\{M_c,M_s,M_p\right\}$, purple circles); model inputs (blue squares), including hyper parameters $\lambda$ and calibration settings, data $\boldsymbol{X}$  for model parameterisation, evaluation and application. Model outputs ($M_j$ green hexagons) include model predictions $\hat{y}$, which are used to characterise model performance during model evaluation or subject to further aggregation, transformation, analysis and visualisation during model application. <br><br>
 #|   Note: Data analyses may also inform model specification during construction. New or alternative input data may be used during scenario analysis to make predictions or projections about how the system will respond to intervention $\hat{y}$.
+#| include: true
+#| echo: false
 
 magick::image_read("images/Figure_1.png")
 ```
