@@ -267,45 +267,59 @@ When conducting inference or explanatory modelling, the estimand(s) of interest 
 
 ### Model Evaluation: Characterising Model Performance and Fitness for Purpose
 
-### A Provisional Typology of QRPs
+Arriving at the optimal final model or collection of final models is typically iterative, determined by the outcomes of model validation and evaluation [@Shmueli2010] whereby the model is subjected to a series of analyses that generate performance measures that are used to establish its validity, reliability and credibility and ensuring that the model is fit for intended use [@Bennett2013; @eker2018; @Garcia-Diaz2019; @RykielJr1996].
 
-```{r}
-#| label: tbl-QRP-typology
-#| html-table-processing: none
-#| tbl-cap: |
-#|   A model-based typology of Questionable Research Practices (QRPs), based on @Gelman2013. QRPs may affect different components of a model (table rows) indirectly altering the publishable attributes of a model by selectively reporting or directly altering objects generated throughout the modelling proces, targeting the model itself ($M$, purple cells) or model outputs ($M_j$, green cells). The final row represents the unambiguous ideal where no QRP occurs, that is, analytical decisions $\\phi$ are pre-specified rather than contingent on the model and/or data at that decision-point $\\phi(\\mathbf{X}, M)$.
-tibble::tibble(QRP_outcome = c("The Model or Model Outputs<br>$(M, M_j)$", "Publishable Attributes of a model, via selective reporting or 'fishing'", "No QRP, e.g. pre-specified analytic decisions"),
-               QRP_target_M = c("$$C (\\mathbf{X}, M;\\phi (\\mathbf{X},M))$$", 
-                                "$$C (\\mathbf{X}, M;{\\phi}^{best} (\\mathbf{X},M)) $$", 
-                                "$$C (\\mathbf{X}, M;\\phi ) $$"),
-               QRP_target_Mj = c("$$ C (\\mathbf{X}, M;{\\phi}_{{M}_{j}} (\\mathbf{X},M))$$",
-                                 "$$C (\\mathbf{X}, M;{{\\phi}_{{M}_{j}}}^{best} (\\mathbf{X},M))$$",
-                                 "$$ C (\\mathbf{X}, M;{\\phi}_{{M}_{j}})$$"),
-               row_group = c("QRP", "QRP", "OK")) %>% 
-  gt::gt() %>% 
-  gt::tab_spanner(label = "The practice may target:",
-                  columns = c(QRP_target_M, QRP_target_Mj),) %>% 
-  # gt::tab_row_group(label = "Questionable Research Practice", rows = row_group == "QRP" ) %>% 
-  #   gt::tab_row_group(label = "Acceptable Research Practice", rows = row_group == "OK" ) %>% 
-  gt::cols_label(QRP_outcome = "It may alter:",
-                 QRP_target_M = gt::md("The model $$M$$"),
-                 QRP_target_Mj = gt::md("Any model output $$M_j$$")) %>% 
-  gtExtras::gt_theme_nytimes() %>% 
-  gt::tab_style(style = gt::cell_fill(color = "#A02B93", alpha = 0.8),
-                locations = gt::cells_body(columns = QRP_target_M,  rows = row_group == "QRP")) %>% 
-  gt::tab_style(style = gt::cell_fill(color = "#4EA72E", alpha = 0.8),
-                locations = gt::cells_body(columns = QRP_target_Mj, rows = row_group == "QRP")) %>% 
-  gt::cols_hide(row_group) %>% 
-  gt::fmt_markdown(columns = c(QRP_outcome)) %>% 
-  gt::cols_align(columns = starts_with("QRP_target"),
-                 align = "center")
-```
+We distinguish between model validation and model evaluation. Model validation checks that the fitted model $M_p$ suitably approximates the data $\boldsymbol{X}$, and is evaluated using goodness-of-fit tests, and model diagnoses like residual analyses [@Shmueli2010]. Model selection whittles down the candidate set of models into a single ‘best’ model or a smaller subset of ‘best models’ (e.g. AIC within $\Delta2$), after which the modeller might choose to consider multiple models or conduct model averaging. Outside of formal model selection approaches, the procedure for determining the best model(s) may involve a degree of trial and error of different model structures that is not always pre-planned (i.e. new $M_s$ are specified after validation).
 
-## A Roadmap of QRPs in the Ecological Modelling Process
+Models used for inference are assessed on how well $M_p$ fits or explain the data $\boldsymbol{X}$, informed by measures like ${R}^2$, statistical significance and F statistics, whereas predictive models are additionally assessed on their predictive power or accuracy on new observations of $\boldsymbol{X}$ [@Shmueli2010]. Depending on the type of prediction (e.g. classification, predicted probabilities of different states or classes, ranking of probabilities or point predictions) different performance metrics will be appropriate [@Shmueli2010].
 
-### Method
+Following validation, model evaluation of the best model(s) is undertaken, assessing the fitness of $M_p$ for purpose by calculating additional performance measures to fully understand the model’s capabilities, like constructing confusion matrices or calculating omission and commission rates. Ultimately, model evaluation is case-dependent and context-specific insofar as the overall evaluation process, types of analyses, metrics, estimand of interest, and desirable properties of the model differing depending on the overarching modelling purpose and type of model and modelling approach [@Tredennick2021; @Bokulich2013].
 
-We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-html @tbl-QRP-examples) and adopted new classes when there was no NHST-analogue. We coded the phase and sub-phases of modelling in which the practice occurs, as well as the model object (input, model, output) directly affected by the QRP, i.e. the *target* of the practice. After initial coding of the QRPs we refined the practice descriptions to encapsulate similar practices, as well as the broader QRP classes into which practices were grouped. Our coding is described in further detail in @sec-appendix-2.
+### Model Application and Analysis
+
+Once $M_p$ is considered plausible and fit for purpose, the modeller shifts to model application [@Engelschalt2023] , querying the model and using the model to undertake analyses that inform the stated research questions (Figure 1). Prior to analysis, model output may be subject to further processing, for example, continuous predictions may be aggregated or transformed into binary predictions for visualisation and communication purposes [@feng2019] . Explanatory model output may be visualised with coefficient plots, or effect size plots to inform the relevance of observed effects [@Ludecke2020]. In applied settings, forecasts or anticipatory predictions into the future or across space are generated from the model based on plausible scenarios or to simulate outcomes under different management actions or policies [@Paniw2023], which may be subject to a range of visualisations [e.g. @Barros2023, Figure 2].
+
+To summarise, a collection of model outputs are generated in modelling, which may variously be the target of QRPs, including: point-estimates; such as means, medians and effect-sizes; uncertainty measures, like confidence intervals, prediction intervals, standard errors; model performance metrics, like $R^2$/AIC/BIC; inference results, like *p*-values, credible intervals, and significance determinations; predictions and forecasts, like future values or classification outcomes; or, the model itself.
+
+# Mapping QRPs onto the Modelling Process
+
+Here we present a taxonomy and map of QRPs derived from the modelling literature, which aims to illustrate the different types of QRPs that might occur throughout different points in the modelling process. We follow with a synthetic example that reveals how these different types of QRPs might look in practice (Box 2).
+
+## Methods
+
+We surveyed the modelling literature to identify potential QRPs in ecological modelling and their location in the modelling process. We categorised QRPs into broader classes corresponding to families of similar practices using well-known published classifications (e.g. @tbl-QRP-examples-html @tbl-QRP-examples, adopting new classes when there was no analogue in the existing QRP literature. We coded the phase and sub-phase of modelling in which the practice occurs, as well as the *target* of the practice (input, model, output). After initial coding of the QRPs we generalised the descriptions of individual practices and categorised them according to our QRP class schema. Our literature review and coding are described in further detail in @sec-appendix-2.
+
+## Results
+
+We identified 6 classes of QRPs: sample curation, selective reporting, model fishing, S-hacking, overhyping, HARKing (Table 3). All classes of QRPs have analogous practices under NHST, but the practices themselves are not directly comparable. The list of QRPs we identified is not exhaustive and instead illustrates a range of practices that can occur in model-based research (See Appendix X, Table X for the complete list).
+
+We present paradigmatic examples of QRPs for each class in our roadmap, illustrating that QRPs occur throughout all phases of the modelling process, and some may occur at multiple stages (Figure 3). Sample curation, S-hacking and fishing were the classes of QRPs most likely to occur during model construction. The iterative nature of model validation and evaluation creates multiple opportunities for opportunistic optimisation of apparent model performance during model evaluation, with selective reporting, S-hacking and model fishing primarily affecting this phase of modelling. Fewer, but distinct, QRP types were identified for the model application phase, primarily concerning the misrepresentation of model capabilities and findings.
+
+The target objects affected by QRPs across modelling phases reflected the focus of modelling activities and tasks, with QRPs affecting the model itself occurring primarily during model construction and evaluation, and QRPs affecting the model outputs being concentrated in model evaluation and model application phases. Below we briefly describe the different classes of QRPs, providing illustrative examples and explaining how they can bias results.
+
+### Selective Reporting
+
+Selective reporting involves failure to disclose methods and/or results. Selective reporting can be distinguished from other practices, such as S-hacking and model fishing, in that it lends unwarranted credibility to the model, but the model and model outputs, remain unaffected.  Instead of analytic decisions being data-dependent, *the communication of those results* is data-dependent. The ‘garden of forking paths’ is not altered by selective reporting but rather is not fully transparent.
+
+### S-hacking
+
+We expanded the concept of p-hacking and termed it ‘S-hacking’, or ‘statistic hacking’, which encompasses analogous practices in modelling that target metrics that contribute to the publishability of a model. S-hacking involves an element of selective reporting; however, a critical point of difference is that S-hacking involves execution of alternative analyses or manipulation of data, models, outputs and analyses to obtain a favourable result. For example, a modeller may systematically trial multiple different evaluation metrics, selectively reporting only those that present the model in a favourable light [@Hildebrandt2018] . In this instance the model remains unaffected by S-hacking. Alternatively, random seeds in model tuning can be changed after observing test set performance which can drastically alter model results [@Liu2020] . If S-hacking is performed during model construction or validation, or alternative model specifications are trialled after observing model performance results, the model itself is altered, and overfitted to the training data. If S-hacking is performed during model construction or validation, the model is overfitted to the training data and poorly generalises to new data. S-hacking artificially inflates model performance, resulting in spuriously selected models that that may not reflect genuine ecological or predictive relationships. Any performance metric with a threshold dependent outcome [e.g. AUC, TSS, partial ROC, sensitivity, specificity, @feng2019] will be subject to the same types of practices as *p*-hacking.
+
+### Model Fishing
+
+We distinguish ‘model *fishing’* from the methodological technique of ‘model *dredging’* for the purposes of exploration or model selection. In the case of formal model selection procedures employing dredging, there is some a priori chosen objective criteria on which the model is selected, and the model space (usually, though not always) is constrained by a priori specification of candidate models that are theoretically or ecologically motivated. In contrast, when model dredging for the purposes of exploration in pursuit of generating new hypotheses, the initial model space may not be as constrained, but the dredging procedure is transparently reported, and the exploratory nature of the modelling exercise is disclosed and not presented post-hoc as otherwise. Model fishing occurs when the dredging procedure is not disclosed, and/or there is no formal criterion for model selection, and the overarching purpose is not exploration. Alternatively, model fishing can occur without dredging through a large model space, but by conducting alternative analyses or new model variations and selectively reporting only those with favourable results. Model fishing is problematic because of the risk of cognitive biases, such as hindsight bias, where post-hoc rationalisation combined with haphazard model selection leads to spuriously selected models. Model fishing therefore involves an element of systematic exploration of researcher degrees of freedom that is not necessarily planned, nor transparent.
+
+### Sample Curation
+
+Sample curation [*sensu* @Nagy2025] includes a range of data-dependent decisions about model inputs without justification or prior planning, i.e. after model fitting or observing model evaluation or application results. Sample curation may include removing observations that should have been included in order to make a correlation of interest become significant and generating a data-dependent exclusion criteria for those observations being excluded [@Nagy2025]. Opportunistic handling of missing data could occur when a researcher tries multiple ways of handling missing data, for instance, list-wise deletion, multiple imputation and inverse probability weighting. But the expected results only appear with inverse probability weighting and so the researcher only reports this strategy in the paper, omitting the results when the other data handling methods were used [@Nagy2025]. *Opportunistic stopping* occurs when new data is collected and is used to re-parameterise the model after previously observing model validation and model evaluation results, without reporting results of earlier iterations (Table X, Appendix X).
+
+### Hypothesising After Results Are Known (HARKing)
+
+Although the overarching purpose of ecological modelling in applied contexts is not hypothesis-testing, it is important to acknowledge that ecological models implicitly encapsulate hypotheses in the form of assumptions about which patterns, relationships, or predictors are most relevant to the system being modelled [@Bodner2020; @Prosperi2019; @Schuwirth2019]. For example, the choice of which variables to include or exclude from a model are based on implicit hypotheses about which processes are relevant to the system. In the case of modelling, HARKing can occur when a researcher presents a post-hoc explanation and justification for the variables or model structure that performed best, while failing to disclose the initial exploration of other variables or model structures. As such, HARKing in ecological modelling for purposes other than hypothesis testing is likely to occur as an effect of other related QRPs (Table 3) rather than as the motivating practice.
+
+### Overhyping
+
+Overhyping involves claims about the models’ performance that are not substantiated by model evaluation results, such as claiming the model has greater generalisability than it does. A specific form of overhyping involves misreporting correlative claims using causal language, which is particularly common in studies of conservation intervention evaluations using observational study designs [@Josefsson2020]. The practice of implying causation from correlation can cause false confidence in the intervention’s effectiveness while ignoring the real mechanisms for the observed effect. See @Corneille2023 for a summary of communication devices that may be used to overhype the results of a study.
 
 ```{r}
 #| label: waffle_data_prep
@@ -370,25 +384,9 @@ waffle_plot_data %>%
 
 ```
 
-### Roadmap
-
-We summarise a subset of QRPs, their location in the modelling process, and their target modelling object in @fig-waffle_plot, highlighting a mixture of common practices, or practices that have the potential for critically influencing the perceived credibility of a model and its publishability. The complete set of QRPs identified is presented in @tbl-QRP.
-
-We grouped QRPs into broader classes described in @tbl-QRP-categories. We applied some umbrella terms identified by Nagy et al. [@Nagy2025] and Liu et al. [-@Liu2020], including: "Sample Curation", "Selective Reporting" or "Cherry-picking," "Overhyping" and "Executing Alternative Analyses." We used additional terms for groups of practices without an existing umbrella term, e.g. 'Overfitting' and 'Model Dredging', 'Selective Debugging'. In the same vein as Nagy et al.'s [-@Nagy2025] expansion of the concept of *p*-hacking to encompass other analysis metrics, we expanded the concept of *p*-hacking and renamed it "S-hacking", or statistic-hacking, encapsulating analogous practices that occur in modelling.
-
-HARKing (*hypothesising after results are known*) is a well-known type of QRP, but was not explicitly included in our final classification of QRPs. However, some practices, like Overhyping, could be considered a form of HARKing.
-
-Although overfitting is a common outcome of many QRPs, especially S-hacking and Sample Curation (see also @tbl-QRP for descriptions of the effects or impacts of each practice), we included Overfitting as a distinct class of QRPs because overfitting may also be the primary goal of the practice. Overfitting is like S-hacking but perhaps is less constrained in practice, because the 'model space' is less determined by a specific set of performance measures / statistics, whereas practices that specifically aim to 'overfit' the model to the calibration data operate on a much larger decision-space, so the risk of a spurious finding is greater.
-
-Similarly, Sample Curation includes practices that directly affect or target input data, but the intent of the practice might be to S-hack. For instance, Optional Stopping rules directly affect the input data, but indirectly target some performance measure by continuing to collect and update the data until some desirable threshold in the performance measure is met.
-
-We categorised QRPs according to the model object they directly target, i.e. the model inputs, the model itself, or the model outputs, corresponding to the the model objects in Figure X.
-
-We also grouped QRPs according to the phase of the modelling process in which they occur, i.e. Data, Model Construction, Model Evaluation and Model Application. Some classes of QRPs can occur in multiple phases of the modelling process, e.g. Sample Curation can occur in both Data and Model Construction phases, and Overfitting can occur in Model Construction and Model Evaluation phases while S-hacking can occur during Model Construction, Evaluation and Application. More narrowly defined classes of QRPs are restricted to one phase, e.g. Selective Debugging occurs only in Model Evaluation, or one type of target, e.g. Overfitting and Model Dredging target the model itself. Sometimes the QRP might occur in a second iteration of the phase, e.g. after model evaluation, but during model specification, i.e. the model specification is revised based on observing model evaluation results.
-
 ```{r}
 #| label: fig-waffle_plot
-#| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (yellow squares), the model itself (red squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
+#| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (blue squares), the model itself (purple squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
 #| fig-width: 14
 #| fig-height: 16
 
@@ -476,83 +474,45 @@ ggsave(waffle_plot,
 
 ```
 
-## Takeaway messages
 
-Our analysis identified *55* (but 28 included) distinct (QRPs) in ecological modelling, spanning the entire modelling workflow from problem formulation through to model application. We categorised these practices into seven primary types: model dredging, overfitting, S-hacking, sample curation, selective reporting, overhyping, and poor practice. The distribution of QRPs across modelling phases highlights systematic vulnerabilities in how ecological models are constructed, evaluated, and applied.
 
-### Data Handling
+```
 
-Data-related QRPs $(n=10)$ included *sample curation* and *missing data hacking* and *employing optional stopping rules*. All of these practices involve making post-hoc decisions about model inputs without justification and prior planning, i.e. after fitting model and observing model results. Sample curation may include removing observations that should have been included in order to make a correlation of interest become significant, and generating a post-hoc exclusion criteria for those observations being excluded [@Nagy2025]. Opportunistic handling of missing data could occur when a researcher tries multiple ways of handling missing data, for instance, list-wise deletion, multiple imputation and inverse probability weighting. But the expected results only appear with inverse probability weighting and so the researcher only reports this strategy in the paper, omitting the results when the other data handling methods were used [@Nagy2025]. *Opportunistic stopping* occurs when new data is collected and is used to re-parameterise the model after previously observing model validation and model evaluation results, without reporting results of earlier iterations (Table X).
+------
 
-### Model Construction
+### A Provisional Typology of QRPs
 
-The Model Construction phase exhibited the highest number and diversity of QRPs $(n=15)$, with practices occurring across multiple sub-phases including Model Selection, Model Specification, Model Tuning, and Method Selection with particularly concerning practices around model specification and selection.
-
-*Model dredging* emerged as a prominant concern, characterised by unconstrained exploration of model space without theoretical guidance or consideration of biological plausibiliy [@Shmueli2010]. As MacNally [-@MacNally2000] observed:
-
-> "Ecologists and conservation biologists too often measure almost everything they can (especially in these days of automated probes and data loggers, remote sensing and GIS) and hope that something important will by 'fished out' of the resultant murky data."
-
-25 years later the "kitchen sink" or "causal salad" approach is still a common approach to ecological modelling [@Franks2025]. @Fourcade2018's simulation analysis provides a pedagogical example of the consequences of this practice, with paintings of the Mona Lisa successfully predicting species' distributions and being selected over models with plausible predictors when coupled with methodologically flawed use of model performance metrics.
-
-*Overfitting* was identified as another critical issue, manifesting in multiple forms including the inclusion of excessive predictors relative to dataset size and complexity. Nakagawa et al. [-@Nakagawa2017] highlighted the prevalence of this practice, and the consequences are severe when the modelling purpose is to generate anticipatory predictions to inform decisions because overfitted models lose predictive power and generalisability to new datasets and generate spurious results [@lewis2023]. Overfitting is of particular concern in ecology where datasets are small and noisy (ref), heightening the risk of spurious results.
-
-*S-hacking* practices in this phase included changing model specifications after observing test set performance and manipulating random seeds to improve results. @Liu2020 noted that manipulating random seeds during model tuning could drastically alter model results, underscoring that seemingly minor technical decisions can be exploited to inflate performance. S-hacking artificially inflate model performance, resulting in spuriously selected models that that may not reflect genuine predictive relationships.
-
-Several QRPs revealed systematic biases towards confirming expectations rather than rigorous testing. *Selective debugging* exemplifies the problem of confirmation bias, where error checks during computational implementation of the modelling tend to occur only or mostly when results deviate from expectation, creating systematic bias because any silent errors when model results align with expectations are cursory, such that errors will be uncorrected [@Risbey2005].
-
-### Model Evaluation
-
-The model evaluation phase contained 14 distinct QRPs, with *selective reporting* and *executing alternative analyses* being particularly prevalent. *S-hacking* occurs when these practices are combined, for example a modeller may trial multiple evaluation metrics, selectively reporting those that present the model in the most favourable light [@Hildebrandt2018]. For models of systems that are difficult to interpret, such as ecological systems, high accuracy may not be meaningful, with the model being inaccurate despite a high measure accuracy [@Hildebrandt2018]. This problem is compounded further in ecological modelling, for example, because ecological models are rarely tested on independent data due to data constraints (ref). Evaluating models only on training data or 'resubstitution' is problematic because it leads to biased estimates of performance, insofar as the model is fitted to regular and irregular features of the sampled data, but is unable to distinguish between them [@Pu2018].
-
-The potential for data leakage during this phase emerged as a second critical concern, particularly the practice of continuing to optimise models after already evaluating it on the test set ('*overhyping*'). Overhyping occurs in tandem with other post-hoc modifications described previously, for example, trialling alternative hyperparameter settings in cross-validation or systematically trialling different feature combinations on performance until test performance was improved [@hofman2023]. Alarmingly, interviews with modellers reveals that these practices are routine in the machine learning community [@hofman2023] (check this ref, P1 vs P2).
-
-### Model Application
-
-The Model Application phase showed fewer but distinct QRP types focused on the misrepresentation of model capabilities and findings. Overhyping involves claims about the models' performance that are not substantiated by model evaluation results, such as claiming the model has greater generalisability than it does. A specific form of overhyping involves misreporting correlative claims using causal language, which is particularly common in studies of conservation intervention evaluations using observational study designs [@Josefsson2020]. The practice of implying causation from correlation can cause false confidence in the intervention's effectiveness while ignoring the real reasons for the observed effect.
-
-# Discussion
-
-Far from being irrelevant to model-based research, researcher degrees of freedom are abound in the modelling process, providing ample opportunity for questionable research practices to operate. While some QRPs in modelling are analogous to those in hypothesis-testing research, such as S-hacking, some are specific to modelling. Regardless, all QRPs are motivated by external pressures related to the apparent publishability of the analysis. The iterative modelling process and the need to make data-based decisions during modelling has resulted in significant resistance to the idea of QRPs in model-based research, we explore this tension further here to clarify the distinction between legitimate and opportunistic data-dependent decisions, highlighting where the concept of QRPs apply and where they do not.
-
-## A mathematical formalism of the garden of forking paths for model-based research
-
-QRPs identified in our roadmap illustrate the two-axes of our typology of QRPs. During model construction, many QRPs directly alter the model itself, $C (\mathbf{X}, M;\phi (\mathbf{X},M))$, for example model dredging in model construction, where model selections are data-dependent, overfitting practices that modify the model specification $M_s$ based on observed performance, and S-hacking, involving changes to the model structure after seeing results. QRPs also targeted model outputs, without necessarily changing the underlying model $C(\mathbf{X}, M;{\phi}_{{M}_{j}})$, for example, selective reporting of performance metrics, trialling different model evaluation metrics, and changing model output thresholds or transformations during model application.
-
-The prevalence of QRPs in Model Construction (affecting the transition from $M_s$ to $M_p$) and Model Evaluation (affecting the assessment of $Mp$ fitness for purpose) suggests these are the critical junctures where $\phi (\mathbf{X},M)$ problematic decision-making occurs most frequently. Practices like model dredging and overfitting during Model Construction exemplify how researchers make data-dependent choices about model structure and complexity after observing initial results, directly contradicting the idealised practice of pre-specified analytic decisions represented by $C(\mathbf{X}, M;\phi )$. Similarly, the abundance of QRPs in Model Evaluation, where researchers assess $M_p$ fitness for purpose, demonstrates how the iterative nature of model validation creates multiple opportunities for post-hoc optimisation of apparent model performance.
-
-Practices targeting the model itself $C (\mathbf{X}, M;\phi (\mathbf{X},M))$ were prevalent throughout Model Construction, including model dredging, overfitting, and specification changes made after observing results. These practices directly alter the realised model, changing what would have been observed if the questionable practice had not occurred. Conversely, practices targeting model outputs $C (\mathbf{X}, M;{\phi}_{{M}_{j}} (\mathbf{X},M))$ were concentrated in Model Evaluation and Application phases, including selective reporting of performance metrics, manipulation of thresholds in model performance metrics. These practices leave the underlying model unchanged while altering perceptions of its performance or credibility.
-
-The distinction between direct manipulation and selective reporting—central to our typology—was also reflected in our QRP Roadmaps. Model Evaluation phases showed both types: direct manipulation of model performance through threshold changes and output transformations $C(\mathbf{X}, M;{\phi}_{{M}_{j}} (\mathbf{X},M))$ , and selective reporting through cherry-picking of favourable performance metrics $C(\mathbf{X}, M;{{\phi}_{{M}_{j}}}^{best} (\mathbf{X},M))$. This exemplifies the contention in our formalism that QRPs can affect both the actual models and model outputs as well as the attributes that determine perceived model credibility.
-
-As described in our framework, analytic uncertainty propagates combinatorially along each decision-point in the modelling process. The identification of QRPs that span multiple phases of the modelling workflow exemplifies our mathematical formalism $C (\mathbf{X}, M;\phi (\mathbf{X},M))$, capturing not just isolated questionable decisions, but interconnected sequences of data-dependent choices that collectively bias the final model and its perceived credibility. Sample curation, S-hacking, and overfitting practices demonstrate how questionable practices conducted early in the process can cascade through subsequent phases, with bias propagating along the realised modelling path, and the effects of questionable decisions compounding across the modelling process. For instance, post-hoc data exclusions during the data curation and preparation phase can inflate apparent model performance leading to unwarranted claims about the model performance and generating unreliable findings during model application. This pattern highlights that the proliferation of questionable practices follows the same combinatorial logic that characterises analytical flexibility in traditional hypothesis testing.
-
-## Implications for Model-Based Research Integrity
-
-The empirical patterns validate our emphasis on model credibility rather than statistical significance as the target of QRPs in modelling contexts. Many identified practices—particularly overhyping claims and misreporting correlative findings with causal language—specifically target perceptions of model reliability, accuracy, and generalisability rather than traditional statistical thresholds. This supports our model-centric definition of QRPs as practices that "artificially inflate the apparent accuracy or precision of a model, its predictions, and/or evaluation tests." The database demonstrates that the mathematical formalism successfully captures the diverse ways researchers can manipulate both technical model properties and broader perceptions of model fitness for purpose, providing a comprehensive framework for understanding questionable practices in model-based research.
-
-QRPs collectively undermine the reliability and reproducibility of ecological modelling research in several ways:
-
-1.  **Inflated performance estimates** that do not reflect true performance.
-2.  **Spurious model selection** that identifies models based on chance rather than plausible biological mechanisms or predictive relationships.
-3.  **Reduced reproducibility** due to undisclosed researcher degrees of freedom.
-4.  **Compromised generalisability** from overfitted models that fail to transfer to new contexts or make accurate forecasts.
-5.  **False confidence** in ecological understanding and management recommendations.
-
-The prevalence of these practices suggests systematic issues in training, incentives, and quality control within the ecological modelling community. The concentration of QRPs in the model construction and evaluation phases indicates particular vulnerabilities in how models are specified, fitted, and evaluated. The large number of decision-points where researchers can exercise degrees of freedom suggest that interventions and safeguards should target these critical phases of the modelling process.
-
-## Distinguishing "poor" from "questionable" practices
-
-Our analysis revealed the context-dependent nature of questionable research practices, between clear QRPs and "poor practices" that may not always constitute questionable behaviour. For example, 'resubstitution' or assessing model performance on the training set only, was classified as poor practice rather than as questionable when done due to data limitations rather than intentional manipulation. However, as our analysis highlighted, flawed practices have the potential to compound the effects of QRPs. In this example, failing to evaluate the model on independent data can provide the opportunity for QRPs like S-hacking to remain hidden. Similarly, the continued misuse of AUC as a measure of predictive performance can result in biologically implausible models being selected when combined with model dredging behaviours.
-
-Clearly, context matters when it comes to delineating questionable from poor practice. We must consider constraints on feasibility, like data availability, and the stated model purpose (e.g. assessing generalisability on new data is important for predictive modelling, but less so for explanatory modelling). However, a shared feature of *all* QRPs is that the practices are undisclosed so that the potential for these practices to bias the model and its results are hidden. Transparency in reporting is essential for being able to properly evaluate the credibility of the model.
-
-### Data-dependent modelling choices: when are they ‘questionable’ ?
-
-Our formalism emphasised the data-dependency in analytic decision-making $\phi (\mathbf{X},M)$ as a hallmark of QRPs. For instance, practices like "changing the model specification after observing model evaluation results" or "modifying exclusion criteria after fitting the model and observing results" exemplify the formulation $\phi (\mathbf{X},M)$ where choices depend on observed model states.
-
-However, we hesitate to designate all data-dependent analytic decisions as questionable research practices, as is implied in Gelman and Loken's (2013) framework. That is because there are situations in modelling where decisions are necessarily dependent on previous analytic decisions within the modelling workflow [@Liu2020]. We describe and illustrate these further in Chapter 6, but as an illustrative example, the choice about an appropriate model-fitting method to derive $M_p$ might depend on the specified model structure $M_s$. Thus, not all data-dependent analytic decisions are automatically ‘questionable’ within the context of modelling.
-
-@Liu2020 helpfully distinguish defensible from questionable motivations for engaging in data-dependent analytic decision-making through the dichotomy of *systematicity* and *opportunism*, or the desire to find a particular result. In the case of model evaluation, systematicity can be distinguished from opportunism when an objective metric is used to evaluate outcomes, and the choice of metric does not hinge on anticipated conclusions. While during model construction, formal model selection procedures, wherein reasonable alternative models are systematically enumerated and implemented, can be characterised as ‘defensible’ data-analytic decision-making or ‘exploration’, on the grounds that alternative models are chosen based on objective metrics and values, such as goodness of fit, which are selected a priori (Liu, 2020). Or, if the outcome determining the modelling choice is a qualitative measure, a rule of thumb for choosing one alternative over another is articulated *a priori*.
+```{r}
+#| label: tbl-QRP-typology
+#| html-table-processing: none
+#| tbl-cap: |
+#|   A model-based typology of Questionable Research Practices (QRPs), based on @Gelman2013. QRPs may affect different components of a model (table rows) indirectly altering the publishable attributes of a model by selectively reporting or directly altering objects generated throughout the modelling proces, targeting the model itself ($M$, purple cells) or model outputs ($M_j$, green cells). The final row represents the unambiguous ideal where no QRP occurs, that is, analytical decisions $\\phi$ are pre-specified rather than contingent on the model and/or data at that decision-point $\\phi(\\mathbf{X}, M)$.
+tibble::tibble(QRP_outcome = c("The Model or Model Outputs<br>$(M, M_j)$", "Publishable Attributes of a model, via selective reporting or 'fishing'", "No QRP, e.g. pre-specified analytic decisions"),
+               QRP_target_M = c("$$C (\\mathbf{X}, M;\\phi (\\mathbf{X},M))$$", 
+                                "$$C (\\mathbf{X}, M;{\\phi}^{best} (\\mathbf{X},M)) $$", 
+                                "$$C (\\mathbf{X}, M;\\phi ) $$"),
+               QRP_target_Mj = c("$$ C (\\mathbf{X}, M;{\\phi}_{{M}_{j}} (\\mathbf{X},M))$$",
+                                 "$$C (\\mathbf{X}, M;{{\\phi}_{{M}_{j}}}^{best} (\\mathbf{X},M))$$",
+                                 "$$ C (\\mathbf{X}, M;{\\phi}_{{M}_{j}})$$"),
+               row_group = c("QRP", "QRP", "OK")) %>% 
+  gt::gt() %>% 
+  gt::tab_spanner(label = "The practice may target:",
+                  columns = c(QRP_target_M, QRP_target_Mj),) %>% 
+  # gt::tab_row_group(label = "Questionable Research Practice", rows = row_group == "QRP" ) %>% 
+  #   gt::tab_row_group(label = "Acceptable Research Practice", rows = row_group == "OK" ) %>% 
+  gt::cols_label(QRP_outcome = "It may alter:",
+                 QRP_target_M = gt::md("The model $$M$$"),
+                 QRP_target_Mj = gt::md("Any model output $$M_j$$")) %>% 
+  gtExtras::gt_theme_nytimes() %>% 
+  gt::tab_style(style = gt::cell_fill(color = "#A02B93", alpha = 0.8),
+                locations = gt::cells_body(columns = QRP_target_M,  rows = row_group == "QRP")) %>% 
+  gt::tab_style(style = gt::cell_fill(color = "#4EA72E", alpha = 0.8),
+                locations = gt::cells_body(columns = QRP_target_Mj, rows = row_group == "QRP")) %>% 
+  gt::cols_hide(row_group) %>% 
+  gt::fmt_markdown(columns = c(QRP_outcome)) %>% 
+  gt::cols_align(columns = starts_with("QRP_target"),
+                 align = "center")
+```
 
 ## References {.unnumbered}
 
