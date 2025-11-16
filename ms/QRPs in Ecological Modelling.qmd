@@ -47,8 +47,7 @@ format:
     documentclass: scrartcl
     papersize: A4
     fontsize: 11pt
-    toc: true
-    toc-depth: 2
+    toc: false
     number-sections: true
     linkcolor: blue
     include: false
