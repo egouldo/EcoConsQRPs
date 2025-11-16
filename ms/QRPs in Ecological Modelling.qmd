@@ -40,6 +40,9 @@ format:
     number-sections: true
     number-depth: 3
   pdf:
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
     keep-tex: true
     documentclass: scrartcl
     papersize: A4
