@@ -63,7 +63,7 @@ custom-numbered-blocks:
     Box:
       boxstyle: foldbox.simple
       collapse: false
-pdf-engine: xelatex
+pdf-engine: lualatex
 abstract: |
   1. Questionable research practices (QRPs) bias the published literature towards apparently strong and conclusive results, resulting in low rates of replicability. Recent metaresearch reveals that ecology is not immune to the ‘reproducibility crisis’ seen in other disciplines, due to similar rates of QRPs and a lack of transparency in published research. However, metaresearch to date focusses on hypothesis-testing research and treats data-dependent analytic decisions as inherently questionable. This is not a good fit for ecology and related fields that conduct exploratory or predictive research using complex models, where data-dependent decisions are often necessary and legitimate aspects of the modelling process.
   2. To aid in understanding why and how frequently QRPs occur, and how severe the consequences might be, we develop a conceptual framework describing QRPs in ecological modelling, distinguishing questionable from legitimate data-dependent decisions. We present a typology of QRPs by decision-making mechanism and target and reframe QRPs in modelling as practices that inflate perceived model credibility, rather than producing false-positive statistical results. 
