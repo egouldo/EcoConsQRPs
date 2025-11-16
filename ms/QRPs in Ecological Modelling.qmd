@@ -129,7 +129,7 @@ Current definitions and lists of QRPs are focused on hypothesis testing research
 #| label: create-QRP-table
 #| message: false
 #| warning: false
-#| echo: false
+#| include: false
 
 QRP_tbl <- readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
                            show_col_types = FALSE) %>% 
