@@ -114,6 +114,7 @@ library(equatiomatic)
 source(here::here("R/tidy_QRP_database.R"))
 source(here::here("R/make_table_data.R"))
 source(here::here("R/make_QRP_table.R"))
+# source(here::here("R/synthetic_example_QRPs.R")) # quarto processing is applied to gt table when sourced here! GRRR leaving here as reminder to run in final render pipeline
 ```
 
 # Introduction
