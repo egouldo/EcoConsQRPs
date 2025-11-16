@@ -202,9 +202,7 @@ QRP_tbl_html
 #| include: true
 #| label: tbl-QRP-examples
 #| tbl-cap: "A test caption"
-#| echo: false
-#| out-width: "100"
-#| out-height: "100"
+
 magick::image_read(here::here("figures/tbl-QRP-examples.png") )
 ```
 :::
