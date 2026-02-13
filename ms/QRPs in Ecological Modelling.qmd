@@ -916,6 +916,7 @@ QRP_step2 |>
       size = "xx-small",
       v_align = "bottom",
       stretch = "condensed",
+       weight = "bold"
     ),
     locations = cells_column_labels()
   ) |>
@@ -931,7 +932,8 @@ QRP_step2 |>
     style = cell_text(
       size = "x-small",
       v_align = "top",
-      stretch = "condensed"
+      stretch = "condensed",
+      weight = "bold"
     ),
     locations = cells_row_groups()
   ) |>
@@ -956,6 +958,7 @@ QRP_step2 |>
       size = "xx-small",
       v_align = "bottom",
       stretch = "condensed",
+      weight = "bold"
     ),
     locations = cells_stubhead()
   )
