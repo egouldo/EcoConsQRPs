@@ -1536,5 +1536,3 @@ ggsave(
   dpi = 600
 )
 ```
-
-# References {.unnumbered}
