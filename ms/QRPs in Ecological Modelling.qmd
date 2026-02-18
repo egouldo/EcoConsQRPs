@@ -32,11 +32,16 @@ affiliations:
     name: The University of Melbourne, School of Historical and Philosophical Studies
 format:
   html:
-    page-layout: full
+    page-layout: article
     title-block-banner: true
     code-fold: true
+    code-tools: true
     number-sections: true
     number-depth: 3
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    code-overflow: wrap
+    toc: true
   pdf:
     knitr:
       opts_chunk:
