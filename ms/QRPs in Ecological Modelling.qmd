@@ -854,7 +854,7 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 
 ## QRP Literature Review {.appendix #sec-appendix-2}
 
-### Step 1: Identify and collect QRPs {.appendix }
+### Step 1: Identify and collect QRPs {.appendix}
 
 I haphazardly screened the published literature to generate an initial list of terms for QRPs in NHST research, to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling:
 
