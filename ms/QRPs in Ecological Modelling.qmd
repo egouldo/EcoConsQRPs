@@ -1,6 +1,8 @@
 ---
 title: A Framework for Questionable Research Practices in Ecological Modelling
 running-head: Questionable Research Practices in Ecological Modelling
+shorttitle: A Framework for QRPs in Ecological Modelling
+shortauthors: Gould et. al. 
 author:
   - name: Elliot Gould
     email: elliot.gould@unimelb.edu.au
@@ -42,18 +44,39 @@ format:
     code-block-border-left: "#31BAE9"
     code-overflow: wrap
     toc: true
-  pdf:
+  pdf: 
+    documentclass: scrreprt
     knitr:
       opts_chunk:
         dev: "cairo_pdf"
     keep-tex: true
-    documentclass: scrartcl
     papersize: A4
     fontsize: 11pt
     toc: false
     number-sections: true
     number-depth: 3
     linkcolor: blue
+    include: false
+    echo: false
+    header-includes:
+    - \usepackage{mathtools}
+    - \usepackage{amssymb}
+    - \usepackage{xcolor}
+    - \usepackage{booktabs, caption, longtable, colortbl, array}
+    - \usepackage[font=small,labelfont={bf,small}]{caption}
+  aog-article-pdf:
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    keep-tex: true
+    papersize: A4
+    fontsize: 11pt
+    mainfont: Libertinus Serif
+    sansfont: Jost
+    toc: false
+    number-sections: true
+    number-depth: 3
+    urlcolor: blue
     include: false
     echo: false
     header-includes:
