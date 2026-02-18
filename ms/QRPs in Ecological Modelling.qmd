@@ -1421,7 +1421,7 @@ performance_table <-
       "model_overfitted",
       "Overfitted Model"
     ) |>
-      stringr::str_replace(., "model_initial", "Initial Model")
+      stringr::str_replace("model_initial", "Initial Model")
   ) |>
   mutate(across(-c(Name), ~ round(.x, digits = 2))) |>
   pivot_longer(-Name) |>
