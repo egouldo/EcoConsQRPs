@@ -823,9 +823,9 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 ```
 
 
-## QRP Literature Review {#sec-appendix-2}
+## QRP Literature Review {.appendix #sec-appendix-2}
 
-### Step 1: Identify and collect QRPs
+### Step 1: Identify and collect QRPs {.appendix }
 
 I haphazardly screened the published literature to generate an initial list of terms for QRPs in NHST research, to guide search term selection in ecological modelling and related modelling fields. I used the following search terms to identify potential QRPs in different areas of ecological modelling:
 
@@ -849,7 +849,7 @@ I haphazardly screened the published literature to generate an initial list of t
 
 I inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, I took the logical inverse of these practices as the QRP. I ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for changes in research practices. I excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
 
-### Step 2: Collate and Code QRPs
+### Step 2: Collate and Code QRPs {.appendix }
 
 **Collating & Coding**
 
