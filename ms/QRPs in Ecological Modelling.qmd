@@ -82,6 +82,9 @@ keywords:
   - researcher degrees of freedom
 date: last-modified
 bibliography: references.bib
+citation:
+  type: article
+citation_publisher: EcoEvoArXiv
 filters:
 - ute/custom-numbered-blocks
 - callout-box.lua
