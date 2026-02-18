@@ -85,10 +85,6 @@ bibliography: references.bib
 citation:
   type: article
 citation_publisher: EcoEvoArXiv
-filters:
-- ute/custom-numbered-blocks
-- callout-box.lua
-- addcalloutnumber.lua
 ---
 
 ```{r}

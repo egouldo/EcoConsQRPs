@@ -5,3 +5,5 @@
 *.pdf
 /ms/EcoConsQRPs/EcoConsQRPs.tex
 .DS_Store
+
+/.quarto/

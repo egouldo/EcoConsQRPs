@@ -1,0 +1,290 @@
+---
+title: A Roadmap of Questionable Research Practices in Ecological Modelling
+running-head: Questionable Research Practices in Ecological Modelling
+author:
+  - name: Elliot Gould
+    email: elliot.gould@unimelb.edu.au
+    orcid: 0000-0002-6585-538X
+    url: https://github.com/egouldo
+    corresponding: true
+    affiliation:
+      - ref: 1
+  - name: Second Author
+    affiliation:
+      - ref: 2
+affiliations:
+  - id: 1
+    name: First University
+    department: Department Name
+  - id: 2
+    name: Second University
+abstract: |
+  Your abstract goes here. This will appear prominently at the top of your document.
+categories: [keyword1, keyword2, keyword3]
+authornote: |
+  Author contributions, funding, conflicts of interest, or other notes.
+date: last-modified
+bibliography: references.bib
+format:
+  preprint-typst:
+    keep-md: true
+    wordcount: true
+    execute:
+      echo: false
+      message: false
+      include-before-body:
+      - text: |
+          #show figure: set block(breakable: true)
+    # Common options - uncomment (and remove 'default') to use
+    # theme-jou: true              # Journal theme (2-column)
+    # line-number: true            # Line numbering
+    # fontsize: 11pt               # Font size
+    # leading: 0.6em               # Line spacing
+    # first-line-indent: 1.8em     # Paragraph indent
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+#| echo: false
+library(tidyverse)
+library(here)
+library(janitor)
+
+library(gt)
+library(gtExtras)
+
+library(ggh4x)
+library(ggforce)
+library(waffle)
+library(ggsci)
+library(hrbrthemes)
+
+library(extrafont)
+library(firasans)
+extrafont::loadfonts()
+
+source(here::here("R/tidy_QRP_database.R"))
+source(here::here("R/make_table_data.R"))
+source(here::here("R/make_QRP_table.R"))
+
+```
+
+# Introduction
+
+```{r}
+#| label: tbl-QRP-examples
+#| tbl-cap: 'Examples and self-reported frequency of questionable research practices in hypothesis-testing research. QRPs are categorised as "cherry-picking", "p-hacking", and "methodologically flawed", indicated by the cherry, saw, and cross icons respectively.'
+
+image_out <- function(x, height = 5){
+  out <- map_chr(x, gt::local_image, height = height)
+  out <- map(out, gt::html)
+  out
+}
+
+readr::read_csv(here::here("data", "tbl-QRP-frequency.csv"),
+                show_col_types = FALSE) %>% 
+  mutate(Category = here::here("data", "icons", glue::glue("{Category}.png"))) %>%
+  gt::gt(groupname_col = "Category",row_group_as_column = TRUE) %>% 
+  gt::tab_footnote(footnote = "Makel et al. (2019)", 
+                   locations = cells_column_labels(columns = Abbreviation)) %>% 
+  gt::tab_footnote(footnote = gt::md("Fraser et al. (2018), $n=494$"), 
+                   locations = cells_column_labels(columns = c("Ecology", 
+                                                               "Evolution"))) %>% 
+  gt::text_transform(locations = gt::cells_row_groups(everything()),
+                     fn = image_out
+  ) %>% 
+  gt::cols_width(
+    Category ~ gt::px(50),
+    `Questionable Research Practice` ~ px(75),
+    Abbreviation ~ px(75),
+    Ecology ~ px(150)
+  ) %>%
+  gtExtras::gt_theme_nytimes() %>% 
+  gt::cols_hide("Evolution") %>% 
+  gtExtras::gt_plt_bar_pct(
+    fill = "purple",
+    column = c("Ecology"),
+    scaled = TRUE,
+    width = 150,
+    labels = TRUE,
+    font_size = 30,
+    background = "grey"
+  ) %>% 
+  gt::as_raw_html(inline_css = TRUE)
+```
+
+# Methods
+
+# Results
+
+## QRP Roadmaps
+
+```{r}
+#| label: waffle_data_prep
+#| message: false
+#| echo: false
+waffle_plot_data <- 
+        tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        filter(include) %>% 
+        select(-notes, -model_subphase, -source, -qrp_reason, -include) %>% 
+        distinct() %>% #rm duplicate qrp_coded #TODO next merge duplicates while keeping source
+        drop_na() %>% #interim approach until datachecks in place
+        mutate(model_phase = str_split(model_phase, ", "),
+               target = str_split(target, ", "),
+               values = 1) %>% 
+        unnest(model_phase) %>% 
+        unnest(target) %>% 
+        complete(qrp_coded, 
+                 model_phase, 
+                 target, 
+                 fill = list(values = 0.0001) # see https://github.com/hrbrmstr/waffle/issues/66
+                 ) %>%  
+        group_by(qrp_coded) %>% 
+        fill(qrp_coded, model_phase, .direction = "downup") %>% 
+        ungroup()
+```
+
+```{r}
+#| label: fig-waffle_plot
+#| fig-cap: "Summary of Questionable Research Practices (QRPs) in ecological modelling. QRPs may target model inputs (yellow squares), the model itself (red squares), and/or model outputs (green squares), and may occur at different phases in the modelling cycle. QRPs are grouped according to broader classes defined in @tbl-QRP-categories. See @tbl-QRP for the full list of QRPs we identified."
+#| fig-width: 15
+#| fig-height: 24
+#| echo: false
+
+# options(hrbrthemes.loadfonts = TRUE)
+waffle_plot <- waffle_plot_data %>% 
+        distinct() %>% #TODO identify duplicated rows - suspect non-unique target coding is cause
+        mutate(model_phase = 
+                       forcats::as_factor(model_phase) %>% 
+                       forcats::fct_relevel( c("Data", 
+                                               "Model Construction", 
+                                               "Model Evaluation",
+                                               "Model Application"))) %>% 
+        arrange(model_phase, 
+                qrp_coded) %>% 
+        ggplot(aes(fill = target, 
+                   values = values)) +
+        geom_waffle(size = 2, 
+                    color = "white", 
+                    make_proportional = FALSE, 
+                    flip = TRUE) +
+        scale_x_discrete(expand = c(0,0)) +
+        scale_y_discrete(expand = c(0,0)) +
+        ggsci::scale_fill_futurama(name = "QRP Target") +
+        coord_equal() +
+        facet_nested(qrp_coded + qrp_coded ~ model_phase, 
+                     switch = "y", 
+                     labeller = 
+                             labeller(
+                                     qrp_coded =
+                                             label_wrap_gen(width = 80,
+                                                            multi_line = TRUE),
+                                     qrp_coded =
+                                             label_wrap_gen(width = 10,
+                                                            multi_line = TRUE),
+                                     model_phase = 
+                                             label_wrap_gen(width = 10, 
+                                                            multi_line = TRUE)),
+                     nest_line = element_line(linetype = 1),
+                     solo_line = TRUE,
+                     space = "free",
+                     strip = strip_nested(size = "variable",
+                                          clip = "off")
+        ) +
+        # facet_grid(qrp_coded ~ model_phase, 
+        #            switch = "y", 
+        #            labeller = labeller(qrp_coded = 
+        #                                        label_wrap_gen(width = 100))) +
+        # theme_no_axes() +
+        hrbrthemes::theme_ipsum_rc() +
+        waffle::theme_enhance_waffle() +
+        theme(strip.text.y.left = element_text(angle = 0, 
+                                               size = 10),
+              strip.text.x = element_text(size = 14,vjust = 0),
+              strip.background.x = element_part_rect(side = "b"),
+              strip.background.y = element_blank()
+        ) +
+        ggh4x::force_panelsizes(rows = unit(1, "cm"), 
+                                cols = unit(3, "cm"))
+
+print(waffle_plot)
+
+
+
+#DONE reorder the model process levels
+#TODO exclude less important QRPs
+#DONE Make strips pretty
+#DONE recolour model object colours
+#DONE group the QRPs into their umbrella terms -- nested facets?
+
+```
+
+```{r}
+#| label: tbl-QRP-categories
+#| tbl-cap: "Classes of Questionable Research Practices (QRPs) in ecological modelling."
+#| results: asis
+#| echo: false
+waffle_plot_data %>% 
+        distinct(qrp_coded) %>% 
+        arrange(qrp_coded) %>% 
+        gt::gt() %>% 
+        gt::cols_label(qrp_coded = "QRP Class") %>% 
+        gtExtras::gt_theme_pff() %>% 
+  gt::as_raw_html()
+```
+
+::: {.landscape}
+
+`#show figure: set block(breakable: true)`{=typst}
+
+
+```{r}
+#| label: tbl-QRP
+#| tbl-cap: "Full list of Questionable Research Practices identified from the literature. We categorised QRPs into broader classes"
+#| column: body-outset
+#| echo: false
+#| message: false
+
+gt_qrp <- tidy_QRP_database(here::here("data", "QRP_database.csv")) %>% 
+        make_qrp_table_data() %>% 
+        select(-notes) %>% 
+        group_by(qrp_coded) %>% 
+        arrange(qrp_coded) %>% 
+        make_QRP_table() %>% 
+        gt::fmt_markdown(columns = c(qrp_coded, qrp_coded, source)) %>% 
+        gt::cols_hide(columns = c(-ends_with("coded"), -source, -target) ) %>% 
+        gt::cols_label(qrp_coded = "QRP Class") %>% 
+        gtExtras::gt_theme_pff() %>% 
+  gt::opt_table_font(font = list(
+            gt::google_font("Fira Sans"),
+            gt::default_fonts()
+          ))
+
+gt_qrp 
+
+#gt_qrp %>% gt::gtsave(path = here::here("tables"), filename = "qrp_table_draft.pdf")
+```
+
+:::
+
+# Discussion
+
+# References
+
+:::{#refs}
+:::
+
+
+`#show figure.where(kind: table): set block(breakable: true)`{=typst}
+
+::: {.appendix}
+
+
+
+# Appendix A
+
+
+
+:::

@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+    - "ms/QRPs in Ecological Modelling.qmd"
+
+manuscript: # if using project, type: manuscript
+  article: "ms/QRPs in Ecological Modelling.qmd"
+
+filters:
+- ute/custom-numbered-blocks
+- callout-box.lua
+- addcalloutnumber.lua
