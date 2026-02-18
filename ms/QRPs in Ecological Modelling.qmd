@@ -994,7 +994,7 @@ QRP_step2 |>
 #| eval: false
 #| size: footnotesize
 #| lst-label: lst-syntheg
-#| lst-cap: "Code used to generate synthetic worked example in Figure \\ref{fig-synthetic-example}"
+#| lst-cap: "Code used to generate synthetic worked example in @fig-synthetic-example."
 #| tidy: styler
 #| fig-env: "[H]"
 #| code-fold: false
