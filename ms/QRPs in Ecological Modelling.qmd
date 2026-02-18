@@ -52,6 +52,7 @@ format:
     fontsize: 11pt
     toc: false
     number-sections: true
+    number-depth: 3
     linkcolor: blue
     include: false
     echo: false
