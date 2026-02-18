@@ -771,8 +771,6 @@ This list of QRPs is not exhaustive, future research could also characterise add
 
 In this paper, I aim to raise awareness among ecological modellers, and modellers among other scientific disciplines, about potential types of QRPs and their mechanisms for emergence in the modelling process. This is the first attempt to articulate how questionable research practices occur outside hypothesis testing research. The application is specific to ecological modelling, but the definition of QRPs presented here provides insights for modelling in other fields and other forms of non-hypothesis testing research. The conceptual framework and map of QRPs in this paper helps modellers understand the risks of QRPs in their research, so they are empowered to implement procedures that can mitigate their occurrence in their own research practice. Finally, meta-researchers and advocates of open-science can use the conceptual framework to underpin the design of modelling-appropriate methodological reforms that improve the credibility and robustness of model-based research in ecology and other fields.
 
-::: appendices
-
 
 ```{r}
 #| echo: false
@@ -1538,7 +1536,5 @@ ggsave(
   dpi = 600
 )
 ```
-
-:::
 
 # References {.unnumbered}
