@@ -7,6 +7,9 @@ project:
 manuscript: # if using project, type: manuscript
   article: "ms/QRPs in Ecological Modelling.qmd"
 
+website:
+  page-footer: "Copyright 2026, Elliot Gould."
+
 filters:
 - ute/custom-numbered-blocks
 - callout-box.lua
