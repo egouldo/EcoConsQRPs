@@ -571,6 +571,7 @@ fig_synthetic_example_caption <- "A synthetic illustration of model fishing & sc
 #| eval: true
 #| fig-pos: "[hb]"
 #| out-width: 121%
+#| column: screen
 
 magick::image_read_pdf(here::here("figures/synthetic_example_QRPs.pdf"))
 ```
@@ -874,6 +875,7 @@ I aggregated similar practices identified from different published sources `prac
 ```{r}
 #| label: tbl-QRP
 #| tbl-cap: "Questionable research practices (QRPs) may occur in different phases and sub-phases of the ecological modelling process. QRPs were identified through literature review and classified into broader classes. For each unique practice (QRP ID), literature sources are detailed online at [doi.org/10.26188/30773831.v1](https://doi.org/10.26188/30773831.v1)."
+#| column: body-outset
 #| echo: false
 QRP_data_cleaned <-
   readxl::read_xlsx(here::here("data", "QRP_table.xlsx")) |>
