@@ -866,7 +866,7 @@ While, a formatted version can be downloaded and viewed in a web browser from:
 
 I adopted Nagy et al.'s [-@Nagy2025] approach and grouped QRPs consisting of the same family of research behaviours into broad classes `QRP_coded`. Some umbrella terms were common QRPs in hypothesis testing research, some were hypothesis-testing analogues, while others were modelling-specific. Where possible I used existing umbrella terms used by Nagy et al. [-@Nagy2025] and others [e.g. @Liu2020], but created other terms if no existing terms were applicable.
 
-### Step 3: Refine QRP and QRP Class descriptions, aggregate QRPs
+### Step 3: Refine QRP and QRP Class descriptions, aggregate QRPs {.appendix }
 
 I aggregated similar practices identified from different published sources `practice_description` into broader descriptions of individual QRPs `QRP_description`, which are listed in @tbl-QRP, along with their broader classes and point in the modelling process.
 
@@ -987,8 +987,7 @@ QRP_step2 |>
 :::
 
 
-## Synthetic Example Code {#sec-QRP-app-synth-code}
-
+## Synthetic Example Code {.appendix #sec-QRP-app-synth-code}
 
 ```{r}
 #| echo: true
