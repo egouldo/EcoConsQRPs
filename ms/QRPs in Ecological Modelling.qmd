@@ -569,7 +569,7 @@ A synthetic illustration of model fishing & scenario hacking (HARKing). **A.** V
 ::: landscape
 
 ```{r}
-#| eval: !expr knitr::is_latex_output()
+#| eval: true
 #| echo: false
 #| label: pdf-caption-fig-synthetic-example
 
