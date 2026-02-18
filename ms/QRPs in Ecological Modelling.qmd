@@ -700,7 +700,9 @@ In @tbl-QRP-types, we present formal descriptions and practical examples of the 
 
 In summary, based on the mathematical formalism and typology, a clearer definition of QRPs in model-based research is apparent.
 
+::: landscape
 ::: {#tbl-QRP-types}
+
 ::: {.content-visible when-format = "html"}
 ```{r}
 #| file: "../R/make_QRP_type_table.R"
@@ -712,9 +714,8 @@ In summary, based on the mathematical formalism and typology, a clearer definiti
 
 :::
 
-::: {.content-visible when-format = "pdf"}
-::: landscape
 
+::: {.content-visible unless-format = "html"}
 ```{r}
 #| include: true
 #| warning: false
@@ -723,12 +724,11 @@ In summary, based on the mathematical formalism and typology, a clearer definiti
 magick::image_read_pdf(here::here("tables/tbl-QRP-definitions.pdf")) %>%
   magick::image_scale("120%")
 ```
-
-:::
 :::
 
 Formal descriptions of QRP classes, their definitions and some practical examples.
 
+:::
 :::
 
 ## Discussion
