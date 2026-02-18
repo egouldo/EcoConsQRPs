@@ -487,6 +487,12 @@ waffle_plot <- waffle_plot_data %>%
   ggh4x::force_panelsizes(rows = unit(1.1, "cm"), cols = unit(3, "cm")) +
   guides(fill = guide_legend("QRP Target:", position = "bottom"))
 waffle_plot
+```
+
+```{r}
+#| include: false
+#| echo: false
+#| eval: false
 # ggsave(waffle_plot,
 #        filename = here::here("figures/fig-waffle-QRPs-ecological-modelling.pdf"),
 #        device = grDevices::cairo_pdf,
