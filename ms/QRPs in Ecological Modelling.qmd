@@ -226,6 +226,15 @@ QRP_tbl_html <- QRP_tbl %>%
   )
 
 QRP_tbl_html
+
+# QRP_tbl_html %>%
+#   gt::gtsave(
+#     here::here("figures", "tbl-QRP-examples.png"),
+#     zoom = 10,
+#     expand = 2,
+#     vwidth = 850,
+#     vheight = 1000
+#   )
 ```
 
 :::
@@ -234,9 +243,9 @@ QRP_tbl_html
 
 ```{r}
 #| include: true
-#| out-width: 110%
+##| out-width: 110%
 magick::image_read(here::here("figures/tbl-QRP-examples.png")) %>%
-  magick::image_scale("20%")
+  magick::image_scale("25%")
 ```
 
 :::
