@@ -2,10 +2,10 @@ project:
   type: website
   output-dir: docs
   render: 
-    - "ms/QRPs in Ecological Modelling.qmd"
+    - "ms/QRPs-in-Ecological-Modelling.qmd"
 
 manuscript: # if using project, type: manuscript
-  article: "ms/QRPs in Ecological Modelling.qmd"
+  article: "ms/QRPs-in-Ecological-Modelling.qmd"
 
 website:
   page-footer: "Copyright 2026, Elliot Gould."
