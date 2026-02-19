@@ -1,0 +1,44 @@
+abstract: " 1. Questionable research practices (QRPs) bias the published literature towards apparently strong and conclusive results, resulting in low rates of replicability. Recent metaresearch reveals that ecology is not immune to the ‘reproducibility crisis’ seen in other disciplines, due to similar rates of QRPs and a lack of transparency in published research. However, metaresearch to date focuses on hypothesis-testing research and treats data-dependent analytic decisions as inherently questionable. This is not a good fit for ecology and related fields that conduct exploratory or predictive research using complex models, where data-dependent decisions are often necessary and legitimate aspects of the modelling process.
+  2. To aid in understanding why and how frequently QRPs occur, and how severe the consequences might be, we develop a conceptual framework describing QRPs in ecological modelling, distinguishing questionable from legitimate data-dependent decisions. we present a typology of QRPs organised by decision-making mechanism and target, reframing QRPs in modelling as practices that inflate perceived model credibility, rather than as producing false-positive statistical results. 
+  3. We identified six QRP classes that may occur at various points in the modelling process: selective reporting, S-hacking (manipulating performance metrics), model fishing, sample curation, HARKing and overhyping. These practices threaten the reliability and reproducibility of model-based research by artificially inflating the apparent credibility of models.
+  4. We aim to raise awareness among modellers about different types of QRPs and how they might emerge in ecological modelling. We offer strategies to mitigate QRP risks, while preserving legitimate adaptive decision-making characteristic of ecological modelling."
+authors:
+  - family-names: Gould
+    given-names: Elliot
+    orcid: "https://orcid.org/0000-0002-6585-538X"
+  - family-names: Fraser
+    given-names: "Hannah S."
+    orcid: "https://orcid.org/0000-0003-2443-4463"
+  - family-names: Wintle
+    given-names: "Bonnie C."
+    orcid: "https://orcid.org/0000-0003-0236-6906"
+  - family-names: Rumpff
+    given-names: Libby
+    orcid: "https://orcid.org/0000-0001-9400-8086"
+  - family-names: Fidler
+    given-names: Fiona
+    orcid: "https://orcid.org/0000-0002-2700-2562"
+cff-version: 1.2.0
+date-released: "2026-02-19"
+keywords: 
+  - "questionable research practices"
+  - "ecological modelling"
+  - metaresearch
+  - transparency
+  - reproducibility
+  - "model credibility"
+  - "researcher degrees of freedom"
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/egouldo/EcoConsQRPs"
+title: "A Framework for Questionable Research Practices in Ecological Modelling"
+contact:
+  - affiliation: "School of Agriculture, Food and Ecosystem Sciences"
+    email: elliot.gould@unimelb.edu.au
+    family-names: Gould
+    given-names: Elliot
+type: software
+message: "Please cite this code according to the metadata"
+identifiers:
+  - description: "Dataset"
+    type: doi
+    value: 10.26188/30773906.v1
