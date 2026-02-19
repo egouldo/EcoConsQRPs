@@ -610,10 +610,11 @@ fig_synthetic_example_caption <- "A synthetic illustration of model fishing & sc
 #| include: true
 #| eval: true
 #| fig-pos: "[hb]"
-#| out-width: 121%
+#| out-width: 130%
 #| column: screen
 
-magick::image_read_pdf(here::here("figures/synthetic_example_QRPs.pdf"))
+magick::image_read_pdf(here::here("figures/synthetic_example_QRPs.pdf")) %>% 
+  magick::image_scale("105%")
 ```
 
 `r fig_synthetic_example_caption`
@@ -735,8 +736,9 @@ In summary, based on the mathematical formalism and typology, a clearer definiti
 #| warning: false
 #| message: false
 #| cache: false
+#| out-width: 110%
 magick::image_read_pdf(here::here("tables/tbl-QRP-definitions.pdf")) %>%
-  magick::image_scale("120%")
+  magick::image_scale("130%")
 ```
 :::
 
