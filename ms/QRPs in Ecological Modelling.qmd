@@ -431,6 +431,7 @@ qrp_class_descriptions <- tribble(~ qrp_coded, ~ description,
 #   gt::fmt_markdown(columns = description)
 
 ```
+
 ::: {#fig-QRP-map fig-scap="Synthesis of questionable research practices (QRPs) in ecological modelling."}
 ```{=latex}
 \makebox[\textwidth][c]{%
@@ -442,6 +443,7 @@ qrp_class_descriptions <- tribble(~ qrp_coded, ~ description,
 #| fig-height: 17
 #| fig-width: 14
 #| warning: false
+#| include: true
 
 waffle_plot <- waffle_plot_data %>%
   distinct() %>% #TODO identify duplicated rows - suspect non-unique practice_target coding is cause
