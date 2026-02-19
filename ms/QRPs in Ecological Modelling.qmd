@@ -328,7 +328,7 @@ When conducting inference or explanatory modelling, the estimand(s) of interest 
 
 Arriving at the optimal final model or collection of final models is typically iterative, determined by the outcomes of model validation and evaluation [@Shmueli2010] whereby the model is subjected to a series of analyses that generate performance measures that are used to establish its validity, reliability and credibility and ensuring that the model is fit for intended use [@Bennett2013; @eker2018; @Garcia-Diaz2019; @RykielJr1996].
 
-I distinguish between model validation and model evaluation. Model validation checks that the fitted model $M_p$ suitably approximates the data $\symbf{X}$, and is evaluated using goodness-of-fit tests, and model diagnoses like residual analyses [@Shmueli2010]. Model selection whittles down the candidate set of models into a single ‘best’ model or a smaller subset of ‘best models’ (e.g. AIC within $\Delta2$), after which the modeller might choose to consider multiple models or conduct model averaging. Outside of formal model selection approaches, the procedure for determining the best model(s) may involve a degree of trial and error of different model structures that is not always preplanned (i.e. new $M_s$ are specified after validation).
+We distinguish between model validation and model evaluation. Model validation checks that the fitted model $M_p$ suitably approximates the data $\symbf{X}$, and is evaluated using goodness-of-fit tests, and model diagnoses like residual analyses [@Shmueli2010]. Model selection whittles down the candidate set of models into a single ‘best’ model or a smaller subset of ‘best models’ (e.g. AIC within $\Delta2$), after which the modeller might choose to consider multiple models or conduct model averaging. Outside of formal model selection approaches, the procedure for determining the best model(s) may involve a degree of trial and error of different model structures that is not always preplanned (i.e. new $M_s$ are specified after validation).
 
 
 Following validation, model evaluation of the best model(s) is undertaken, assessing the fitness of $M_p$ for purpose by calculating additional performance measures to fully understand the model’s capabilities, like constructing confusion matrices or calculating omission and commission rates. Ultimately, model evaluation is case-dependent and context-specific insofar as the overall evaluation process, types of analyses, metrics, estimand of interest, and desirable properties of the model differing depending on the overarching modelling purpose and type of model and modelling approach [@Tredennick2021; @Bokulich2013].
@@ -677,7 +677,7 @@ $$
 & \text{ for all } C \in {C(\mathbf{X}, M, \phi)}\end{aligned}
 $$ {#eq-questionable-reporting}
 
-I avoid defining $\Psi_{\text{systematic}}$ reporting decisions, as we did for modelling decisions, and instead advocate modellers prespecify what results will be reported.
+We avoid defining $\Psi_{\text{systematic}}$ reporting decisions, as we did for modelling decisions, and instead advocate modellers prespecify what results will be reported.
 :::
 
 # A Typology of QRPs
@@ -753,7 +753,7 @@ Researcher degrees of freedom threaten the credibility and reliability of model-
 
 ## *Transparency* Determines When 'Poor Practices' are 'Questionable'
 
-Many of the practices I identified as 'questionable' could simply be considered ‘poor practice,’ especially when those practices result in biased or overfitted models. The modelling context, including constraints on feasibility, data availability and coverage, together with the model purpose (e.g. prediction versus inference) will delineate when such practices are questionable or methodologically flawed. The fundamental issue with QRPs is that they remain *undisclosed*. Given that QRPs are practices that artificially improve the way models are perceived, full transparency allows the reader to appraise the appropriateness of practices like altering data, changing model specifications, or calculating additional performance metrics, contingent on the modelling context [@Woo2017]. Transparent reporting is essential for properly evaluating the credibility and suitability of the model for its intended application.
+Many of the practices we identified as 'questionable' could simply be considered ‘poor practice,’ especially when those practices result in biased or overfitted models. The modelling context, including constraints on feasibility, data availability and coverage, together with the model purpose (e.g. prediction versus inference) will delineate when such practices are questionable or methodologically flawed. The fundamental issue with QRPs is that they remain *undisclosed*. Given that QRPs are practices that artificially improve the way models are perceived, full transparency allows the reader to appraise the appropriateness of practices like altering data, changing model specifications, or calculating additional performance metrics, contingent on the modelling context [@Woo2017]. Transparent reporting is essential for properly evaluating the credibility and suitability of the model for its intended application.
 
 ## *Opportunism* Setermines When Data-dependent Analytic Decisions are 'Questionable'
 
@@ -763,13 +763,13 @@ Gelman and Loken’s [-@Gelman2013] formalism describing the garden of forking p
 
 The nature of ecological data confers specific vulnerabilities to QRPs during ecological modelling. Small datasets are prevalent in ecology and often have inconsistent structure due to being collected intermittently or on a one-off occasion [@todman2023], or there are spatial constraints. Additionally, data collection is highly constrained by budget and logistical feasibility, consequently field ecologists often take a ‘kitchen sink’ approach to data collection, whereby they "often measure almost everything they can" [@MacNally2000, p. 669]. Models that analyse small datasets are more likely to be overfitted due to the high number of parameters compared to the degrees of freedom in the data [@todman2023].
 
-These conditions provide substantial opportunity for unconstrained dredging of model space whereby modellers include covariates with little or no theoretical justification or ecological relevance, leading to biologically implausible models being considered [@Fourcade2018; @Shmueli2010; @Franks2025]. Although I classified these "causal salad" approaches to modelling [@McElreath2020] as ‘poor practice’ instead of QRPs, when modellers are engaged in model dredging without predetermined selection rules and criteria, the risk of both poor and questionable practices, like model fishing, is heightened under these conditions.
+These conditions provide substantial opportunity for unconstrained dredging of model space whereby modellers include covariates with little or no theoretical justification or ecological relevance, leading to biologically implausible models being considered [@Fourcade2018; @Shmueli2010; @Franks2025]. Although we classified these "causal salad" approaches to modelling [@McElreath2020] as ‘poor practice’ instead of QRPs, when modellers are engaged in model dredging without predetermined selection rules and criteria, the risk of both poor and questionable practices, like model fishing, is heightened under these conditions.
 
 The same data constraints that facilitate model dredging also inhibit the detection of resulting problems. When datasets are small or incomplete, there is often insufficient data to perform model evaluation on independent data [@Bodner2020; @Dietze2018; @Wood2020]. When models are evaluated on training data only, data leakage causes biased estimates of performance making overfitting hard to detect [@lewis2023; @Stock2023; @Christin2021; @Kapoor2023].
 
 ## Impacts of QRPs
 
-Many of the questionable practices I identified -- particularly overhyping claims and misreporting correlative findings with causal language -- specifically target perceptions of model reliability, accuracy, and generalisability rather than traditional statistical thresholds. This supports a model-centric definition of QRPs as practices that "artificially inflate the apparent accuracy or precision of a model, its predictions, and/or evaluation tests." The mathematical formalism in the typology demonstrates the diverse ways researchers can manipulate both technical model properties and broader perceptions of model fitness for purpose, providing a comprehensive framework for understanding questionable practices in model-based research.
+Many of the questionable practices we identified -- particularly overhyping claims and misreporting correlative findings with causal language -- specifically target perceptions of model reliability, accuracy, and generalisability rather than traditional statistical thresholds. This supports a model-centric definition of QRPs as practices that "artificially inflate the apparent accuracy or precision of a model, its predictions, and/or evaluation tests." The mathematical formalism in the typology demonstrates the diverse ways researchers can manipulate both technical model properties and broader perceptions of model fitness for purpose, providing a comprehensive framework for understanding questionable practices in model-based research.
 
 QRPs collectively undermine the reliability and reproducibility of ecological modelling research in several ways:
 
@@ -886,7 +886,7 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 
 ## Step 1: Identify and collect QRPs 
 
-I haphazardly screened the published literature to generate an initial list of terms for QRPs in NHST research, to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling:
+We haphazardly screened the published literature to generate an initial list of terms for QRPs in NHST research, to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling:
 
 -   "`modelling_area` AND type I error"
 -   "`modelling_area` AND false positive"
@@ -924,11 +924,11 @@ While, a formatted version can be downloaded and viewed in a web browser from:
 
 **Categorising QRPs into Classes**
 
-I adopted Nagy et al.'s [-@Nagy2025] approach and grouped QRPs consisting of the same family of research behaviours into broad classes `QRP_coded`. Some umbrella terms were common QRPs in hypothesis testing research, some were hypothesis-testing analogues, while others were modelling-specific. Where possible I used existing umbrella terms used by Nagy et al. [-@Nagy2025] and others [e.g. @Liu2020], but created other terms if no existing terms were applicable.
+We adopted Nagy et al.'s [-@Nagy2025] approach and grouped QRPs consisting of the same family of research behaviours into broad classes `QRP_coded`. Some umbrella terms were common QRPs in hypothesis testing research, some were hypothesis-testing analogues, while others were modelling-specific. Where possible we used existing umbrella terms used by Nagy et al. [-@Nagy2025] and others [e.g. @Liu2020], but created other terms if no existing terms were applicable.
 
 ## Step 3: Refine QRP and QRP Class descriptions, aggregate QRPs {.appendix }
 
-I aggregated similar practices identified from different published sources `practice_description` into broader descriptions of individual QRPs `QRP_description`, which are listed in @tbl-QRP, along with their broader classes and point in the modelling process.
+We aggregated similar practices identified from different published sources `practice_description` into broader descriptions of individual QRPs `QRP_description`, which are listed in @tbl-QRP, along with their broader classes and point in the modelling process.
 
 ::: landscape
 ```{r}
