@@ -906,7 +906,7 @@ We haphazardly screened the published literature to generate an initial list of 
 -   "`modelling_area` AND bad modelling practice"
 -   Where `modelling_area` included 'predictive modelling', 'habitat modelling', 'Species Distribution Modelling (SDM)', 'Ecological Niche Modelling', 'Ecological Modelling', 'Environmental Modelling'.
 
-I inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, we  took the logical inverse of these practices as the QRP. We ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for changes in research practices. We excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
+We inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, we  took the logical inverse of these practices as the QRP. We ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for changes in research practices. We excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
 
 ## Step 2: Collate and Code QRPs
 
