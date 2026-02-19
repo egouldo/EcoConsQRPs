@@ -864,9 +864,23 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 
 :::
 
-## QRP Literature Review {.appendix #sec-appendix-2}
+::: {.content-visible unless-format="html"}
+```{=latex}
+\newpage
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+```
 
-### Step 1: Identify and collect QRPs {.appendix}
+:::
+
+# Appendices {.unnumbered}
+
+# QRP Literature Review {.appendix #sec-appendix-2}
+
+## Step 1: Identify and collect QRPs 
 
 I haphazardly screened the published literature to generate an initial list of terms for QRPs in NHST research, to guide search term selection in ecological modelling and related modelling fields. We used the following search terms to identify potential QRPs in different areas of ecological modelling:
 
@@ -890,7 +904,7 @@ I haphazardly screened the published literature to generate an initial list of t
 
 I inferred QRPs from practices described by authors with value judgements, such as "good" or "best practice," "bad" or "poor practice." For positively ascribed practices, we  took the logical inverse of these practices as the QRP. We ignored perceived 'inconsequential' practices, and instead included practices that were commonly or routinely conducted and where authors argued strongly for changes in research practices. We excluded QRPs that pertained to fraud, misconduct, or nefarious intent.
 
-### Step 2: Collate and Code QRPs {.appendix }
+## Step 2: Collate and Code QRPs
 
 **Collating & Coding**
 
@@ -908,7 +922,7 @@ While, a formatted version can be downloaded and viewed in a web browser from:
 
 I adopted Nagy et al.'s [-@Nagy2025] approach and grouped QRPs consisting of the same family of research behaviours into broad classes `QRP_coded`. Some umbrella terms were common QRPs in hypothesis testing research, some were hypothesis-testing analogues, while others were modelling-specific. Where possible I used existing umbrella terms used by Nagy et al. [-@Nagy2025] and others [e.g. @Liu2020], but created other terms if no existing terms were applicable.
 
-### Step 3: Refine QRP and QRP Class descriptions, aggregate QRPs {.appendix }
+## Step 3: Refine QRP and QRP Class descriptions, aggregate QRPs {.appendix }
 
 I aggregated similar practices identified from different published sources `practice_description` into broader descriptions of individual QRPs `QRP_description`, which are listed in @tbl-QRP, along with their broader classes and point in the modelling process.
 
@@ -1029,8 +1043,9 @@ QRP_step2 |>
 
 :::
 
+# Synthetic Example Code {.appendix #sec-QRP-app-synth-code}
 
-## Synthetic Example Code {.appendix #sec-QRP-app-synth-code}
+
 
 ```{r}
 #| echo: true
