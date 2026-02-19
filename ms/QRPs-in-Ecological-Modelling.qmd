@@ -1074,7 +1074,7 @@ Code used to generate synthetic worked example in @fig-synthetic-example.
 #| lst-cap: "Code used to generate synthetic worked example in @fig-synthetic-example."
 #| tidy: styler
 #| file: "../R/synthetic_example_QRPs.R"
-
+#| code-fold: false
 ```
 
 :::
