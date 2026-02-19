@@ -29,9 +29,11 @@ author:
       - ref: 2
 affiliations:
   - id: 1
-    name: The University of Melbourne, School of Agriculture, Food and Ecosystem Sciences
+    department: The University of Melbourne
+    name: School of Agriculture, Food and Ecosystem Sciences
   - id: 2
-    name: The University of Melbourne, School of Historical and Philosophical Studies
+    department: The University of Melbourne
+    name: School of Historical and Philosophical Studies
 format:
   html:
     page-layout: article
