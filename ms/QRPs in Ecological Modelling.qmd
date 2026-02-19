@@ -587,7 +587,7 @@ A synthetic illustration of model fishing & scenario hacking (HARKing). **A.** V
 #| echo: false
 #| label: pdf-caption-fig-synthetic-example
 
-fig_synthetic_example_caption <- "Illustration of model fishing and scenario hacking (HARKing) with a synthetic example. Extended caption is located in Box \ref{boxsyntheg}."
+fig_synthetic_example_caption <- "Illustration of model fishing and scenario hacking (HARKing) with a synthetic example. Extended caption is located in Box \\ref{boxsyntheg}."
 
 ```
 
