@@ -623,7 +623,7 @@ magick::image_read_pdf(here::here("figures/synthetic_example_QRPs.pdf")) %>%
 
 :::
 
-## Formalising the "Garden of Forking Paths" in Model-Based Research {#sec-QRP-formalism}
+# Formalising the "Garden of Forking Paths" in Model-Based Research {#sec-QRP-formalism}
 
 In this section, we  extend Gelman and Loken’s [-@Gelman2013] mathematical formalism explaining the emergence of QRPs, or the "garden of forking paths" to model-based research. Outlining the mathematical formulation of QRPs for ecological modelling helps to formally differentiate defensible and questionable data-dependent decisions.
 
@@ -634,7 +634,7 @@ Box \ref{boxformalism} helps us to *formally* distinguish between defensible and
 ::: {#boxformalism .Box title="Formal Description of Questionable Research Practices"}
 The modeller makes a series of analytic decisions to derive $M_p$ from $M_s$, from $M_c$, referred to hereafter as $M$ for simplicity (see @sec-modelling-objects for notation definitions). We term the sequence of modelling choices throughout the modelling process the realised "modelling path." Analytic uncertainty, or analogously 'researcher degrees of freedom,' propagates combinatorially along each decision-point to inform a multiplicity of plausible analysis strategies [@Hoffmann2021] constituting the "garden of forking paths" [@Gelman2013]. Consider that a modeller faces some decision $C$ along that path about a modelling task concerning model $M$ and some observed data $\symbf{X}$, with a predetermined choice or decision rule $\phi$. Decisions made before observing data or model outputs reflect idealised practice where choices are predetermined and independent of results $C(\mathbf{X}, M; \phi)$. When the modelling choice is "data-contingent" $\phi(\symbf{X},M, M_j)$ insofar as it hinges on the observed state of the model(s) $M$ and/or any associated outputs $M_j$ and data $\symbf{X}$ at that point along the modelling path, it satisfies a broad definition of 'questionable.'
 
-I define defensible data-dependent decisions $\phi_D$ as following a systematic process $\Psi_{\text{systematic}}$:
+We define defensible data-dependent decisions $\phi_D$ as following a systematic process $\Psi_{\text{systematic}}$:
 
 $$
 \begin{aligned}
