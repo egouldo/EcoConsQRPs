@@ -1,5 +1,6 @@
 ---
 title: A Framework for Questionable Research Practices in Ecological Modelling
+embed-resources: true
 running-head: Questionable Research Practices in Ecological Modelling
 shorttitle: A Framework for QRPs in Ecological Modelling
 shortauthors: Gould et. al. 
