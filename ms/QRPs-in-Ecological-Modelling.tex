@@ -1,0 +1,3139 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{3}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Libertinus Serif}
+  \setsansfont[]{Jost}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+% -----------------------
+% CUSTOM PREAMBLE STUFF
+% -----------------------
+
+% -----------------
+% Title block stuff
+% -----------------
+
+% Abstract
+\usepackage[runin]{abstract}
+\renewcommand{\abstractnamefont}{\sffamily\small\bfseries}
+\renewcommand{\abstracttextfont}{\sffamily\small}
+\setlength{\absleftindent}{5pt}
+\setlength{\absrightindent}{\absleftindent}
+
+% Title
+\usepackage{titling}
+\pretitle{\par\begin{flushleft}\LARGE\sffamily\bfseries}
+\posttitle{\par\end{flushleft}\vskip 10pt}
+
+% Keywords
+\newenvironment{keywords}
+{\small\sffamily{\sffamily\small\bfseries{Keywords.}}}
+
+% Authors
+\usepackage{orcidlink}  % Create automatic ORCID icons/links
+%\renewcommand{\and}{\end{tabular} \hskip 3em \begin{tabular}[t]{@{\hspace{0em}}l@{}}}
+\preauthor{\begin{flushleft}
+           \lineskip 1.5em}
+\postauthor{\end{flushleft}}
+
+% ------------------
+% Section headings
+% ------------------
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\sffamily\bfseries\raggedright}
+\titleformat*{\subsection}{\large\sffamily\bfseries\raggedright}
+\titleformat*{\subsubsection}{\normalsize\sffamily\bfseries\raggedright}
+\titleformat*{\paragraph}{\small\sffamily\bfseries\raggedright}
+
+%\titlespacing{<command>}{<left>}{<before-sep>}{<after-sep>}
+% Starred version removes indentation in following paragraph
+\titlespacing*{\section}{0em}{2em}{0.1em}
+\titlespacing*{\subsection}{0em}{1.25em}{0.1em}
+\titlespacing*{\subsubsection}{0em}{0.75em}{0em}
+
+% ------------------
+% Headers/Footers
+% ------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L,C,R]{}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\fancypagestyle{plain}{%
+    \renewcommand{\headrulewidth}{0pt}%
+    \fancyhf{}%
+    \fancyfoot[R]{\thepage}%
+}
+\renewcommand\footnoterule{\rule{\linewidth}{0.1pt}\vspace{5pt}}
+
+% ------------------
+% Captions
+% ------------------
+\usepackage[labelfont=bf,labelsep=period]{caption}
+\captionsetup[figure]{font=footnotesize,justification=raggedright,singlelinecheck=false,format=hang}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code listing support
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % Code listing float environment
+% \usepackage{newfloat}
+% \DeclareFloatingEnvironment[
+%   fileext=lol,
+%   listname={List of Listings},
+%   name=Listing,
+%   placement=tbp,
+% ]{codelisting}
+% 
+% % Enable cross-referencing for code listings
+% \usepackage{cleveref}
+% \crefname{codelisting}{listing}{listings}
+% \Crefname{codelisting}{Listing}{Listings}
+% 
+% % List of Listings entry formatting to match LOF/LOT
+% \renewcommand{\l@codelisting}[2]{%
+%   {\sffamily\@dottedtocline{1}{0em}{3em}{#1}{\sffamily#2}}%
+% }
+% 
+% % Simple listing environment
+% \newenvironment{simplelisting}[2][]{%
+%   \refstepcounter{codelisting}%
+%   \addcontentsline{lol}{codelisting}{\protect\numberline{\thecodelisting}#2}%
+%   \ifx&#1&\else\label{#1}\fi%
+%   \par\medskip\noindent%
+%   \textbf{Listing \thecodelisting:} #2\par\smallskip\noindent%
+% }{%
+%   \par\medskip%
+% }
+
+% ---------------------------
+% END CUSTOM PREAMBLE STUFF
+% ---------------------------
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{booktabs, caption, longtable, colortbl, array}
+\usepackage[font=small,labelfont={bf,small}]{caption}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\AtBeginDocument{\renewcommand*{\proofname}{Proof}}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem{refremark}{Remark}[section]
+\newtheorem{refsolution}{Solution}[section]
+\makeatother
+\makeatletter
+\usepackage{pdflscape}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{sidenotes}{}{\usepackage{sidenotes}}
+\@ifpackageloaded{marginnote}{}{\usepackage{marginnote}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\ifdefined\ul\renewcommand{\ul}[1]{\underline{#1}}\fi % because soul conflicts with tcolorbox
+%%%% ---foldboxy preamble ----- %%%%%
+
+\definecolor{fobx-default-color1}{HTML}{c7c7d0}
+\definecolor{fobx-default-color2}{HTML}{a3a3aa}
+
+\definecolor{fobox-color1}{HTML}{c7c7d0}
+\definecolor{fobox-color2}{HTML}{a3a3aa}
+
+% arguments: #1 typelabelnummer: #2 titel: #3
+\newenvironment{fobx}[2]{\begin{tcolorbox}[enhanced, breakable,%
+attach boxed title to top*={xshift=1.4pt},
+boxed title style={boxrule=0.0mm, fuzzy shadow={1pt}{-1pt}{0mm}{0.1mm}{gray}, arc=.3em, rounded corners=east, sharp corners=west}, colframe=#1-color2, colbacktitle=#1-color1, colback = white, coltitle=black,  titlerule=0mm, toprule=0pt, bottomrule=.7pt, leftrule=.3em, rightrule=0pt, outer arc=.3em,  arc=0pt,	 sharp corners = east, left=.5em, bottomtitle=1mm, toptitle=1mm,title={#2}]}
+{\end{tcolorbox}}
+
+% boxed environment with right border
+\newenvironment{fobxSimple}[2]{\begin{tcolorbox}[enhanced, breakable,%
+attach boxed title to top*={xshift=1.4pt},
+boxed title style={boxrule=0.0mm, fuzzy shadow={1pt}{-1pt}{0mm}{0.1mm}{gray}, arc=.3em, rounded corners=east, sharp corners=west}, colframe=#1-color2, colbacktitle=#1-color1, colback = white, coltitle=black,  titlerule=0mm, toprule=0pt, bottomrule=.7pt, leftrule=.3em, rightrule=.7pt, outer arc=.3em,  	left=.5em, right=.5em, bottomtitle=1mm, toptitle=1mm,title={#2}]}
+{\end{tcolorbox}}
+
+%%%% --- end foldboxy preamble ----- %%%%%
+%%==== colors from yaml ===%
+\definecolor{Box-color1}{HTML}{c0c0c0}
+\definecolor{Box-color2}{HTML}{808080}
+%=============%
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={A Framework for Questionable Research Practices in Ecological Modelling},
+  pdfauthor={Elliot Gould; Hannah S. Fraser; Bonnie C. Wintle; Libby Rumpff; Fiona Fidler},
+  pdfkeywords={questionable research practices, ecological
+modelling, metaresearch, transparency, reproducibility, model
+credibility, researcher degrees of freedom},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+
+\title{A Framework for Questionable Research Practices in Ecological
+Modelling}
+% subtitles do not seem to work with article class?
+%%\subtitle{}
+
+\author{
+{\bfseries \normalsize Elliot Gould~\orcidlink{0000-0002-6585-538X}}%
+\thanks{Corresponding author.} \\%
+ \small School of Agriculture, Food and Ecosystem Sciences, The
+University of Melbourne \\%
+{\footnotesize \url{elliot.gould@unimelb.edu.au}} \\\vspace{10pt}
+{\bfseries \normalsize Hannah S.
+Fraser~\orcidlink{0000-0003-2443-4463}}%
+ \\%
+ \small School of Agriculture, Food and Ecosystem Sciences, The
+University of Melbourne \\%
+{\footnotesize \url{}} \\\vspace{10pt}
+{\bfseries \normalsize Bonnie C.
+Wintle~\orcidlink{0000-0003-0236-6906}}%
+ \\%
+ \small School of Agriculture, Food and Ecosystem Sciences, The
+University of Melbourne \\%
+{\footnotesize \url{}} \\\vspace{10pt}
+{\bfseries \normalsize Libby Rumpff~\orcidlink{0000-0001-9400-8086}}%
+ \\%
+ \small School of Agriculture, Food and Ecosystem Sciences, The
+University of Melbourne \\%
+{\footnotesize \url{}} \\\vspace{10pt}
+{\bfseries \normalsize Fiona Fidler~\orcidlink{0000-0002-2700-2562}}%
+ \\%
+ \small School of Historical and Philosophical Studies, The University
+of Melbourne \\%
+{\footnotesize \url{}} \\\vspace{10pt}
+}
+
+\predate{}
+\postdate{}
+\date{}
+\begin{document}
+
+% for some reason this does not work in header
+\renewcommand{\abstractname}{Abstract.}
+
+% add the short title to the fancy header
+\fancyhead[R]{A Framework for QRPs in Ecological Modelling}
+\fancyhead[L]{Gould et. al.}
+
+\maketitle
+%\noindent \rule{\linewidth}{.5pt}
+\begin{abstract}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Questionable research practices (QRPs) bias the published literature
+  towards apparently strong and conclusive results, resulting in low
+  rates of replicability. Recent metaresearch reveals that ecology is
+  not immune to the `reproducibility crisis' seen in other disciplines,
+  due to similar rates of QRPs and a lack of transparency in published
+  research. However, metaresearch to date focuses on hypothesis-testing
+  research and treats data-dependent analytic decisions as inherently
+  questionable. This is not a good fit for ecology and related fields
+  that conduct exploratory or predictive research using complex models,
+  where data-dependent decisions are often necessary and legitimate
+  aspects of the modelling process.
+\item
+  To aid in understanding why and how frequently QRPs occur, and how
+  severe the consequences might be, we develop a conceptual framework
+  describing QRPs in ecological modelling, distinguishing questionable
+  from legitimate data-dependent decisions. we present a typology of
+  QRPs organised by decision-making mechanism and target, reframing QRPs
+  in modelling as practices that inflate perceived model credibility,
+  rather than as producing false-positive statistical results.
+\item
+  We identified six QRP classes that may occur at various points in the
+  modelling process: selective reporting, S-hacking (manipulating
+  performance metrics), model fishing, sample curation, HARKing and
+  overhyping. These practices threaten the reliability and
+  reproducibility of model-based research by artificially inflating the
+  apparent credibility of models.
+\item
+  We aim to raise awareness among modellers about different types of
+  QRPs and how they might emerge in ecological modelling. We offer
+  strategies to mitigate QRP risks, while preserving legitimate adaptive
+  decision-making characteristic of ecological modelling.
+\end{enumerate}
+\end{abstract}
+\begin{keywords}
+\def\sep{;\ }
+questionable research practices\sep ecological
+modelling\sep metaresearch\sep transparency\sep reproducibility\sep model
+credibility\sep 
+researcher degrees of freedom
+\end{keywords}
+%\noindent \rule{\linewidth}{.5pt}
+
+
+\section{Introduction}\label{introduction}
+
+Self-report surveys of researchers' statistical practices suggest high
+rates of Questionable research practices (QRPs) in several different
+disciplines: psychology (John, Loewenstein, and Prelec 2012), education
+(Makel et al. 2023) and ecology (Fraser et al. 2018). QRPs are a set of
+methodological and statistical practices that can substantially
+influence research conclusions, and include practices like
+\emph{p}-hacking, hypothesising after results are known (HARKing) and
+selective reporting of results (see Table~\ref{tbl-QRP-examples}). These
+practices fall into an ``ethical grey zone'' between ideal responsible
+research conduct and unacceptable research behaviours like fabrication
+and plagiarism (Butler, Delaney, and Spoelstra 2017, 94). Widespread
+QRPs, accompanied by a lack of transparency and openness in research
+reporting (Culina et al. 2020), can leave disciplines at risk of a
+`reproducibility crisis' (Fidler et al. 2017).
+
+Current definitions and lists of QRPs are focused on hypothesis testing
+research (specifically, null hypothesis significance testing; NHST),
+characterising these practices as inflating the probability of false
+positive findings (see Table 3 in Nagy et al. 2025). This definition
+makes sense in this context, since this is the primary statistical
+estimand on which a finding is deemed `publishable' in null-hypothesis
+significance testing. Indeed, Fraser et al.'s (2018) survey of ecology
+researchers asked how often they used QRPs documented in other
+disciplines, and many QRPs relate to \emph{p}-values
+(Table~\ref{tbl-QRP-examples}). However, this NHST-centric focus creates
+particular challenges for ecology, because, although NHST is still
+popular in ecology (Fidler et al. 2017; Stephens, Buskirk, and Rio
+2007), model-based methods in ecology are increasingly common,
+especially within applied research contexts (Connolly et al. 2017;
+García-Díaz et al. 2019; DeAngelis et al. 2021). The emphasis of
+existing QRP definitions on Type I errors is unhelpful for model-based
+research because multiple sources and types of error may arise in the
+modelling process; there is model structural uncertainty, uncertainty in
+parameter estimates and predictions, and uncertainty in scenarios
+(Rounsevell et al. 2021; Simmonds et al. 2024). What constitutes an
+`error', the source of that error, as well as the relative weighting of
+different errors, depend on some combination of the model's purpose
+(prediction, explanation, description), the type of model used
+(correlative or mechanistic) and the context for the model. Without a
+more encompassing definition of QRPs, ecological modellers may be
+inclined to think that concerns associated with QRPs and reproducibility
+are irrelevant, since many of the practices described as questionable
+within an NHST context do not directly relate to their work.
+
+\begin{table}
+
+\caption{\label{tbl-QRP-examples}Examples and self-reported frequency of
+questionable research practices (QRPs) in hypothesis-testing research in
+ecology and evolutionary biology. QRPs are categorised as
+``cherry-picking,'' ``\emph{p}-hacking,'' and ``methodologically
+flawed,'' indicated by the cherry, saw, and cross icons respectively.
+Data compiled from Fraser et al. (2018) and abbreviations defined by
+Makel et al. (2023). Ecology: \(n=494\); Evolution: \(n=313\).}
+
+\centering{
+
+\includegraphics[width=6.98in,height=\textheight,keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/unnamed-chunk-1-1.png}
+
+}
+
+\end{table}%
+
+Building on these limitations, we argue that current QRP frameworks fail
+to address model-based research because the underlying research
+processes are fundamentally different. One principle underlying the
+classification of these practices as `questionable' relates to data
+driven decision making. In contrast to hypothesis testers, modellers
+make a series of analytic decisions on the basis of both objectively
+identified model performance criteria and subjective judgements (Babel,
+Vinck, and Karssenberg 2019; Bennett et al. 2013), whereby they shift
+between subjecting the model to analysis, validation and testing, and
+refining the model in response to those results (Getz et al. 2017). This
+process is non-linear, iterative, and generates many interim versions of
+the model preceding publication (Augusiak, Van den Brink, and Grimm
+2014).
+
+Rather than dichotomous inferences relying almost exclusively on
+\emph{p}-values, model performance metrics include both qualitative and
+quantitative measures that incrementally build a subjective picture of
+model credibility (Augusiak, Van den Brink, and Grimm 2014; Hamilton et
+al. 2019). Since the publishability of a model-based study hinges on the
+collection of these model outputs and their contribution to overall
+model credibility, each of these model outputs may be susceptible to
+QRPs that aim to strategically alter the perceived credibility of the
+model.
+
+As such, we argue that a conceptual framework of QRPs in model-based
+research must account for certain kinds of data-dependent decisions,
+which are appropriate and justifiable aspects of the modelling process,
+while highlighting the primacy of guarding against data-dependent
+decision-making that might be questionable. Moreover, the conceptual
+framework should de-emphasise the risk of type I errors and false
+positive findings to account for other biases more relevant to how
+complex models are evaluated and used.
+
+This begs the question of whether QRPs are relevant to model-based
+research? If specific QRPs related to \emph{p}-values do not apply, such
+as \emph{p}-hacking, are there parallel or counterpart practices that
+do? What form might they take? And where in the research process would
+we be likely to locate them? This paper addresses each of these
+questions. Our primary aim is to highlight the range of specific
+practices that are problematic in different stages of the modelling
+process, so as to identify the QRPs and associated decision-points
+relevant to model-based research. We aim to raise awareness among
+ecologists (and modellers within other disciplines) about the potential
+for QRPs throughout the modelling process. We hope to facilitate future
+attempts to estimate the severity and extent of QRPs and provide
+solutions to help mitigate questionable practices in model-based
+research.
+
+\section{Conditions for Questionable Research Practices in Ecological
+Modelling}\label{conditions-for-questionable-research-practices-in-ecological-modelling}
+
+Below we outline the conditions under which QRPs may arise in ecological
+modelling and give an overview of the modelling process and the
+`objects' it produces (inputs, outputs, the model itself). This sets the
+scene for exploring how QRPs could unfold in model-based research.
+
+\subsection{What Makes a Model Publishable? Identifying motivations for
+QRPs}\label{what-makes-a-model-publishable-identifying-motivations-for-qrps}
+
+Understanding what makes ecological models ``publishable'' is crucial
+for identifying where QRPs might emerge, since publication bias provides
+a primary motivation for engaging in questionable practices (Ware and
+Munafò 2015). Unlike hypothesis testing research where \emph{p}-values
+serve as the main target for manipulation, model-based research involves
+multiple attributes that collectively determine publishability. These
+attributes become potential targets for the QRP classes we later
+identify in the typology (Table~\ref{tbl-typology}).
+
+\subsubsection{Model Advantage and
+Novelty}\label{model-advantage-and-novelty}
+
+Novelty is an important factor influencing the publishability of
+modelling research. Publication bias and funding stipulations reward and
+require advantage over existing approaches; either through development
+of new methodological approaches, enhanced performance of existing
+algorithms and modelling methods, or application of existing models to
+new contexts, such as new environmental conditions or ecological
+contexts (Alexandrov et al. 2011). Conversely, publication bias
+disincentivises the evaluation and testing of existing published models
+(Babel, Vinck, and Karssenberg 2019; Houlahan et al. 2016). This
+requirement for novelty incentivises model fishing and selective
+reporting, where researchers may opportunistically explore new modelling
+approaches until they achieve apparent superiority over baseline
+approaches.
+
+\subsubsection{Model Credibility}\label{model-credibility}
+
+Model credibility is based on the subjective degree of confidence that
+both the model and model-derived inferences about the real system can be
+used as claimed (Risbey et al. 2005; Augusiak, Van den Brink, and Grimm
+2014; Hamilton et al. 2019). That is, can the model adequately answer
+the research question (Christin, Hervet, and Lecomte 2020), and can it
+be used reliably to inform management decisions (Alexandrov et al.
+2011)? Credibility emerges gradually throughout the modelling process,
+by demonstrated adequacy (conceptual validity and predictive accuracy,
+Rykiel Jr 1996) and reliability (consistent performance and
+transferability, Schmolke et al. 2010; Yates et al. 2018).
+
+Unlike the binary nature of statistical significance, model credibility
+builds incrementally through multiple performance metrics and evaluation
+approaches (Figure~\ref{fig-modelling-process}, model outputs). This
+multi-faceted assessment creates numerous opportunities for statistic
+hacking, or ``S-hacking'' (Table~\ref{tbl-typology} and
+Table~\ref{tbl-QRP-types}), where researchers can manipulate i)
+performance metric selection and thresholds, ii) validation approaches
+and data partitioning strategies, and iii) evaluation timeframes and
+spatial scales. The subjective nature of credibility assessment also
+fosters \emph{overhyping} (Table~\ref{tbl-QRP-types}), where model
+capabilities are overstated beyond what evaluation results justify.
+
+\subsubsection{Context-dependent
+Vulnerabilities}\label{context-dependent-vulnerabilities}
+
+A suite of modelling objects is generated throughout the modelling
+process (described below), collectively building a subjective picture of
+the publishability and credibility of the model. These outputs may be
+manipulated to improve the chance of model acceptance or publication.
+Models that serve different purposes are vulnerable to different QRPs
+and depending on the combination of modelling approach, model type
+(e.g.~agnostic, correlative, or mechanistic) and purpose of the model,
+QRPs will target different model objects (Hoffmann et al. 2021). For
+instance, when the modeller's estimand of interest (``the target
+quantity to be estimated in an analysis,'' Borger and Ramesh 2025, 2)
+are parameter estimates, like in many cases of explanatory modelling in
+ecology, then QRPs are likely to affect parameter estimates, parameter
+uncertainty, goodness-of-fit metrics, or variable importance measures.
+While for analyses concerned with model predictions, QRPs are more
+likely to affect model components, like forecast accuracy metrics and
+measures of model transferability. Different questionable practices are
+concentrated at different locations across modelling phases
+(Figure~\ref{fig-QRP-map}).
+
+\subsection{Which Modelling Objects (Inputs, Outputs, the Model Itself)
+Are Affected By QRPs?}\label{sec-modelling-objects}
+
+To help conceptualise where in the modelling process QRPs might emerge,
+and which `model objects' QRPs may affect, we first give an overview of
+the modelling process, articulating various inputs and outputs,
+including the model itself, model fit statistics, summary measures and
+other evaluation results (Figure~\ref{fig-modelling-process}), to which
+we ascribe mathematical notation.\footnote{Boldface notation represents
+  a vector or a set, indicating where multiples of those objects could
+  be generated, e.g.~there may be multiple ways to operationalise a
+  conceptual model.} This framework will also provide the foundations
+for extending Gelman and Loken's (2013) mathematical formalism to
+modelling (which we do in Section~\ref{sec-QRP-formalism}).
+
+We acknowledge the plurality and lack of consensus in how the modelling
+process is described (Lahtinen, Guillaume, and Hämäläinen 2017),
+including the terminology used for different modelling phases, steps and
+tasks (Schmolke et al. 2010; Augusiak, Van den Brink, and Grimm 2014).
+Rather than adopting a comprehensive taxonomy that captures all distinct
+processes and categories of modelling, we instead describe the modelling
+process at a high-level that can be generalised across different model
+purposes, contexts, types and methods. There will, of course, be
+exceptions. Some aspects may not apply in every modelling problem, and
+the specific collection of model objects, their relative weighting in
+informing study conclusions, and the relative weighting of publishable
+attributes, will differ depending on the model purpose, context and
+methodology applied to the problem at hand. We also recognise that
+analysis decisions are \emph{procedurally} dependent (Liu, Althoff, and
+Heer 2020), for instance, the way models are specified and parameterised
+depends on the model type (i.e.~whether using a correlative,
+mechanistic, or agnostic model, \emph{sensu} Hoffmann et al. 2021) and
+modelling purpose (i.e.~exploration, inference, prediction, see
+Tredennick et al. 2021).
+
+We have divided the modelling process into three phases; 1) model
+construction, 2) model evaluation, and 3) model application. These
+distinctions align with the phases underpinning the preregistration
+template in Gould et al. (2025).
+
+\begin{figure}[!t]
+
+\centering{
+
+\includegraphics[width=4.83in,height=\textheight,keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/fig-modelling-process-1.png}
+
+}
+
+\caption[Schematic of the model development process underpinning
+mathematical formalism.]{\label{fig-modelling-process}Three phases of
+model development: model construction, where the conceptual model
+\(M_c\) is specified into the formal model (\({M_c\rightarrow M}_s\))
+then parameterised (\(M_s{\rightarrow M}_p\)); model evaluation, where
+the calibration and validation fits are evaluated, possibly leading to
+re-specification and re-parameterisation (dashed arrow); and model
+application, where the model is analysed to answer the research
+question. Modelling generates objects, including the conceptual,
+specified and parameterised model,
+(\(\symbf{M}=\left\{M_c,M_s,M_p\right\}\), purple circles); model inputs
+(blue squares), including hyper parameters \(\lambda\) and calibration
+settings, data \(\symbf{X}\) for model parameterisation, evaluation and
+application. Model outputs (\(M_j\) green hexagons) include model
+predictions \(\hat{y}\), which are used to characterise model
+performance during model evaluation or subject to further aggregation,
+transformation, analysis and visualisation during model application.
+Note: Data analyses may also inform model specification during
+construction. New or alternative input data may be used during scenario
+analysis to make predictions or projections about how the system will
+respond to intervention \(\hat{y}\).}
+
+\end{figure}%
+
+\subsubsection{\texorpdfstring{Conceptual Model,
+\(M_c\)}{Conceptual Model, M\_c}}\label{conceptual-model-m_c}
+
+To begin the model development process, a conceptual model, \(M_c\) or
+\emph{candidate set} of models, \(\symbf{M_c}\) is specified by the
+modeller, synthesising their understanding of the ecological system.
+Conceptual models may be represented by a set of qualitative statements,
+mathematical formulas, or else visually as plots or directed acyclic
+graphs (Shmueli 2010). A candidate set of multiple models at this stage
+may represent competing hypotheses, where differences in the structure
+and/or parameterisation of the models represents critical uncertainty
+about the ecological system.
+
+\subsubsection{\texorpdfstring{Specified Model,
+\(M_s\)}{Specified Model, M\_s}}\label{specified-model-m_s}
+
+Next, the modeller formalises each conceptual model mathematically or
+statistically, \(M_s\) (Figure~\ref{fig-modelling-process}). The
+modeller chooses which variables should be included in the model, how to
+operationalise or represent them in the chosen framework, what the
+appropriate dependencies are between variables and the model type, and
+the functional form of the model (if relevant). Because the variables in
+the conceptual model are not directly observable, they are
+operationalised into measurable outcomes \(Y\) and input variables \(X\)
+in a data matrix \(\symbf{X} = {X_1, X_2,\ldots,X_p}\), where \(p\) is
+the number of input variables, and \emph{f} represents a function
+relating \(Y\) to \(X\) such that
+\(E\left(Y\right) = f\left(\symbf{X}\right)\) (Hoffmann et al. 2021;
+Shmueli 2010). Note that, for some predictive modelling contexts, such
+as data-driven modelling employing black-box algorithmic approaches,
+like machine-learning, \(f\) may not be specified and is instead
+represented by \(\mathscr{I}_{\lambda}\) where \(\mathscr{I}\)
+represents some learning algorithm and \(\lambda\) denotes its
+hyperparameters (following Bischl et al. 2023). Exploratory analyses are
+often conducted at this stage to inform variable selection, for example
+by analysing variable importance and examining collinearity among
+variables (Kass et al. 2025).
+
+\subsubsection{\texorpdfstring{Parameterised Model,
+\(M_p\)}{Parameterised Model, M\_p}}\label{parameterised-model-m_p}
+
+Next, each specified model \(M_s\) is parameterised yielding \(M_p\)
+(Figure~\ref{fig-modelling-process}). Model parameters refer to any
+component of a model that can be quantified or estimated, such as slopes
+or intercepts in a linear regression or growth rate in a population
+model (García-Díaz et al. 2019, 2). Regardless of the overarching model
+purpose (e.g.~explanation or prediction, Shmueli 2010), for correlative
+or agnostic (e.g.~machine-learning) models, parameterisation typically
+occurs by \emph{estimation}, or \emph{calibration,} whereby the modeller
+applies techniques, like maximum-likelihood estimation or Bayesian
+inference, to the data matrix \(\symbf{X}\)
+(Figure~\ref{fig-modelling-process}) to estimate the parameters
+specified by \(f\), with uncertainty (García-Díaz et al. 2019; Hoffmann
+et al. 2021), yielding \(\hat{y}=\hat{f}\left(\symbf{X}\right)\). In the
+case of agnostic models, the algorithm \(\mathscr{I }_{\lambda}\)
+returns the fitted model and its parameters when applied to
+\(\symbf{X}\),
+\(\hat{y}=\hat{f}_{\hat{\lambda}}\left(\symbf{X}\right)\). Parameters of
+mechanistic models are typically provided as inputs to the specified
+model \(f\)\emph{,} gleaned from expert knowledge, published literature
+or via calibration (Hoffmann et al. 2021).
+
+When conducting inference or explanatory modelling, the estimand(s) of
+interest are the parameters \(\symbf{\hat{\theta}}\), like standardised
+mean differences, correlation coefficients or response ratios (Williams
+et al. 2025), whereas for predictive modelling, predicted values
+\(\hat{y}\) constitute the estimand(s) of interest (Tredennick et al.
+2021; Hoffmann et al. 2021; Shmueli 2010). This is true regardless of
+whether the model is correlative Silk, Harrison, and Hodgson (2020),
+mechanistic (e.g.~a population viability model), or agnostic (e.g.~a
+machine learning or deep learning models, Pichler and Hartig 2023).
+However, different types of models are more likely to be used for
+inference or prediction in practice, for example, agnostic models are
+more likely to be used for prediction, but inferences about parameters
+are certainly possible (Lucas 2020). Note that agnostic modelling
+approaches require the modeller to supply hyperparameters
+\(\symbf{\lambda}\) (Figure~\ref{fig-modelling-process}), which may be
+decided by the modeller, or else estimated by some tuning or
+optimisation method \(\symbf{\hat{\lambda}}\). Hyperparameters may
+influence the model learning process, such that with each set of
+hyperparameters the model will provide a different set of results (Ahmed
+et al. 2025).
+
+\subsubsection{Model Evaluation: Characterising model performance and
+fitness for
+purpose}\label{model-evaluation-characterising-model-performance-and-fitness-for-purpose}
+
+Arriving at the optimal final model or collection of final models is
+typically iterative, determined by the outcomes of model validation and
+evaluation (Shmueli 2010) whereby the model is subjected to a series of
+analyses that generate performance measures that are used to establish
+its validity, reliability and credibility and ensuring that the model is
+fit for intended use (Bennett et al. 2013; Eker et al. 2018; García-Díaz
+et al. 2019; Rykiel Jr 1996).
+
+We distinguish between model validation and model evaluation. Model
+validation checks that the fitted model \(M_p\) suitably approximates
+the data \(\symbf{X}\), and is evaluated using goodness-of-fit tests,
+and model diagnoses like residual analyses (Shmueli 2010). Model
+selection whittles down the candidate set of models into a single `best'
+model or a smaller subset of `best models' (e.g.~AIC within
+\(\Delta2\)), after which the modeller might choose to consider multiple
+models or conduct model averaging. Outside of formal model selection
+approaches, the procedure for determining the best model(s) may involve
+a degree of trial and error of different model structures that is not
+always preplanned (i.e.~new \(M_s\) are specified after validation).
+
+Following validation, model evaluation of the best model(s) is
+undertaken, assessing the fitness of \(M_p\) for purpose by calculating
+additional performance measures to fully understand the model's
+capabilities, like constructing confusion matrices or calculating
+omission and commission rates. Ultimately, model evaluation is
+case-dependent and context-specific insofar as the overall evaluation
+process, types of analyses, metrics, estimand of interest, and desirable
+properties of the model differing depending on the overarching modelling
+purpose and type of model and modelling approach (Tredennick et al.
+2021; Bokulich 2013).
+
+\subsubsection{Model Application and
+Analysis}\label{model-application-and-analysis}
+
+Once \(M_p\) is considered plausible and fit for purpose, the modeller
+shifts to model application (Engelschalt et al. 2023), querying the
+model and using the model to undertake analyses that inform the stated
+research questions (Figure~\ref{fig-modelling-process}). Prior to
+analysis, model output may be subject to further processing, for
+example, continuous predictions may be aggregated or transformed into
+binary predictions for visualisation and communication purposes (Feng et
+al. 2019). Explanatory model output may be visualised with coefficient
+plots, or effect size plots to inform the relevance of observed effects
+(Lüdecke et al. 2020). In applied settings, forecasts or anticipatory
+predictions into the future or across space are generated from the model
+based on plausible scenarios or to simulate outcomes under different
+management actions or policies (Paniw et al. 2023), which may be subject
+to a range of visualisations (e.g. Barros et al. 2023, fig. 2).
+
+To summarise, a collection of model outputs are generated in modelling,
+which may variously be the target of QRPs, including: point-estimates;
+such as means, medians and effect-sizes; uncertainty measures, like
+confidence intervals, prediction intervals, standard errors; model
+performance metrics, like \(R^2\) / AIC / BIC; inference results, like
+\emph{p}-values, credible intervals, and significance determinations;
+predictions and forecasts, like future values or classification
+outcomes; or, the model itself.
+
+\section{Mapping QRPs onto the Modelling Process}\label{sec-QRP-roadmap}
+
+Here, we present a taxonomy and map of QRPs derived from the modelling
+literature, which aims to illustrate the different types of QRPs that
+might occur throughout different points in the modelling process. We
+follow with a synthetic example that reveals how these different types
+of QRPs might look in practice (Box \hyperref[boxsyntheg]{1}).
+
+\subsection{Methods}\label{methods}
+
+We first surveyed the modelling literature to identify potential QRPs in
+ecological modelling and their location in the modelling process. QRPs
+were categorised into broader classes corresponding to families of
+similar practices using well-known published classifications (e.g.
+Table~\ref{tbl-QRP-examples}), adopting new classes when there was no
+analogue in the existing QRP literature. We coded the phase and
+sub-phase of modelling in which the practice occurs, as well as the
+\emph{target} of the practice (input, model, output). After initial
+coding of the QRPs we generalised the descriptions of individual
+practices and categorised them according to a QRP class schema. The
+literature review and coding are described in further detail in Appendix
+\ref{sec-appendix-2}.
+
+\subsection{Results}\label{results}
+
+We identified six classes of QRPs: sample curation, model fishing,
+selective reporting, S-hacking, overhyping, HARKing
+(Table~\ref{tbl-QRP-examples}). All classes of QRPs have analogous
+practices under NHST, but the practices themselves are not directly
+comparable. The list of QRPs we identified is not exhaustive and instead
+illustrates a range of practices that can occur in model-based research
+(See Appendix \ref{sec-appendix-2}, Table~\ref{tbl-QRP} for the complete
+list).
+
+Paradigmatic examples of QRPs are presented for each class in a roadmap
+(Figure~\ref{fig-QRP-map}), illustrating that QRPs occur throughout all
+phases of the modelling process, and some may occur at multiple stages.
+Sample curation, S-hacking and fishing were the classes of QRPs most
+likely to occur during model construction. The iterative nature of model
+validation and evaluation creates multiple opportunities for
+opportunistic optimisation of apparent model performance during model
+evaluation, with selective reporting, S-hacking and model fishing
+primarily affecting this phase of modelling. Fewer, but distinct, QRP
+types were identified for the model application phase, primarily
+concerning the misrepresentation of model capabilities and findings.
+
+The target objects affected by QRPs across modelling phases reflected
+the focus of modelling activities and tasks, with QRPs affecting the
+model itself occurring primarily during model construction and
+evaluation, and QRPs affecting the model outputs being concentrated in
+model evaluation and model application phases. Below, we briefly
+describe the different classes of QRPs, providing illustrative examples
+and explaining how they can bias results.
+
+\begin{figure}[!t]
+
+\centering{
+
+\makebox[\textwidth][c]{%
+\parbox{1.2\textwidth}{
+
+\pandocbounded{\includegraphics[keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/unnamed-chunk-2-1.pdf}}
+
+}%
+}
+
+}
+
+\caption[Synthesis of questionable research practices (QRPs) in
+ecological modelling.]{\label{fig-QRP-map}Synthesis of questionable
+research practices (QRPs) in ecological modelling. QRPs may target model
+inputs (blue squares), the model itself (purple squares), and/or model
+outputs (green squares), and may occur at different phases in the
+modelling cycle. QRPs are grouped according to broader classes defined
+in Table~\ref{tbl-QRP-types}. See Table~\ref{tbl-QRP} for the full list
+of QRPs identified.}
+
+\end{figure}%
+
+\subsubsection{Selective Reporting}\label{selective-reporting}
+
+Selective reporting involves failure to disclose methods and/or results.
+Selective reporting can be distinguished from other practices, such as
+S-hacking and model fishing, in that it lends unwarranted credibility to
+the model, but the model and model outputs remain unaffected. Instead of
+analytic decisions being data-dependent, \emph{the communication of
+those results} is data-dependent. The `garden of forking paths' is not
+altered by selective reporting but rather is not fully transparent.
+
+\subsubsection{S-hacking}\label{s-hacking}
+
+We expanded the concept of \emph{p}-hacking and termed it `S-hacking',
+or `statistic hacking', which encompasses analogous practices in
+modelling that target metrics that contribute to the publishability of a
+model. S-hacking involves an element of selective reporting, but a
+critical point of difference is that S-hacking includes the execution of
+alternative analyses and manipulation of data, models, or outputs to
+obtain a favourable result. For example, a modeller may systematically
+trial multiple different evaluation metrics, selectively reporting only
+those that present the model in a favourable light (Hildebrandt 2018).
+In this instance the model remains unaffected by S-hacking.
+Alternatively, random seeds in model tuning can be changed after
+observing test set performance which can drastically alter model results
+(Liu, Althoff, and Heer 2020). If S-hacking is performed during model
+construction or validation, or alternative model specifications are
+trialled after observing model performance results, the model itself is
+altered, and overfitted to the training data. If S-hacking is performed
+during model construction or validation, the model is overfitted to the
+training data and poorly generalises to new data. S-hacking artificially
+inflates model performance, resulting in spuriously selected models that
+that may not reflect genuine ecological or predictive relationships. Any
+performance metric with a threshold dependent outcome (e.g.~AUC, TSS,
+partial ROC, sensitivity, specificity, Feng et al. 2019) will be subject
+to the same types of practices as \emph{p}-hacking.
+
+\subsubsection{Model Fishing}\label{model-fishing}
+
+We distinguish `model \emph{fishing}' from the methodological technique
+of `model \emph{dredging}' for the purposes of exploration or model
+selection. In the case of formal model selection procedures employing
+dredging, there is some \emph{a priori} chosen objective criteria on
+which the model is selected, and the model space (usually, though not
+always) is constrained by \emph{a priori} specification of candidate
+models that are theoretically or ecologically motivated. In contrast,
+when conducting model dredging for the purposes of exploration in
+pursuit of generating new hypotheses, the initial model space may not be
+as constrained, but the dredging procedure is transparently reported,
+and the exploratory nature of the modelling exercise is disclosed and
+not mispresented post-hoc as otherwise. Model fishing occurs when the
+dredging procedure is not disclosed, and/or there is no formal criterion
+for model selection, and the overarching purpose is not exploration.
+Alternatively, model fishing can occur without dredging through a large
+model space, but by conducting alternative analyses or new model
+variations and selectively reporting only those with favourable results.
+Model fishing is problematic because of the risk of cognitive biases,
+such as hindsight bias, where post-hoc rationalisation combined with
+haphazard model selection leads to spuriously selected models. Model
+fishing therefore involves an element of systematic exploration of
+researcher degrees of freedom that is not necessarily planned, nor
+transparent.
+
+\subsubsection{Sample Curation}\label{sample-curation}
+
+Sample curation (\emph{sensu} Nagy et al. 2025) includes a range of
+data-dependent decisions about model inputs without justification or
+prior planning, i.e.~after model fitting or observing model evaluation
+or application results. Sample curation may include removing
+observations in order to make a correlation of interest become
+significant and generating a data-dependent criterion for the exclusion
+of particular observations (Nagy et al. 2025). Opportunistic handling of
+missing data could occur in a number of ways, for instance when a
+researcher attempts list-wise deletion, multiple imputation or inverse
+probability weighting. The expected results may only appear with one of
+those options, which is problematic if the researcher only reports this
+strategy in the paper, and omits the results from the other data
+handling methods (Nagy et al. 2025). Similarly, opportunistic stopping
+occurs when new data is collected and is used to re-parameterise the
+model after previously observing model validation and model evaluation
+results, without reporting results of earlier iterations
+(Table~\ref{tbl-QRP-types}, Table~\ref{tbl-QRP}).
+
+\subsubsection{Hypothesising After Results Are Known
+(HARKing)}\label{hypothesising-after-results-are-known-harking}
+
+Although the overarching purpose of ecological modelling in applied
+contexts is not hypothesis-testing, it is important to acknowledge that
+ecological models implicitly encapsulate hypotheses in the form of
+assumptions about which patterns, relationships, or predictors are most
+relevant to the system being modelled (Bodner, Fortin, and Molnár 2020;
+Prosperi et al. 2019; Schuwirth et al. 2019). For example, the choice of
+which variables to include or exclude from a model are based on implicit
+hypotheses about which processes are relevant to the system. In the case
+of modelling, HARKing can occur when a researcher presents a post-hoc
+explanation and justification for the variables or model structure that
+performed best, while failing to disclose the initial exploration of
+other variables or model structures. As such, HARKing in ecological
+modelling for purposes other than hypothesis testing is likely to occur
+as an effect of other related QRPs (Table~\ref{tbl-QRP-types}) rather
+than as the motivating practice.
+
+\subsubsection{Overhyping}\label{overhyping}
+
+Overhyping involves claims about the models' performance that are not
+substantiated by model evaluation results, such as claiming the model
+has greater generalisability than it does (Corneille et al. 2023). A
+specific form of overhyping involves misreporting correlative claims
+using causal language, which is particularly common in studies
+evaluating conservation interventions using observational study designs
+(Josefsson et al. 2020). The practice of implying causation from
+correlation can cause false confidence in the intervention's
+effectiveness while ignoring the real mechanisms for the observed
+effect.
+
+\phantomsection\label{boxsyntheg}
+\begin{fobxSimple}{Box}{\textbf{Box 1: }Synthetic Example Of
+Questionable Research Practices In Applied Ecological Modelling}
+
+A modeller seeks to predict species abundance on the basis of habitat
+quality to help inform conservation management
+(Figure~\ref{fig-synthetic-example}). When the modeller evaluates how
+two different management actions affecting habitat quality influence
+species abundance, the initial a priori model does not provide
+sufficient certainty for choosing between one action and another (Panel
+A, Stage 1). The modeller revises the model without theoretical
+justification, instead opportunistically trialling different models and
+selecting the one with the best Performance Score (Panel B). On checking
+the predicted species abundance for the two actions on the overfitted
+model, the modeller finds that the actions are still not clearly
+distinguishable in terms of their predicted outcomes (Panel A, Stage 2),
+so the modeller adjusts the scenario input values for the two management
+actions, and plots the predicted outcomes (Panel B, Stage 3). They are
+sufficiently happy that the model now clearly supports their preferred
+management action B and proceed to publish the overfitted model, its
+predictions and management recommendations without ever disclosing their
+model fishing and scenario hacking, effectively a form of HARKing
+(`hypothesising after results are known'). The impacts of the modeller's
+actions are summarised in Panel C.
+
+\textbf{Extended Caption for Figure~\ref{fig-synthetic-example}:}
+
+A synthetic illustration of model fishing \& scenario hacking (HARKing).
+\textbf{A.} Violin boxplots of predicted species abundance for two
+management actions from two models constructed at different stages of
+the modelling process: \emph{a priori} model (stage 1), a model
+generated from a model fishing exercise (stage 2), and the same model,
+but illustrating scenario hacking (stage 3). Dots are predicted values.
+Violin outlines illustrate kernel density probability distributions,
+where the width of the shaded area represents the corresponding
+proportion of data. The model-estimated median and quartiles are
+displayed for each action. Colours correspond to the scenario actions
+displayed in Panel C. \textbf{B.} Performance Scores calculated from
+multiple model performance measures for the Initial Model and a new,
+superior Overfitted Model derived from model fishing (greater overall
+Performance Score). See Lüdecke et al. (2020) for metric calculation
+details. \textbf{C.} Predicted species abundance as a function of
+habitat quality for the Initial Model (yellow line) and the Overfitted
+Model generated from the model fishing exercise (dashed orange line).
+The management action scenarios used in the first two stages of
+modelling are shown as solid light blue and light green lines. Scenario
+hacking occurs when the modeller selects two new management scenarios
+with a greater difference in mean predicted species abundance under the
+Overfitted Model. See Appendix \ref{sec-QRP-app-synth-code} for code.
+
+\end{fobxSimple}
+
+\begin{landscape}
+
+\begin{figure}[!t]
+
+\centering{
+
+\includegraphics[width=1.3\linewidth,height=\textheight,keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/unnamed-chunk-4-1.png}
+
+}
+
+\caption{\label{fig-synthetic-example}Illustration of model fishing and
+scenario hacking (HARKing) with a synthetic example. Extended caption is
+located in Box \hyperref[boxsyntheg]{1}.}
+
+\end{figure}%
+
+\end{landscape}
+
+\section{Formalising the ``Garden of Forking Paths'' in Model-Based
+Research}\label{sec-QRP-formalism}
+
+In this section, we extend Gelman and Loken's (2013) mathematical
+formalism explaining the emergence of QRPs, or the ``garden of forking
+paths'' to model-based research. Outlining the mathematical formulation
+of QRPs for ecological modelling helps to formally differentiate
+defensible and questionable data-dependent decisions.
+
+As emphasised above, we hesitate to designate all data-dependent
+analytic decisions as \emph{questionable}, as is implied in the
+prevailing literature on preregistration and QRPs. There are situations
+in modelling where decisions are necessarily dependent on the outcome of
+previous analytic decisions within the modelling workflow (Liu, Althoff,
+and Heer 2020), and so not all data-dependent analytic decisions are
+automatically \emph{questionable} within the context of modelling. For
+example, many modelling decisions are data-driven, like the choice to
+remove correlated variables or checking for distributional assumptions
+to aid in deciding the most appropriate model functional form (See Gould
+et al. (2025), Figure 4 for an example from the case study). Liu,
+Althoff, and Heer (2020) distinguish \emph{defensible} from
+\emph{questionable} motivations for engaging in data-dependent analytic
+decision-making, by classifying them as either \emph{systematic} or
+\emph{opportunistic}, respectively.
+
+Box \hyperref[boxformalism]{2} helps us to \emph{formally} distinguish
+between defensible and opportunistic data-dependent decisions, for both
+analytic and reporting decisions. This, in turn, helps to identify and
+distinguish between different types of QRPs in model-based research.
+
+\phantomsection\label{boxformalism}
+\begin{fobxSimple}{Box}{\textbf{Box 2: }Formal Description of
+Questionable Research Practices}
+
+The modeller makes a series of analytic decisions to derive \(M_p\) from
+\(M_s\), from \(M_c\), referred to hereafter as \(M\) for simplicity
+(see Section~\ref{sec-modelling-objects} for notation definitions). We
+term the sequence of modelling choices throughout the modelling process
+the realised ``modelling path.'' Analytic uncertainty, or analogously
+`researcher degrees of freedom,' propagates combinatorially along each
+decision-point to inform a multiplicity of plausible analysis strategies
+(Hoffmann et al. 2021) constituting the ``garden of forking paths''
+(Gelman and Loken 2013). Consider that a modeller faces some decision
+\(C\) along that path about a modelling task concerning model \(M\) and
+some observed data \(\symbf{X}\), with a predetermined choice or
+decision rule \(\phi\). Decisions made before observing data or model
+outputs reflect idealised practice where choices are predetermined and
+independent of results \(C(\mathbf{X}, M; \phi)\). When the modelling
+choice is ``data-contingent'' \(\phi(\symbf{X},M, M_j)\) insofar as it
+hinges on the observed state of the model(s) \(M\) and/or any associated
+outputs \(M_j\) and data \(\symbf{X}\) at that point along the modelling
+path, it satisfies a broad definition of `questionable.'
+
+We define defensible data-dependent decisions \(\phi_D\) as following a
+systematic process \(\Psi_{\text{systematic}}\):
+
+\begin{equation}\phantomsection\label{eq-defensible-data-dependent}{
+\begin{aligned}
+\phi_D(\mathbf{X}, M; \Omega, \Psi_{\text{systematic}}) = g(\mathbf{X}, M, \Omega)
+\end{aligned}
+}\end{equation}
+
+Where \(g(x)\) is a deterministic function of the data, model state, and
+predefined decision-rule \(\Omega\), based on systematic objectives such
+as, model adequacy, predictive accuracy or theoretical consistency.
+
+In contrast, we define questionable practices \(\phi_Q\) as:
+
+\begin{equation}\phantomsection\label{eq-questionable-practices}{
+\begin{aligned}
+\phi_Q(\mathbf{X}, M; \Psi_{\text{opportunistic}}) = \phi^* \\
+& \text{ such that } h(\phi^* | \mathbf{X}, M, R^*) \geq h(\phi | \mathbf{X}, M, R^*) \\
+&\text{ for all } \phi \in \Phi
+\end{aligned}
+}\end{equation}
+
+Where the decision-making is opportunistic and result-seeking
+\(\Psi_{\text{opportunistic}}\), and \(h(\phi | \mathbf{X}, M, R^*)\)
+represents how well decision \(\phi\) serves the desired outcome
+\(R^*\). Data-contingent decisions are therefore \emph{questionable}
+when a researcher's drive to make their research publishable influences
+the direction that the realised modelling path takes.
+
+A defining aspect of QRPs is that they remain undisclosed. Just as
+decisions about the modelling process can be questionable, so too can
+reporting practices. We apply the same logic describing questionable
+modelling practices to reporting practices:
+
+\begin{equation}\phantomsection\label{eq-generic-reporting-function}{
+\begin{aligned}C_{\text{Reported}} = S({C(\mathbf{X}, M, \phi)})\end{aligned}
+}\end{equation}
+
+Where \(S\) is a selecting function that determines what to report from
+a set of conducted analyses.
+
+Journal method or article length conventions restrict complete
+transparency, and not all results can be reported. The decision about
+what to report from a set of conducted analyses \(S\) is made following
+predetermined plans \(\Omega\), not contingent on observed results
+\(S_{\text{pre}}\):
+
+\begin{equation}\phantomsection\label{eq-apriori-reporting}{
+\begin{aligned}S_{\text{pre}}({C(\mathbf{X}, M, \phi)}) = s({C(\symbf{X}, M, \phi)},\Omega)\end{aligned}
+}\end{equation}
+
+Questionable reporting \(S_Q\), or as it is more commonly known,
+\emph{selective reporting}, occurs when the reporting is opportunistic
+and contingent on the observed results, and optimised for desired
+outcomes \(R^*\):
+
+\begin{equation}\phantomsection\label{eq-questionable-reporting}{
+\begin{aligned}S_Q({C(\mathbf{X}, M, \phi)}; \Psi_{\text{opportunistic}}) = C^* \\ & \text{ such that } h(C^*|R^*) \geq h(C|R^*) \\
+& \text{ for all } C \in {C(\mathbf{X}, M, \phi)}\end{aligned}
+}\end{equation}
+
+We avoid defining \(\Psi_{\text{systematic}}\) reporting decisions, as
+we did for modelling decisions, and instead advocate modellers
+prespecify what results will be reported.
+
+\end{fobxSimple}
+
+\section{A Typology of QRPs}\label{a-typology-of-qrps}
+
+Here, we present a typology of QRPs from which we designate the
+practices as questionable or defensible (Table~\ref{tbl-typology}). The
+typology considers combinations of the decision-making mechanism (a
+priori, defensible and questionable data-dependent decision-making), the
+target \(T\) of the practice (the model \(M\) or model outputs \(M_j\)),
+and the nature of reporting (prespecified or selective). This allows us
+to account for QRPs where the model and/or model outputs are directly
+affected by the questionable practice such that their realisations are
+different from what would have been observed if the practice was not
+undertaken (i.e.~\(M^*\), \(M_j^*\)), as well as QRPs where the model
+and outputs remain unaffected, but are selectively reported.
+
+Table~\ref{tbl-typology} summarises the key distinctions resulting from
+the workings in Box \hyperref[boxformalism]{2}, helping to distinguish
+between questionable and defensible data-dependent decision-making, and
+to identify different classes of QRPs, with which we provide formal
+examples. The rows in Table~\ref{tbl-typology} discriminate between
+\emph{a priori} and (defensible versus questionable) data-dependent
+decisions, while the columns distinguish between prespecified and
+selective reporting.
+
+\begin{table}
+
+\caption{\label{tbl-typology}Distinguishing between questionable and
+defensible motivations for decision making during modelling, and the
+target of the decisions. We designate questionable practices in grey
+shaded cells and assign practices to classes of QRPs (described in
+Table~\ref{tbl-QRP-types}). See Box \hyperref[boxformalism]{2} for
+notation and expanded definitions.}
+
+\centering{
+
+\includegraphics[width=5.95in,height=\textheight,keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/tbl-typology-1.png}
+
+}
+
+\end{table}%
+
+No questionable practices occur when analytic and reporting decisions
+are made \emph{a priori} (first row, first column) representing an
+idealised scenario (e.g.~preregistered analyses), which is difficult to
+implement in practice for complex ecological modelling. Moving across to
+the right, all decisions about the modelling and analysis are made a
+priori, but the results are selectively reported to improve the apparent
+suitability of the model to the analysis problem (questionable).
+
+The subsequent row represents situations where there are data-dependent
+choices made by the modeller, representing most situations in ecological
+modelling. In the first instance, there is some process stipulated
+\emph{a priori} for deciding on how the modeller will resolve any
+data-dependent decisions (e.g.~`registered flexibility,' Gould et al.
+(2025)), and it is already decided what results will be reported
+(defensible). Moving to the next column over, the modeller uses
+registered flexibility to inform modelling choices, but in this case,
+they selectively report some results (questionable). In the first two
+rows, choices about the model and modelling analysis remain unaffected
+by QRPs, even when selective reporting occurs.
+
+The final row of Table~\ref{tbl-typology} indicates QRPs where
+data-contingent decisions are optimised for preferred results \(R^*\),
+affecting either the model and/or modelling outputs. Because QRPs
+involve a degree of non-disclosure and intransparency by definition
+(Definition~\ref{def-QRP-modelling}), we have merged the two columns
+that distinguish between the presence of selective reporting. In Box
+\hyperref[boxsyntheg]{1} we formally illustrate this with two example
+QRPs, model fishing (affecting the model \(M\) itself) and scenario
+hacking (affecting the model outputs \(M_j\) only).
+
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, left=2mm, opacityback=0, leftrule=.75mm, bottomrule=.15mm, colback=white, rightrule=.15mm, toprule=.15mm, breakable, arc=.35mm]
+
+\begin{definition}[]\protect\hypertarget{def-QRP-modelling}{}\label{def-QRP-modelling}
+
+QRPs occur when a researcher makes \textbf{opportunistic} data-dependent
+\emph{analytic} and/or \emph{reporting} decisions; i.e., decisions that
+depend on an \textbf{undisclosed} desired outcome rather than a
+prespecified objective decision criterion, and which artificially
+inflate the apparent, accuracy, precision or performance of a model
+and/or its outputs, such that the model is perceived to be more
+publishable than it would be if the QRP had not occurred.
+
+\end{definition}
+
+\end{tcolorbox}
+
+In Table~\ref{tbl-QRP-types}, we present formal descriptions and
+practical examples of the different types of QRP in the typology. While
+some example scenarios may appear to be defensible data-dependent
+decisions (for example, testing different functional forms under `model
+fishing'), we include corresponding formal descriptions to remind the
+reader of the distinction between systematic and opportunistic analytic
+decision-making which denotes when data-contingent decisions are
+questionable, or not. We elaborate on these practices in the QRP map
+above (Section~\ref{sec-QRP-roadmap}).
+
+In summary, based on the mathematical formalism and typology, a clearer
+definition of QRPs in model-based research is apparent.
+
+\begin{landscape}
+
+\begin{table}
+
+\caption{\label{tbl-QRP-types}Formal descriptions of QRP classes, their
+definitions and some practical examples.}
+
+\centering{
+
+\includegraphics[width=1.1\linewidth,height=\textheight,keepaspectratio]{QRPs-in-Ecological-Modelling_files/figure-pdf/unnamed-chunk-6-1.png}
+
+}
+
+\end{table}%
+
+\end{landscape}
+
+\section{Discussion}\label{discussion}
+
+Researcher degrees of freedom threaten the credibility and reliability
+of model-based research, just as they do in hypothesis testing research.
+The findings of this Chapter underscore that researcher degrees of
+freedom abound in the modelling process, providing ample opportunity for
+QRPs that accompany researchers' drive to publish. This aligns with Liu
+et al.'s (2020) qualitative analysis of how researchers make analytic
+decisions when faced with arbitrary choices or analytic uncertainty in
+the context of a research culture that promotes publication bias. We
+showed that QRPs can occur at any point in the modelling process, and
+may affect different model objects, including the model inputs, the
+model itself, or model outputs. While our analysis identified that
+classes of QRPs are analogous to those in hypothesis-testing research,
+we also showed that there are unique aspects of methodological practices
+in ecological modelling that mean we need to define `questionable'
+research practices in our own terms -- namely, in terms that accommodate
+the iterative and adaptive nature of the modelling process and the need
+to make data-contingent decisions when modelling. These features of
+model development have resulted in significant resistance to the idea of
+QRPs in model-based research, and to the applicability of
+preregistration for mitigating them in ecological modelling (MacEachern
+and Van Zandt 2019; Dwork et al. 2015). We explore these tensions below,
+emphasising how the conceptual framework provides a way forward through
+the tricky problem of delineating where the concept of QRPs apply in
+ecological modelling, and where it does not.
+
+\subsection{\texorpdfstring{\emph{Transparency} Determines When `Poor
+Practices' are
+`Questionable'}{Transparency Determines When `Poor Practices' are `Questionable'}}\label{transparency-determines-when-poor-practices-are-questionable}
+
+Many of the practices we identified as `questionable' could simply be
+considered `poor practice,' especially when those practices result in
+biased or overfitted models. The modelling context, including
+constraints on feasibility, data availability and coverage, together
+with the model purpose (e.g.~prediction versus inference) will delineate
+when such practices are questionable or methodologically flawed. The
+fundamental issue with QRPs is that they remain \emph{undisclosed}.
+Given that QRPs are practices that artificially improve the way models
+are perceived, full transparency allows the reader to appraise the
+appropriateness of practices like altering data, changing model
+specifications, or calculating additional performance metrics,
+contingent on the modelling context (Woo, O'Boyle, and Spector 2017).
+Transparent reporting is essential for properly evaluating the
+credibility and suitability of the model for its intended application.
+
+\subsection{\texorpdfstring{\emph{Opportunism} Setermines When
+Data-dependent Analytic Decisions are
+`Questionable'}{Opportunism Setermines When Data-dependent Analytic Decisions are `Questionable'}}\label{opportunism-setermines-when-data-dependent-analytic-decisions-are-questionable}
+
+Gelman and Loken's (2013) formalism describing the garden of forking
+paths implies that data-dependent decisions, at least in the context of
+null hypothesis significance testing, are inherently questionable. This
+has limited relevance in ecological modelling because it is inherently
+adaptive. Our extension of the formalism to model-based research
+circumvents this incompatibility by distinguishing \emph{opportunistic}
+from \emph{systematic} data-dependent decisions. Based on our formalism,
+we argue that data-driven analysis decisions are not inherently
+questionable. \emph{Questionable} practices occur when the decision is
+contingent on the observed results, \emph{and} the choice is based on
+how well it serves undisclosed desired outcomes, whereas
+\emph{defensible} data-contingent decisions follow a prespecified
+decision rule.
+
+\subsection{Data Constraints Amplify the Risk of
+QRPs}\label{data-constraints-amplify-the-risk-of-qrps}
+
+The nature of ecological data confers specific vulnerabilities to QRPs
+during ecological modelling. Small datasets are prevalent in ecology and
+often have inconsistent structure due to being collected intermittently
+or on a one-off occasion (Todman, Bush, and Hood 2023), or there are
+spatial constraints. Additionally, data collection is highly constrained
+by budget and logistical feasibility, consequently field ecologists
+often take a `kitchen sink' approach to data collection, whereby they
+``often measure almost everything they can'' (Mac Nally 2000, 669).
+Models that analyse small datasets are more likely to be overfitted due
+to the high number of parameters compared to the degrees of freedom in
+the data (Todman, Bush, and Hood 2023).
+
+These conditions provide substantial opportunity for unconstrained
+dredging of model space whereby modellers include covariates with little
+or no theoretical justification or ecological relevance, leading to
+biologically implausible models being considered (Fourcade, Besnard, and
+Secondi 2018; Shmueli 2010; Franks, Ruxton, and Sherratt 2025). Although
+we classified these ``causal salad'' approaches to modelling (McElreath
+2020) as `poor practice' instead of QRPs, when modellers are engaged in
+model dredging without predetermined selection rules and criteria, the
+risk of both poor and questionable practices, like model fishing, is
+heightened under these conditions.
+
+The same data constraints that facilitate model dredging also inhibit
+the detection of resulting problems. When datasets are small or
+incomplete, there is often insufficient data to perform model evaluation
+on independent data (Bodner, Fortin, and Molnár 2020; Dietze et al.
+2018; Wood et al. 2020). When models are evaluated on training data
+only, data leakage causes biased estimates of performance making
+overfitting hard to detect (Lewis et al. 2023; Stock, Gregr, and Chan
+2023; Christin, Hervet, and Lecomte 2020; Kapoor and Narayanan 2023).
+
+\subsection{Impacts of QRPs}\label{impacts-of-qrps}
+
+Many of the questionable practices we identified -- particularly
+overhyping claims and misreporting correlative findings with causal
+language -- specifically target perceptions of model reliability,
+accuracy, and generalisability rather than traditional statistical
+thresholds. This supports a model-centric definition of QRPs as
+practices that ``artificially inflate the apparent accuracy or precision
+of a model, its predictions, and/or evaluation tests.'' The mathematical
+formalism in the typology demonstrates the diverse ways researchers can
+manipulate both technical model properties and broader perceptions of
+model fitness for purpose, providing a comprehensive framework for
+understanding questionable practices in model-based research.
+
+QRPs collectively undermine the reliability and reproducibility of
+ecological modelling research in several ways:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Inflated performance estimates} that do not reflect true
+  performance and result in overfitting.
+\item
+  \textbf{Spurious model selection} that identifies models based on
+  chance rather than plausible biological mechanisms or predictive
+  relationships.
+\item
+  \textbf{Reduced reproducibility} due to undisclosed researcher degrees
+  of freedom.
+\item
+  \textbf{Compromised generalisability} from overfitted models that fail
+  to transfer to new contexts or make accurate forecasts.
+\item
+  \textbf{False confidence} in ecological understanding and management
+  recommendations.
+\end{enumerate}
+
+Overfitted models are fitted to both regular and irregular features of
+the sampled data but are unable to distinguish between them (Pu et al.
+2019), generating spurious predictions that poorly generalise to new
+data (Todman, Bush, and Hood 2023; Lewis et al. 2023). In applied
+ecological modelling, where modelling is often focused on generating
+anticipatory predictions to inform management or policy decisions, this
+is particularly problematic.
+
+The prevalence of these practices suggests systemic issues in training,
+incentives, and quality control within the ecological modelling
+community. The concentration of QRPs in the model construction and
+evaluation phases indicates particular vulnerabilities in how models are
+specified, fitted, and evaluated. The large number of decision-points
+where researchers can exercise degrees of freedom suggest that
+safeguards should target these critical phases of the modelling process.
+
+\subsection{Potential Solutions}\label{potential-solutions}
+
+\subsubsection{Raising Awareness}\label{raising-awareness}
+
+Awareness of the distinction between systematic and opportunistic
+data-dependent decisions is limited, and because some data-dependent
+decisions are a legitimate aspect of the modelling process, it may seem
+that all data-dependent decisions are acceptable. The impact of
+data-dependent decisions in machine learning is increasingly understood
+and is encapsulated within the term `data leakage,' whereas in
+ecological modelling more broadly, the equivalent problem of `model
+selection bias' remains mostly overlooked (Campbell 2021) and
+underappreciated within applied research contexts (Arnqvist 2020). Here,
+we emphasise an intersecting problem that has been attributed as a major
+cause of science's reproducibility crisis, where data-contingent
+decisions may be opportunistically exploited to increase the likelihood
+of publication. We have formalised the distinction between defensible or
+questionable research practices, facilitating a modelling-appropriate
+conceptualisation of QRPs. As a first step in addressing the threat of
+QRPs to the credibility of model-based research, we wish to draw
+attention to this distinction -- and the possible consequences of QRPs
+-- among the ecological modelling community. However, given that
+cognitive biases are rarely deliberate, awareness alone is insufficient
+for preventing QRPs within a publish-or-perish research culture (Zvereva
+and Kozlov 2021).
+
+\subsubsection{Increasing Transparency}\label{increasing-transparency}
+
+Modelling is not typically transparent, leaving readers unable to assess
+whether appropriate models were used or to identify the primary research
+contribution (Arnqvist 2020). Given that the threat of QRPs largely
+stems from a lack of disclosure, ecological modelling is at significant
+risk of QRPs. We echo broader calls for improving transparency in
+ecology (Parker et al. 2016; Powers and Hampton 2018; Rose E. O'Dea et
+al. 2021), emphasising that transparency is a fundamental requirement
+for reducing the risk of QRPs in ecological modelling. It is
+acknowledged that modelling's lack of transparency is, in large part,
+driven by sociocultural and institutional norms that restrict the length
+of a paper, require a neat and coherent narrative and favour some data
+analysis techniques and results over others (Rijnhart et al. 2021).
+Broader methodological reform in research culture, as well as specific
+tools, are needed to achieve improvements in transparency.
+
+Reporting checklists and guidelines outline a minimum set of
+methodological elements and results to include in published research and
+are increasingly being adopted by journals in ecology (Nature 2018;
+Fidler et al. 2018; Hillebrand and Gurevitch 2013; Haddaway et al. 2018;
+R. E. O'Dea et al. 2021). However, there are only a handful of reporting
+checklists developed for ecological modelling, and no ecology journals
+have encouraged or mandated modelling-specific checklists at the time of
+writing. We leave the work of defining the content of reporting
+checklists up to the ecological modelling community, but reiterate
+repeated calls in the modelling community to articulate the model's
+purpose, context and performance criteria, ideally before modelling
+begins (Wood et al. 2020; Bennett et al. 2013; Jakeman, Letcher, and
+Norton 2006). This chapter illustrates when practices are questionable,
+and that many QRPs target or alter model performance metrics -- either
+through direct manipulation of the model and model outputs, or through
+selective reporting. Specifying these decisions \emph{a priori} and
+reporting them reduces inadvertent engagement in QRPs and equips readers
+to evaluate the risk of QRPs.
+
+\subsubsection{Preregistration \& Registered
+Reports}\label{preregistration-registered-reports}
+
+Preregistration, and registered reports, have been hailed as a solution
+for preventing QRPs, and recent metaresearch empirically supports its
+efficacy (Burgman et al. 2023; Purgar et al. 2024; Nakagawa et al.
+2025). However, there has been substantial resistance in model-related
+fields (MacEachern and Van Zandt 2019; Dwork et al. 2015) because
+preregistration is geared towards a NHST-focused definition of QRPs,
+that is, data-dependent analytic decisions. We argue here that there is
+a distinction to be made between systematic and opportunistic
+data-dependent analytic decisions in ecological modelling, where only
+the latter are questionable. For preregistration to be applied to
+ecological modelling, its internal logic must reflect alternative
+conceptualisations of QRPs that accommodate legitimate data-contingent
+decisions and iteration. It should allow for model revision while
+avoiding premature commitment to one approach (Hämäläinen and Lahtinen
+2016; Benning et al. 2019; Evans et al. 2023). In Gould et al. (2025),
+we develop, apply and evaluate \emph{Adaptive Preregistration} as a
+potential solution. If a complete preregistration is impractical, then
+at the very least, specifying a minimum set of evaluation analyses,
+metrics, and their performance criteria \emph{a priori} is essential for
+avoiding QRPs.
+
+\subsection{Future Research}\label{future-research}
+
+This paper has gone some way towards characterising QRPs to accommodate
+a diversity of modelling types within ecology. Further research could
+provide a deeper understanding of where and when these are applicable
+across ecology (or not). For example, looking across subfields,
+methodological approaches or model purposes: Do some QRPs pose more of a
+threat to reliability than others? Are some more likely than others? Are
+there specific forms they take? Preventative measures can then be
+tailored to particular use-cases.
+
+This list of QRPs is not exhaustive, future research could also
+characterise additional QRPs not described here, perhaps turning to
+other fields utilising model-based research to understand where
+questionable practices are more widely appreciated, such as Machine
+Learning (Hildebrandt 2018; McDermott et al. 2021; Stock, Gregr, and
+Chan 2023; Garbin and Marques 2022; Rosenblatt et al. 2024; Hosseini et
+al. 2020; Meding and Hagendorff 2024). Further, understanding the
+prevalence of QRPs in ecological modelling would give an idea of the
+extent of the problem in the published literature and help prioritise
+potential reforms. Self-report surveys (e.g. Fraser et al. 2018) using
+our modelling-specific QRP classification would be a useful starting
+point. Empirical approaches to detecting the extent of QRPs might
+include approaches similar to p-curve analysis but investigating
+relevant model performance metrics (White et al. 2023).
+
+\subsection{Conclusion}\label{conclusion}
+
+In this paper, we aim to raise awareness among ecological modellers, and
+modellers among other scientific disciplines, about potential types of
+QRPs and their mechanisms for emergence in the modelling process. This
+is the first attempt to articulate how questionable research practices
+occur outside hypothesis testing research. The application is specific
+to ecological modelling, but the definition of QRPs presented here
+provides insights for modelling in other fields and other forms of
+non-hypothesis testing research. The conceptual framework and map of
+QRPs in this paper helps modellers understand the risks of QRPs in their
+research, so they are empowered to implement procedures that can
+mitigate their occurrence in their own research practice. Finally,
+meta-researchers and advocates of open-science can use the conceptual
+framework to underpin the design of modelling-appropriate methodological
+reforms that improve the credibility and robustness of model-based
+research in ecology and other fields.
+
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-Ahmed2025}
+Ahmed, Waqas, Vamsi Krishna Kommineni, Birgitta König-Ries, Jitendra
+Gaikwad, Luiz Gadelha, and Sheeba Samuel. 2025. {``Evaluating the Method
+Reproducibility of Deep Learning Models in Biodiversity Research.''}
+\emph{PeerJ Computer Science} 11 (February): e2618.
+\url{https://doi.org/10.7717/peerj-cs.2618}.
+
+\bibitem[\citeproctext]{ref-Alexandrov:2011iv}
+Alexandrov, G. A., D. Ames, G. Bellocchi, M. Bruen, N. Crout, M.
+Erechtchoukova, A. Hildebrandt, et al. 2011. {``Technical Assessment and
+Evaluation of Environmental Models and Software: Letter to the
+Editor.''} \emph{Environmental Modelling \& Software} 26 (3): 328--36.
+\url{https://doi.org/10.1016/j.envsoft.2010.08.004}.
+
+\bibitem[\citeproctext]{ref-Arnqvist2020}
+Arnqvist, Göran. 2020. {``Mixed Models Offer No Freedom from Degrees of
+Freedom.''} \emph{Trends in Ecology \& Evolution} 35 (4): 329--35.
+\url{https://doi.org/10.1016/j.tree.2019.12.004}.
+
+\bibitem[\citeproctext]{ref-Augusiak2014}
+Augusiak, Jacqueline, Paul J. Van den Brink, and Volker Grimm. 2014.
+{``Merging Validation and Evaluation of Ecological Models to
+{`}Evaludation{'}: A Review of Terminology and a Practical Approach.''}
+\emph{Ecological Modelling} 280: 117--28.
+\url{https://doi.org/10.1016/j.ecolmodel.2013.11.009}.
+
+\bibitem[\citeproctext]{ref-Babel2019}
+Babel, Lucie, Dominique Vinck, and Derek Karssenberg. 2019.
+{``Decision-Making in Model Construction: Unveiling Habits.''}
+\emph{Environmental Modelling \& Software} 120: 104490.
+\url{https://doi.org/10.1016/j.envsoft.2019.07.015}.
+
+\bibitem[\citeproctext]{ref-Barros2023}
+Barros, Ceres, Yong Luo, Alex M. Chubaty, Ian M. S. Eddy, Tatiane
+Micheletti, Céline Boisvenue, David W. Andison, Steven G. Cumming, and
+Eliot J. B. McIntire. 2023. {``Empowering Ecological Modellers with a
+PERFICT Workflow: Seamlessly Linking Data, Parameterisation, Prediction,
+Validation and Visualisation.''} \emph{Methods in Ecology and Evolution}
+14 (1): 173--88. \url{https://doi.org/10.1111/2041-210X.14034}.
+
+\bibitem[\citeproctext]{ref-Bennett2013}
+Bennett, Neil D., Barry F. W. Croke, Giorgio Guariso, Joseph H. A.
+Guillaume, Serena H. Hamilton, Anthony J. Jakeman, Stefano
+Marsili-Libelli, et al. 2013. {``Characterising Performance of
+Environmental Models.''} \emph{Environmental Modelling \& Software} 40:
+1--20. \url{https://doi.org/10.1016/j.envsoft.2012.09.011}.
+
+\bibitem[\citeproctext]{ref-Benning2019}
+Benning, Stephen D., Rachel L. Bachrach, Edward A. Smith, Andrew J.
+Freeman, and Aidan GC Wright. 2019. {``The Registration Continuum in
+Clinical Science: A Guide Toward Transparent Practices.''} \emph{Journal
+of Abnormal Psychology} 128 (6): 528.
+
+\bibitem[\citeproctext]{ref-Bischl2023}
+Bischl, Bernd, Martin Binder, Michel Lang, Tobias Pielok, Jakob Richter,
+Stefan Coors, Janek Thomas, et al. 2023. {``Hyperparameter Optimization:
+Foundations, Algorithms, Best Practices, and Open Challenges.''}
+\emph{WIREs Data Mining and Knowledge Discovery} 13 (2): e1484.
+\url{https://doi.org/10.1002/widm.1484}.
+
+\bibitem[\citeproctext]{ref-Bodner2020}
+Bodner, Korryn, Marie-Josée Fortin, and Péter K. Molnár. 2020. {``Making
+Predictive Modelling ART: Accurate, Reliable, and Transparent.''}
+\emph{Ecosphere} 11 (6). \url{https://doi.org/10.1002/ecs2.3160}.
+
+\bibitem[\citeproctext]{ref-Bokulich2013}
+Bokulich, Alisa. 2013. {``Explanatory Models Versus Predictive Models:
+Reduced Complexity Modeling in Geomorphology.''} In, 115--28. Springer
+International Publishing.
+
+\bibitem[\citeproctext]{ref-Borger2025}
+Borger, Mirjam J., and Aparajitha Ramesh. 2025. {``Let{'}s DAG in: How
+Directed Acyclic Graphs Can Help Behavioural Ecology Be More
+Transparent.''} \emph{Proceedings of the Royal Society B: Biological
+Sciences} 292 (2051). \url{https://doi.org/10.1098/rspb.2025.0963}.
+
+\bibitem[\citeproctext]{ref-Briscoe2019}
+Briscoe, Natalie J., Jane Elith, Roberto Salguero-Gómez, José J.
+Lahoz-Monfort, James S. Camac, Katherine M. Giljohann, Matthew H.
+Holden, et al. 2019. {``Forecasting Species Range Dynamics with
+Process{-}Explicit Models: Matching Methods to Applications.''} Edited
+by Regan Early. \emph{Ecology Letters} 22 (11): 1940--56.
+\url{https://doi.org/10.1111/ele.13348}.
+
+\bibitem[\citeproctext]{ref-burgman2023}
+Burgman, Mark, Rafael Chiaravalloti, Fiona Fidler, Yizhong Huan, Marissa
+McBride, Alexandru Marcoci, Juliet Norman, Ans Vercammen, Bonnie Wintle,
+and Yurong Yu. 2023. {``A Toolkit for Open and Pluralistic Conservation
+Science.''} \emph{Conservation Letters} 16 (1): e12919.
+\url{https://doi.org/10.1111/conl.12919}.
+
+\bibitem[\citeproctext]{ref-Butler:2017ks}
+Butler, Nick, Helen Delaney, and Sverre Spoelstra. 2017. {``The Gray
+Zone: Questionable Research Practices in the Business School.''}
+\emph{Academy of Management Learning \& Education} 16 (1): 94--109.
+\url{https://doi.org/10.5465/amle.2015.0201}.
+
+\bibitem[\citeproctext]{ref-Campbell2021}
+Campbell, Harlan. 2021. {``The Consequences of Checking for
+Zero{-}Inflation and Overdispersion in the Analysis of Count Data.''}
+Edited by Robert B. O'Hara. \emph{Methods in Ecology and Evolution} 12
+(4): 665--80. \url{https://doi.org/10.1111/2041-210x.13559}.
+
+\bibitem[\citeproctext]{ref-Christin2021}
+Christin, Sylvain, Éric Hervet, and Nicolas Lecomte. 2020. {``Going
+Further with Model Verification and Deep Learning.''} Edited by Hao Ye.
+\emph{Methods Ecol Evol} 12 (1): 130--34.
+\url{https://doi.org/10.1111/2041-210x.13494}.
+
+\bibitem[\citeproctext]{ref-Connolly2017}
+Connolly, S. R., S. A. Keith, R. K. Colwell, and C. Rahbek. 2017.
+{``Process, Mechanism, and Modeling in Macroecology.''} \emph{Trends
+Ecol Evol} 32 (11): 835--44.
+\url{https://doi.org/10.1016/j.tree.2017.08.011}.
+
+\bibitem[\citeproctext]{ref-Corneille2023}
+Corneille, Olivier, Jo Havemann, Emma L Henderson, Hans IJzerman, Ian
+Hussey, Jean-Jacques Orban De Xivry, Lee Jussim, et al. 2023. {``Beware
+{`}Persuasive Communication Devices{'} When Writing and Reading
+Scientific Articles.''} \emph{eLife} 12 (May): e88654.
+\url{https://doi.org/10.7554/eLife.88654}.
+
+\bibitem[\citeproctext]{ref-Culina2020}
+Culina, A., I. van den Berg, S. Evans, and A. Sánchez-Tójar. 2020.
+{``Low availability of code in ecology: A call for urgent action.''}
+\emph{PLoS Biol.} 18 (7): e3000763.
+\url{https://doi.org/10.1371/journal.pbio.3000763}.
+
+\bibitem[\citeproctext]{ref-DeAngelis2021}
+DeAngelis, Donald L., Daniel Franco, Alan Hastings, Frank M. Hilker,
+Suzanne Lenhart, Frithjof Lutscher, Natalia Petrovskaya, Sergei
+Petrovskii, and Rebecca C. Tyson. 2021. {``Towards Building a
+Sustainable Future: Positioning Ecological Modelling for Impact in
+Ecosystems Management.''} \emph{Bulletin of Mathematical Biology} 83
+(10): 107. \url{https://doi.org/10.1007/s11538-021-00927-y}.
+
+\bibitem[\citeproctext]{ref-Dietze2018}
+Dietze, Michael C., Andrew Fox, Lindsay M. Beck-Johnson, Julio L.
+Betancourt, Mevin B. Hooten, Catherine S. Jarnevich, Timothy H. Keitt,
+et al. 2018. {``Iterative Near-Term Ecological Forecasting: Needs,
+Opportunities, and Challenges.''} \emph{Proceedings of the National
+Academy of Sciences} 115 (7): 1424--32.
+\url{https://doi.org/10.1073/pnas.1710231115}.
+
+\bibitem[\citeproctext]{ref-Dwork2015}
+Dwork, Cynthia, Vitaly Feldman, Moritz Hardt, Toniann Pitassi, Omer
+Reingold, and Aaron Roth. 2015. {``The reusable holdout: Preserving
+validity in adaptive data analysis.''} \emph{Science} 349 (6248):
+636--38. \url{https://doi.org/10.1126/science.aaa9375}.
+
+\bibitem[\citeproctext]{ref-eker2018}
+Eker, Sibel, Elena Rovenskaya, Michael Obersteiner, and Simon Langan.
+2018. {``Practice and Perspectives in the Validation of Resource
+Management Models.''} \emph{Nature Communications} 9 (1): 5359.
+
+\bibitem[\citeproctext]{ref-Engelschalt2023}
+Engelschalt, Paul, Maxime Röske, Johanna Penzlin, Dirk Krüger, and
+Annette Upmeier zu Belzen. 2023. {``Abductive Reasoning in Modeling
+Biological Phenomena as Complex Systems''} 8 (October).
+\url{https://doi.org/10.3389/feduc.2023.1170967}.
+
+\bibitem[\citeproctext]{ref-Evans2023}
+Evans, Thomas Rhys, Peter Branney, Andrew Clements, and Ella Hatton.
+2023. {``Improving Evidence-Based Practice Through Preregistration of
+Applied Research: Barriers and Recommendations.''} \emph{Accountability
+in Research} 30 (2): 88--108.
+\url{https://doi.org/10.1080/08989621.2021.1969233}.
+
+\bibitem[\citeproctext]{ref-feng2019}
+Feng, Xiao, Daniel S. Park, Cassondra Walker, A. Townsend Peterson, Cory
+Merow, and Monica Papeş. 2019. {``A Checklist for Maximizing
+Reproducibility of Ecological Niche Models.''} \emph{Nature Ecology \&
+Evolution} 3 (10): 1382--95.
+\url{https://doi.org/10.1038/s41559-019-0972-5}.
+
+\bibitem[\citeproctext]{ref-Fidler:2017he}
+Fidler, Fiona, Yung En Chee, Brendan A. Wintle, Mark A. Burgman, Michael
+A. McCarthy, and Ascelin Gordon. 2017. {``Metaresearch for Evaluating
+Reproducibility in Ecology and Evolution.''} \emph{BioScience},
+biw159--8. \url{https://doi.org/10.1093/biosci/biw159}.
+
+\bibitem[\citeproctext]{ref-Fidler2018}
+Fidler, Fiona, Hannah Fraser, Michael A McCarthy, and Edward T Game.
+2018. {``Improving the Transparency of Statistical Reporting in
+{\emph{Conservation Letters}}.''} \emph{Conservation Letters} 11 (2):
+e12453. \url{https://doi.org/10.1111/conl.12453}.
+
+\bibitem[\citeproctext]{ref-Fourcade2018}
+Fourcade, Yoan, Aurélien G. Besnard, and Jean Secondi. 2018.
+{``Paintings Predict the Distribution of Species, or the Challenge of
+Selecting Environmental Predictors and Evaluation Statistics.''}
+\emph{Global Ecology and Biogeography} 27 (2): 245--56.
+\url{https://doi.org/10.1111/geb.12684}.
+
+\bibitem[\citeproctext]{ref-Franks2025}
+Franks, Daniel W., Graeme D. Ruxton, and Tom Sherratt. 2025. {``Ecology
+Needs a Causal Overhaul.''} \emph{Biological Reviews} 100 (5): 1950--69.
+\url{https://doi.org/10.1111/brv.70029}.
+
+\bibitem[\citeproctext]{ref-Fraser:2018cl}
+Fraser, Hannah, Tim Parker, Shinichi Nakagawa, Ashley Barnett, and Fiona
+Fidler. 2018. {``Questionable Research Practices in Ecology and
+Evolution.''} Edited by Jelte M. Wicherts. \emph{PLoS One} 13 (7):
+e0200303. \url{https://doi.org/10.1371/journal.pone.0200303}.
+
+\bibitem[\citeproctext]{ref-Garbin2022}
+Garbin, Christian, and Oge Marques. 2022. {``Assessing Methods and Tools
+to Improve Reporting, Increase Transparency, and Reduce Failures in
+Machine Learning Applications in Health Care.''} \emph{Radiology:
+Artificial Intelligence} 4 (2): e210127.
+\url{https://doi.org/10.1148/ryai.210127}.
+
+\bibitem[\citeproctext]{ref-Garcia-Diaz2019}
+García-Díaz, P., T. A. A. Prowse, D. P. Anderson, M. Lurgi, R. N. Binny,
+and P. Cassey. 2019. {``A Concise Guide to Developing and Using
+Quantitative Models in Conservation Management.''} \emph{Conserv Sci
+Pract} 1 (2): e11. \url{https://doi.org/10.1002/csp2.11}.
+
+\bibitem[\citeproctext]{ref-Gelman2013}
+Gelman, Andrew, and Eric Loken. 2013. {``The Garden of Forking Paths:
+Why Multiple Comparisons Can Be a Problem, Even When There Is No
+{``}Fishing Expedition{''} or {``}p-Hacking{''} and the Research
+Hypothesis Was Posited Ahead of Time.''} \emph{Department of Statistics,
+Columbia University}.
+
+\bibitem[\citeproctext]{ref-Getz2017}
+Getz, Wayne M., Charles R. Marshall, Colin J. Carlson, Luca Giuggioli,
+Sadie J. Ryan, Stephanie S. Romañach, Carl Boettiger, et al. 2017.
+{``Making Ecological Models Adequate.''} Edited by Tim Coulson.
+\emph{Ecology Letters} 21 (2): 153--66.
+\url{https://doi.org/10.1111/ele.12893}.
+
+\bibitem[\citeproctext]{ref-Gould2025}
+Gould, Elliot, Christopher S. Jones, Jian D. L. Yen, Hannah S. Fraser,
+Henry Wootton, Megan K. Good, David H. Duncan, Cindy E. Hauser, Bonnie
+C. Wintle, and Libby Rumpff. 2025. {``{`But i Can't Preregister My
+Research'}: Improving the Reproducibility and Transparency of Ecology
+and Conservation with Adaptive Preregistration for Model-Based
+Research.''} Preprint. \emph{EcoEvoRxiv}.
+\url{https://doi.org/10.32942/X2GW66}.
+
+\bibitem[\citeproctext]{ref-Haddaway2018a}
+Haddaway, Neal R., Biljana Macura, Paul Whaley, and Andrew S. Pullin.
+2018. {``ROSES RepOrting Standards for Systematic Evidence Syntheses:
+Pro Forma, Flow-Diagram and Descriptive Summary of the Plan and Conduct
+of Environmental Systematic Reviews and Systematic Maps.''}
+\emph{Environmental Evidence} 7 (1): 7.
+\url{https://doi.org/10.1186/s13750-018-0121-7}.
+
+\bibitem[\citeproctext]{ref-Hamalainen2016}
+Hämäläinen, Raimo P., and Tuomas J. Lahtinen. 2016. {``Path Dependence
+in Operational Research{\textemdash}How the Modeling Process Can
+Influence the Results.''} \emph{Operations Research Perspectives} 3:
+14--20. \url{https://doi.org/10.1016/j.orp.2016.03.001}.
+
+\bibitem[\citeproctext]{ref-Hamilton2019}
+Hamilton, Serena H., Baihua Fu, Joseph H. A. Guillaume, Jennifer Badham,
+Sondoss Elsawah, Patricia Gober, Randall J. Hunt, et al. 2019. {``A
+Framework for Characterising and Evaluating the Effectiveness of
+Environmental Modelling.''} \emph{Environmental Modelling \& Software}
+118: 83--98. \url{https://doi.org/10.1016/j.envsoft.2019.04.008}.
+
+\bibitem[\citeproctext]{ref-Hildebrandt2018}
+Hildebrandt, Mireille. 2018. {``Preregistration of Machine Learning
+Research Design Against p-Hacking.''} In, edited by Irina Baraliuc Emre
+Bayamlıoğlu. Amsterdam, Netherlands: Amsterdam University Press.
+
+\bibitem[\citeproctext]{ref-Hillebrand2013}
+Hillebrand, Helmut, and Jessica Gurevitch. 2013. {``Reporting Standards
+in Experimental Studies.''} \emph{Ecology Letters} 16 (12): 1419--20.
+\url{https://doi.org/10.1111/ele.12190}.
+
+\bibitem[\citeproctext]{ref-Hoffmann2021}
+Hoffmann, S., F. Schönbrodt, R. Elsas, R. Wilson, U. Strasser, and A. L.
+Boulesteix. 2021. {``The Multiplicity of Analysis Strategies Jeopardizes
+Replicability: Lessons Learned Across Disciplines.''} \emph{R Soc Open
+Sci} 8 (4): 201925. \url{https://doi.org/10.1098/rsos.201925}.
+
+\bibitem[\citeproctext]{ref-Hosseini2020}
+Hosseini, Mahan, Michael Powell, John Collins, Chloe Callahan-Flintoft,
+William Jones, Howard Bowman, and Brad Wyble. 2020. {``I Tried a Bunch
+of Things: The Dangers of Unexpected Overfitting in Classification of
+Brain Data.''} \emph{Neuroscience \& Biobehavioral Reviews} 119:
+456--67. \url{https://doi.org/10.1016/j.neubiorev.2020.09.036}.
+
+\bibitem[\citeproctext]{ref-Houlahan:2016fl}
+Houlahan, Jeff E., Shawn T. McKinney, T. Michael Anderson, and Brian J.
+McGill. 2016. {``The Priority of Prediction in Ecological
+Understanding.''} \emph{Oikos} 126 (1): 1--7.
+\url{https://doi.org/10.1111/oik.03726}.
+
+\bibitem[\citeproctext]{ref-Jakeman2006}
+Jakeman, A. J., R. A. Letcher, and J. P. Norton. 2006. {``Ten Iterative
+Steps in Development and Evaluation of Environmental Models.''}
+\emph{Environmental Modelling \& Software} 21 (5): 602--14.
+\url{https://doi.org/10.1016/j.envsoft.2006.01.004}.
+
+\bibitem[\citeproctext]{ref-John:2012eo}
+John, Leslie K., George Loewenstein, and Drazen Prelec. 2012.
+{``Measuring the Prevalence of Questionable Research Practices with
+Incentives for Truth Telling.''} \emph{Psychological Science} 23 (5):
+524--32. \url{https://doi.org/10.1177/0956797611430953}.
+
+\bibitem[\citeproctext]{ref-Josefsson2020}
+Josefsson, Jonas, Matthew Hiron, Debora Arlt, Alistair G. Auffret, Åke
+Berg, Mathieu Chevalier, Anders Glimskär, et al. 2020. {``Improving
+Scientific Rigour in Conservation Evaluations and a Plea Deal for
+Transparency on Potential Biases.''} \emph{Conservation Letters} 13 (5).
+\url{https://doi.org/10.1111/conl.12726}.
+
+\bibitem[\citeproctext]{ref-Kapoor2023}
+Kapoor, Sayash, and Arvind Narayanan. 2023. {``Leakage and the
+Reproducibility Crisis in Machine-Learning-Based Science.''}
+\emph{Patterns} 4 (9): 100804.
+\url{https://doi.org/10.1016/j.patter.2023.100804}.
+
+\bibitem[\citeproctext]{ref-Kass2025}
+Kass, Jamie M., Adam B. Smith, Dan L. Warren, Sergio Vignali, Sylvain
+Schmitt, Matthew E. Aiello-Lammens, Eduardo Arlé, et al. 2025.
+{``Achieving Higher Standards in Species Distribution Modeling by
+Leveraging the Diversity of Available Software.''} \emph{Ecography} 2025
+(2): e07346. \url{https://doi.org/10.1111/ecog.07346}.
+
+\bibitem[\citeproctext]{ref-Lahtinen2017}
+Lahtinen, Tuomas J., Joseph H. A. Guillaume, and Raimo P. Hämäläinen.
+2017. {``Why Pay Attention to Paths in the Practice of Environmental
+Modelling.''} \emph{Environmental Modelling \& Software} 92: 74--81.
+\url{https://doi.org/10.1016/j.envsoft.2017.02.019}.
+
+\bibitem[\citeproctext]{ref-lewis2023}
+Lewis, Abigail S. L., Christine R. Rollinson, Andrew J. Allyn, Jaime
+Ashander, Stephanie Brodie, Cole B. Brookson, Elyssa Collins, et al.
+2023. {``The Power of Forecasts to Advance Ecological Theory.''}
+\emph{Methods in Ecology and Evolution} 14 (3): 746--56.
+\url{https://doi.org/10.1111/2041-210x.13955}.
+
+\bibitem[\citeproctext]{ref-Liu2020}
+Liu, Yang, Tim Althoff, and Jeffrey Heer. 2020. {``Proceedings of the
+2020 CHI Conference on Human Factors in Computing Systems.''} In. ACM.
+\url{https://doi.org/10.1145/3313831.3376533}.
+
+\bibitem[\citeproctext]{ref-Lucas2020}
+Lucas, Tim C. D. 2020. {``A Translucent Box: Interpretable Machine
+Learning in Ecology.''} \emph{Ecol Monogr} 90 (4).
+\url{https://doi.org/10.1002/ecm.1422}.
+
+\bibitem[\citeproctext]{ref-Ludecke2020}
+Lüdecke, Daniel, Mattan Ben-Shachar, Indrajeet Patil, and Dominique
+Makowski. 2020. {``Extracting, Computing and Exploring the Parameters of
+Statistical Models Using r.''} \emph{Journal of Open Source Software} 5
+(53): 2445. \url{https://doi.org/10.21105/joss.02445}.
+
+\bibitem[\citeproctext]{ref-MacNally2000}
+Mac Nally, Ralph. 2000. {``Regression and Model-Building in Conservation
+Biology, Biogeography and Ecology: The Distinction Between {\textendash}
+and Reconciliation of {\textendash} {`}Predictive{'} and
+{`}Explanatory{'} Models.''} \emph{Biodiversity and Conservation} 9 (5):
+655671. \url{https://doi.org/10.1023/a:1008985925162}.
+
+\bibitem[\citeproctext]{ref-MacEachern2019}
+MacEachern, Steven N., and Trisha Van Zandt. 2019. {``Preregistration of
+Modeling Exercises May Not Be Useful.''} \emph{Comput Brain Behav} 2
+(3-4): 179--82. \url{https://doi.org/10.1007/s42113-019-00038-x}.
+
+\bibitem[\citeproctext]{ref-Makel2023}
+Makel, Matthew C, Jaret Hodges, Bryan G Cook, and Jonathan A Plucker.
+2023. {``Both Questionable and Open Research Practices Are Prevalent in
+Education Research.''}
+
+\bibitem[\citeproctext]{ref-McDermott2021}
+McDermott, M. B. A., S. Wang, N. Marinsek, R. Ranganath, L. Foschini,
+and M. Ghassemi. 2021. {``Reproducibility in machine learning for health
+research: Still a ways to go.''} \emph{Sci Transl Med} 13 (586).
+\url{https://doi.org/10.1126/scitranslmed.abb1655}.
+
+\bibitem[\citeproctext]{ref-McElreath2020}
+McElreath, Richard. 2020. \emph{Statistical Rethinking: A Bayesian
+Course with Examples in R and Stan}. 2nd ed. Chapman; Hall/CRC.
+\url{https://doi.org/10.1201/9780429029608}.
+
+\bibitem[\citeproctext]{ref-meding2024}
+Meding, Kristof, and Thilo Hagendorff. 2024. {``Fairness Hacking: The
+Malicious Practice of Shrouding Unfairness in Algorithms.''}
+\emph{Philosophy \& Technology} 37 (1): 4.
+\url{https://doi.org/10.1007/s13347-023-00679-8}.
+
+\bibitem[\citeproctext]{ref-Nagy2025}
+Nagy, Tamás, Jane Hergert, Mahmoud M Elsherif, Lukas Wallrich, Kathleen
+Schmidt, Jason W Payne, Biljana Gjoneska, et al. 2025. {``Bestiary of
+Questionable Research Practices in Psychology.''}
+https://doi.org/\url{https://doi.org/10.31234/osf.io/fhk98_v2}.
+
+\bibitem[\citeproctext]{ref-Nakagawa2025}
+Nakagawa, Shinichi, David W. Armitage, Tom Froese, Yefeng Yang, and
+Malgorzata Lagisz. 2025. {``Poor Hypotheses and Research Waste in
+Biology: Learning from a Theory Crisis in Psychology.''} \emph{BMC
+Biology} 23 (1): 33. \url{https://doi.org/10.1186/s12915-025-02134-w}.
+
+\bibitem[\citeproctext]{ref-Nature2018}
+Nature. 2018. {``A Checklist for Our Community.''}
+
+\bibitem[\citeproctext]{ref-ODea2021a}
+O'Dea, R. E., M. Lagisz, M. D. Jennions, J. Koricheva, D. W. A. Noble,
+T. H. Parker, J. Gurevitch, et al. 2021. {``Preferred Reporting Items
+for Systematic Reviews and Meta-Analyses in Ecology and Evolutionary
+Biology: A PRISMA Extension.''} \emph{Biol Rev Camb Philos Soc} 96 (5):
+1695--1722. \url{https://doi.org/10.1111/brv.12721}.
+
+\bibitem[\citeproctext]{ref-ODea2021}
+O'Dea, Rose E., Timothy H. Parker, Yung En Chee, Antica Culina, Szymon
+M. Drobniak, David H. Duncan, Fiona Fidler, et al. 2021. {``Towards
+Open, Reliable, and Transparent Ecology and Evolutionary Biology.''}
+\emph{BMC Biology} 19 (1): 68.
+\url{https://doi.org/10.1186/s12915-021-01006-3}.
+
+\bibitem[\citeproctext]{ref-Paniw2023}
+Paniw, Maria, Roger D. Cousens, Chris Baker, and Thao Le. 2023.
+{``Theory, Prediction and Application.''} In, 127--49. Boca Raton: CRC
+Press. \url{https://doi.org/10.1201/9781003314332-8}.
+
+\bibitem[\citeproctext]{ref-Parker2016}
+Parker, T. H., E. Main, S. Nakagawa, J. Gurevitch, F. Jarrad, and M.
+Burgman. 2016. {``Promoting Transparency in Conservation Science.''}
+December.
+
+\bibitem[\citeproctext]{ref-Pichler2023}
+Pichler, Maximilian, and Florian Hartig. 2023. {``Machine Learning and
+Deep Learning{\textemdash}A Review for Ecologists.''} \emph{Methods in
+Ecology and Evolution} 14 (4): 994--1016.
+\url{https://doi.org/10.1111/2041-210X.14061}.
+
+\bibitem[\citeproctext]{ref-Powers2018}
+Powers, Stephen M., and Stephanie E. Hampton. 2018. {``Open Science,
+Reproducibility, and Transparency in Ecology.''} \emph{Ecological
+Applications}. \url{https://doi.org/10.1002/eap.1822}.
+
+\bibitem[\citeproctext]{ref-Prosperi2019}
+Prosperi, Mattia, Jiang Bian, Iain E. Buchan, James S. Koopman, Matthew
+Sperrin, and Mo Wang. 2019. {``Raiders of the Lost HARK: A Reproducible
+Inference Framework for Big Data Science.''} \emph{Palgrave
+Communications} 5 (1). \url{https://doi.org/10.1057/s41599-019-0340-8}.
+
+\bibitem[\citeproctext]{ref-Pu2019}
+Pu, Xiaoying, Licheng Zhu, Matthew Kay, and Frederick Conrad. 2019.
+{``Designing for Preregistration in Practice: Multiple Norms and
+Purposes.''} In \emph{Proceedings of CHI Conference on Human Factors in
+Computing Systems (CHI'19 Extended Abstracts)}, 7. Scotland: ACM.
+\url{https://doi.org/10.1145/3290607.3312862}.
+
+\bibitem[\citeproctext]{ref-Purgar2024}
+Purgar, Marija, Paul Glasziou, Tin Klanjscek, Shinichi Nakagawa, and
+Antica Culina. 2024. {``Supporting Study Registration to Reduce Research
+Waste.''} \emph{Nature Ecology \& Evolution} 8 (8): 1391--99.
+\url{https://doi.org/10.1038/s41559-024-02433-5}.
+
+\bibitem[\citeproctext]{ref-Rijnhart2021}
+Rijnhart, J. J. M., J. W. R. Twisk, D. J. H. Deeg, and M. W. Heymans.
+2021. {``Assessing the Robustness of Mediation Analysis Results Using
+Multiverse Analysis.''} \emph{Prev Sci}, July.
+\url{https://doi.org/10.1007/s11121-021-01280-1}.
+
+\bibitem[\citeproctext]{ref-Risbey2005}
+Risbey, James, Jeroen Van der Sluijs, Penny Kloprogge, Jerry Ravetz,
+Silvio Funtowicz, and Serafin Corral Quintana. 2005. {``Application of a
+Checklist for Quality Assistance in Environmental Modelling to an Energy
+Model.''} \emph{Environmental Modeling \& Assessment} 10 (1): 63--79.
+
+\bibitem[\citeproctext]{ref-rosenblatt2024}
+Rosenblatt, Matthew, Link Tejavibulya, Rongtao Jiang, Stephanie Noble,
+and Dustin Scheinost. 2024. {``Data Leakage Inflates Prediction
+Performance in Connectome-Based Machine Learning Models.''} \emph{Nature
+Communications} 15 (1): 1829.
+\url{https://doi.org/10.1038/s41467-024-46150-w}.
+
+\bibitem[\citeproctext]{ref-Rounsevell2021}
+Rounsevell, Mark D. A., Almut Arneth, Calum Brown, William W. L. Cheung,
+Olivier Gimenez, Ian Holman, Paul Leadley, et al. 2021. {``Identifying
+Uncertainties in Scenarios and Models of Socio-Ecological Systems in
+Support of Decision-Making.''} \emph{One Earth} 4 (7): 967--85.
+\url{https://doi.org/10.1016/j.oneear.2021.06.003}.
+
+\bibitem[\citeproctext]{ref-RykielJr1996}
+Rykiel Jr, Edward J. 1996. {``Testing Ecological Models: The Meaning of
+Validation.''} \emph{Ecological Modelling} 90 (3): 229--44.
+
+\bibitem[\citeproctext]{ref-Schmolke:2010fd}
+Schmolke, Amelie, Pernille Thorbek, Donald L. Deangelis, and Volker
+Grimm. 2010. {``Ecological Models Supporting Environmental Decision
+Making: A Strategy for the Future.''} \emph{Trends in Ecology \&
+Evolution} 25 (8): 479--86.
+\url{https://doi.org/10.1016/j.tree.2010.05.001}.
+
+\bibitem[\citeproctext]{ref-Schuwirth2019}
+Schuwirth, Nele, Florian Borgwardt, Sami Domisch, Martin Friedrichs,
+Mira Kattwinkel, David Kneis, Mathias Kuemmerlen, Simone D. Langhans,
+Javier Martínez-López, and Peter Vermeiren. 2019. {``How to Make
+Ecological Models Useful for Environmental Management.''}
+\emph{Ecological Modelling} 411: 108784.
+\url{https://doi.org/10.1016/j.ecolmodel.2019.108784}.
+
+\bibitem[\citeproctext]{ref-Shmueli2010}
+Shmueli, Galit. 2010. {``To Explain or to Predict.''} \emph{Statistical
+Science} 25 (3): 289--310. \url{https://doi.org/10.1214/10-STS330}.
+
+\bibitem[\citeproctext]{ref-silk2020}
+Silk, Matthew J., Xavier A. Harrison, and David J. Hodgson. 2020.
+{``Perils and Pitfalls of Mixed-Effects Regression Models in Biology''}
+8 (August): e9522. \url{https://doi.org/10.7717/peerj.9522}.
+
+\bibitem[\citeproctext]{ref-Simmonds2024}
+Simmonds, Emily G., Kwaku P. Adjei, Benjamin Cretois, Lisa Dickel,
+Ricardo González-Gil, Jack H. Laverick, Caitlin P. Mandeville, et al.
+2024. {``Recommendations for Quantitative Uncertainty Consideration in
+Ecology and Evolution.''} \emph{Trends in Ecology \& Evolution} 39 (4):
+328--37. \url{https://doi.org/10.1016/j.tree.2023.10.012}.
+
+\bibitem[\citeproctext]{ref-Stephens2007}
+Stephens, P. A., S. W. Buskirk, and C. M. del Rio. 2007. {``Inference in
+Ecology and Evolution.''} \emph{Trends Ecol Evol} 22 (4): 192--97.
+\url{https://doi.org/10.1016/j.tree.2006.12.003}.
+
+\bibitem[\citeproctext]{ref-Stock2023}
+Stock, Andy, Edward J. Gregr, and Kai M. A. Chan. 2023. {``Data Leakage
+Jeopardizes Ecological Applications of Machine Learning.''} \emph{Nature
+Ecology \& Evolution} 7 (11): 1743--45.
+\url{https://doi.org/10.1038/s41559-023-02162-1}.
+
+\bibitem[\citeproctext]{ref-todman2023}
+Todman, Lindsay C., Alex Bush, and Amelia S. C. Hood. 2023. {``{`}Small
+Data{'} for Big Insights in Ecology.''} \emph{Trends in Ecology \&
+Evolution} 38 (7): 615--22.
+\url{https://doi.org/10.1016/j.tree.2023.01.015}.
+
+\bibitem[\citeproctext]{ref-Tredennick2021}
+Tredennick, Andrew T., Giles Hooker, Stephen P. Ellner, and Peter B.
+Adler. 2021. {``A Practical Guide to Selecting Models for Exploration,
+Inference, and Prediction in Ecology.''} \emph{Ecology} 102 (6): e03336.
+\url{https://doi.org/10.1002/ecy.3336}.
+
+\bibitem[\citeproctext]{ref-Ware2015}
+Ware, Jennifer J., and Marcus R. Munafò. 2015. {``Significance Chasing
+in Research Practice: Causes, Consequences and Possible Solutions.''}
+\emph{Addiction} 110 (1): 4--8. \url{https://doi.org/10.1111/add.12673}.
+
+\bibitem[\citeproctext]{ref-white2023}
+White, Nicole, Rex Parsons, Gary Collins, and Adrian Barnett. 2023.
+{``Evidence of Questionable Research Practices in Clinical Prediction
+Models.''} \emph{BMC Medicine} 21 (1).
+\url{https://doi.org/10.1186/s12916-023-03048-6}.
+
+\bibitem[\citeproctext]{ref-Williams2025}
+Williams, Coralie, Yefeng Yang, David I. Warton, and Shinichi Nakagawa.
+2025. {``Modelling Approaches for Meta{-}Analyses with Dependent Effect
+Sizes in Ecology and Evolution: A Simulation Study.''} \emph{Methods in
+Ecology and Evolution} 16 (10): 2362--79.
+\url{https://doi.org/10.1111/2041-210X.70156}.
+
+\bibitem[\citeproctext]{ref-Woo2017}
+Woo, Sang Eun, Ernest H. O'Boyle, and Paul E. Spector. 2017. {``Best
+Practices in Developing, Conducting, and Evaluating Inductive
+Research.''} \emph{Human Resource Management Review} 27 (2): 255--64.
+\url{https://doi.org/10.1016/j.hrmr.2016.08.004}.
+
+\bibitem[\citeproctext]{ref-Wood2020}
+Wood, Connor M., Zachary G. Loman, Shawn T. McKinney, and Cynthia S.
+Loftin. 2020. {``Testing Prediction Accuracy in Short-Term Ecological
+Studies.''} \emph{Basic and Applied Ecology} 43: 77--85.
+\url{https://doi.org/10.1016/j.baae.2020.01.003}.
+
+\bibitem[\citeproctext]{ref-Yates2018}
+Yates, K. L., P. J. Bouchet, M. J. Caley, K. Mengersen, C. F. Randin, S.
+Parnell, A. H. Fielding, et al. 2018. {``Outstanding Challenges in the
+Transferability of Ecological Models.''} \emph{Trends Ecol. Evol.
+(Amst.)} 33 (10): 790--802.
+\url{https://doi.org/10.1016/j.tree.2018.08.001}.
+
+\bibitem[\citeproctext]{ref-Zvereva2021}
+Zvereva, E. L., and M. V. Kozlov. 2021. {``Biases in ecological
+research: attitudes of scientists and ways of control.''} \emph{Sci Rep}
+11 (1): 226. \url{https://doi.org/10.1038/s41598-020-80677-4}.
+
+\end{CSLReferences}
+
+\newpage
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\section*{Appendices}\label{appendices}
+\addcontentsline{toc}{section}{Appendices}
+
+\section{QRP Literature Review}\label{sec-appendix-2}
+
+\subsection{Step 1: Identify and collect
+QRPs}\label{step-1-identify-and-collect-qrps}
+
+We haphazardly screened the published literature to generate an initial
+list of terms for QRPs in NHST research, to guide search term selection
+in ecological modelling and related modelling fields. We used the
+following search terms to identify potential QRPs in different areas of
+ecological modelling:
+
+\begin{itemize}
+\tightlist
+\item
+  ``\texttt{modelling\_area} AND type I error''
+\item
+  ``\texttt{modelling\_area} AND false positive''
+\item
+  ``\texttt{modelling\_area} AND modelling choice''
+\item
+  ``\texttt{modelling\_area} AND subjective judgment''
+\item
+  ``\texttt{modelling\_area} AND prediction error''
+\item
+  ``\texttt{modelling\_area} AND confirmation bias''
+\item
+  ``\texttt{modelling\_area} AND publication bias''
+\item
+  ``\texttt{modelling\_area} AND questionable research practice''
+\item
+  ``\texttt{modelling\_area} AND researcher degrees of freedom''
+\item
+  ``\texttt{modelling\_area} AND cherry picking''
+\item
+  ``\texttt{modelling\_area} AND \emph{p}-hacking''
+\item
+  ``\texttt{modelling\_area} AND HARKING''
+\item
+  ``\texttt{modelling\_area} AND bias''
+\item
+  ``\texttt{modelling\_area} AND good modelling practice''
+\item
+  ``\texttt{modelling\_area} AND best modelling practice''
+\item
+  ``\texttt{modelling\_area} AND bad modelling practice''
+\item
+  Where \texttt{modelling\_area} included `predictive modelling',
+  `habitat modelling', `Species Distribution Modelling (SDM)',
+  `Ecological Niche Modelling', `Ecological Modelling', `Environmental
+  Modelling'.
+\end{itemize}
+
+We inferred QRPs from practices described by authors with value
+judgements, such as ``good'' or ``best practice,'' ``bad'' or ``poor
+practice.'' For positively ascribed practices, we took the logical
+inverse of these practices as the QRP. We ignored perceived
+`inconsequential' practices, and instead included practices that were
+commonly or routinely conducted and where authors argued strongly for
+changes in research practices. We excluded QRPs that pertained to fraud,
+misconduct, or nefarious intent.
+
+\subsection{Step 2: Collate and Code
+QRPs}\label{step-2-collate-and-code-qrps}
+
+\textbf{Collating \& Coding}
+
+For each QRP identified, we collected a description of the research
+practice \texttt{practice\_description}, the reason or justification for
+why the practice is `questionable' \texttt{practice\_reason}, including
+any quantitative and/or empirical evidence for: a) the negative
+consequences on research outcomes such as credibility, reliability,
+accuracy, precision, transparency, reproducibility and/or b) evidence
+for the use or occurrence of this practice; \texttt{practice\_evidence}.
+We assigned each QRP to phases and sub-phases of the modelling process
+identified from Gould et al. (2025) where the practice occurs. For each
+description, reason and evidence, we coded each into short descriptions
+of the practice \texttt{QRP\_description}, reason for the practice's
+`questionable' nature \texttt{QRP\_reason}. Using the model phases and
+sub-phases identified in from the Adaptive Preregistration Template (See
+Appendix D4 in Gould et al. 2025), we classified the location of the QRP
+in the modelling process, ascribing the \texttt{model\_phase} and
+\texttt{model\_subphase} in which the practice occurs. We then coded the
+\texttt{target} of the practice, i.e.~the model object
+(Figure~\ref{fig-modelling-process}) directly affected by the practice.
+Where mitigation measures or solutions to the practice were suggested
+alongside the practice description, we also coded the
+\texttt{practice\_solution}.
+
+The raw data is available at:
+
+\begin{quote}
+Gould, Elliot (2025). Literature Survey of Questionable Research
+Practices in Ecological Modelling. \emph{The University of Melbourne}.
+{[}Dataset{]}. \url{https://doi.org/10.26188/30773906.v1}
+\end{quote}
+
+While, a formatted version can be downloaded and viewed in a web browser
+from:
+
+\begin{quote}
+Gould, Elliot (2025). Literature Survey of Questionable Research
+Practices. \emph{The University of Melbourne}. {[}Online resource{]}.
+\url{https://doi.org/10.26188/30773831.v1}
+\end{quote}
+
+\textbf{Categorising QRPs into Classes}
+
+We adopted Nagy et al.'s (2025) approach and grouped QRPs consisting of
+the same family of research behaviours into broad classes
+\texttt{QRP\_coded}. Some umbrella terms were common QRPs in hypothesis
+testing research, some were hypothesis-testing analogues, while others
+were modelling-specific. Where possible we used existing umbrella terms
+used by Nagy et al. (2025) and others (e.g. Liu, Althoff, and Heer
+2020), but created other terms if no existing terms were applicable.
+
+\subsection{Step 3: Refine QRP and QRP Class descriptions, aggregate
+QRPs}\label{step-3-refine-qrp-and-qrp-class-descriptions-aggregate-qrps}
+
+We aggregated similar practices identified from different published
+sources \texttt{practice\_description} into broader descriptions of
+individual QRPs \texttt{QRP\_description}, which are listed in
+Table~\ref{tbl-QRP}, along with their broader classes and point in the
+modelling process.
+
+\begin{landscape}
+
+\begingroup
+\setlength\LTleft{0\linewidth}
+\setlength\LTright{0\linewidth}\fontsize{12.0pt}{14.0pt}\selectfont
+
+\begin{longtable}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{\dimexpr 0.10\linewidth -2\tabcolsep-1.5\arrayrulewidth}|>{\raggedleft\arraybackslash}p{\dimexpr 0.05\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.55\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.15\linewidth -2\tabcolsep-1.5\arrayrulewidth}>{\raggedright\arraybackslash}p{\dimexpr 0.15\linewidth -2\tabcolsep-1.5\arrayrulewidth}}
+
+\caption{\label{tbl-QRP}Questionable research practices (QRPs) may occur
+in different phases and sub-phases of the ecological modelling process.
+QRPs were identified through literature review and classified into
+broader classes. For each unique practice (QRP ID), literature sources
+are detailed online at
+\href{https://doi.org/10.26188/30773831.v1}{doi.org/10.26188/30773831.v1}.}
+
+\tabularnewline
+
+\toprule
+{\bfseries \tiny QRP Class} & {\bfseries \tiny QRP ID} & {\bfseries \tiny QRP Description} & {\bfseries \tiny Model Phase} & {\bfseries \tiny Model Subphase} \\ 
+\midrule\endhead\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{7}{=}{Model Fishing}} & {\scriptsize 5} & {\scriptsize Changing the model specification or otherwise continuing to optimise the model after already validating or evaluating it on the test or holdout data.} & {\scriptsize Model Construction
+
+Model Evaluation
+
+Model Application} & {\scriptsize Model Specification
+
+Model Performance Metric
+
+Model Tuning
+
+Outcome Variable} \\ 
+ & {\scriptsize 9} & {\scriptsize Conducting multiple different analyses or model variations after observing model checking / model performance results, selectively reporting only those analyses that yield favourable results without disclosing the full range of analyses performed.} & {\scriptsize Model Evaluation} & {\scriptsize —} \\ 
+ & {\scriptsize 13} & {\scriptsize Dredging for models in unconstrained model space, where model space is not informed by theory or consists of models that are biologically implausible.} & {\scriptsize Model Construction} & {\scriptsize Model Specification
+
+Model Selection} \\ 
+ & {\scriptsize 22} & {\scriptsize Focusing only on data / models that seemingly supports expectation or hypotheses, and disregarding evidence that does not corroborate hypotheses or expectation (even if present).} & {\scriptsize Model Construction} & {\scriptsize —} \\ 
+ & {\scriptsize 31} & {\scriptsize Over-simplifying models due to ideological stance rather than based on modelling objectives or performance measures linked to those objectives.} & {\scriptsize Model Construction} & {\scriptsize Model Specification} \\ 
+ & {\scriptsize 35} & {\scriptsize Re-partitioning data after observing model evaluation or model checking results.} & {\scriptsize Model Evaluation} & {\scriptsize Data Selection
+
+Data Partitioning} \\ 
+ & {\scriptsize 41} & {\scriptsize Trying out different outcome variables or model evaluation metrics unrelated to model objectives and selecting based on performance after fitting the model and/or observing model checking / model evaluation results.} & {\scriptsize Model Construction
+
+Model Evaluation
+
+Model Application} & {\scriptsize Modelling Approach
+
+Model Evaluation Approach
+
+Model Performance metric
+
+Model Performance Metric
+
+Outcome Variable} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{3}{=}{Overhyping}} & {\scriptsize 7} & {\scriptsize Claiming the model has greater generalisability or credibility than it does.} & {\scriptsize Model Application} & {\scriptsize Inference} \\ 
+ & {\scriptsize 26} & {\scriptsize Misreporting correlative claims using causal language.} & {\scriptsize Model Application} & {\scriptsize Inference} \\ 
+ & {\scriptsize 39} & {\scriptsize Selectively reporting comparisons that support a foregone conclusion.} & {\scriptsize Model Application} & {\scriptsize Model Results} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{19}{=}{Poor Practice}} & {\scriptsize 10} & {\scriptsize Constructing new model / using new modelling approach rather than applying pre-existing one that might be superior.} & {\scriptsize Model Construction} & {\scriptsize —} \\ 
+ & {\scriptsize 15} & {\scriptsize Failing to define model prediction properties.} & {\scriptsize Model Evaluation} & {\scriptsize Model Performance Metric} \\ 
+ & {\scriptsize 16} & {\scriptsize Failing to define or inadequately defining model purpose, framing and or scope.} & {\scriptsize Model Construction} & {\scriptsize —} \\ 
+ & {\scriptsize 17} & {\scriptsize Failure to clearly define research question or give precise definition of parameter of interest.} & {\scriptsize Model Construction} & {\scriptsize Model Purpose
+
+Outcome Variable} \\ 
+ & {\scriptsize 18} & {\scriptsize Failure to establish relative weighting of performance measures prior to beginning modelling.} & {\scriptsize Model Evaluation} & {\scriptsize Performance Measure Weighting} \\ 
+ & {\scriptsize 19} & {\scriptsize Failure to explicitly state the model purpose, and / or failure to establish a priori performance metrics and measures after establishing the model purpose before beginning modelling.} & {\scriptsize Model Evaluation
+
+Problem Formulation} & {\scriptsize Model Performance Metric
+
+Model Purpose} \\ 
+ & {\scriptsize 20} & {\scriptsize Failure to use biologically informed / justified predictor variables.} & {\scriptsize Model Construction} & {\scriptsize Model Specification} \\ 
+ & {\scriptsize 21} & {\scriptsize Failure to use theory in guiding model specification / using default controls in regression model that are uninformed by theory.} & {\scriptsize Model Construction} & {\scriptsize Model Specification
+
+Model Tuning} \\ 
+ & {\scriptsize 24} & {\scriptsize For studies developing new methods or approaches, optimising method / approach to improve the performance against baseline methods.} & {\scriptsize Model Construction} & {\scriptsize Method Selection / Model Selection} \\ 
+ & {\scriptsize 25} & {\scriptsize Improper use of model evaluation metrics (e.g. using an evaluation metric ill-suited to the stated model purpose).} & {\scriptsize Model Evaluation} & {\scriptsize Model Performance Metric} \\ 
+ & {\scriptsize 28} & {\scriptsize Misspecification of random effects structure by premature pruning of random effects / choosing random effect structure based on data rather than study design.} & {\scriptsize Model Construction} & {\scriptsize Model Specification
+
+Model Selection} \\ 
+ & {\scriptsize 29} & {\scriptsize Model Selection Bias: deciding post hoc which distributional assumptions should be accepted, i.e. performing preliminary tests for distributional assumptions on the same data used for model selection. For example, checking for zero-inflation or overdispersion on the same data used for model selection.} & {\scriptsize Model Construction} & {\scriptsize Model Selection} \\ 
+ & {\scriptsize 32} & {\scriptsize Overfitting a model to calibration dataset by including too many moderators or predictors relative to the size and complexity of the dataset.} & {\scriptsize Model Construction} & {\scriptsize Model Specification
+
+Model Tuning} \\ 
+ & {\scriptsize 33} & {\scriptsize Overfitting model to calibration data by adding additional parameters after observing fitted model.} & {\scriptsize Model Construction} & {\scriptsize Model Specification
+
+Model Tuning} \\ 
+ & {\scriptsize 34} & {\scriptsize Overuse of inferior, familiar methods / failing to adopt new, superior or best-practice methods.} & {\scriptsize Model Construction} & {\scriptsize Modelling Approach} \\ 
+ & {\scriptsize 36} & {\scriptsize Resubstitution: assessing model performance on training set only or failing to evaluate model on independent data, or on partitioned holdout data.} & {\scriptsize Model Evaluation
+
+Model Construction} & {\scriptsize Data Partitioning
+
+Model Tuning
+
+NA} \\ 
+ & {\scriptsize 38} & {\scriptsize Selective sampling / biased sampling, e.g. convenience or opportunistic sampling.} & {\scriptsize Model Construction} & {\scriptsize Data collection} \\ 
+ & {\scriptsize 42} & {\scriptsize Using bad or easily obtainable, or inappropriate data to develop model.} & {\scriptsize Model Construction} & {\scriptsize Data Processing} \\ 
+ & {\scriptsize 43} & {\scriptsize Using information-theoretic approaches to perform in-sample model assessment.} & {\scriptsize Model Evaluation} & {\scriptsize Model Performance Metric} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{7}{=}{S-hacking}} & {\scriptsize 1} & {\scriptsize Bayes Factor hacking: optimising the model to obtain a Bayes Factor above the required threshold.} & {\scriptsize Model Evaluation
+
+Model Construction} & {\scriptsize Data Processing
+
+Model Performance Metric
+
+Model Specification} \\ 
+ & {\scriptsize 2} & {\scriptsize Changing model output format or transformation after observing results.} & {\scriptsize Model Application} & {\scriptsize Model Results} \\ 
+ & {\scriptsize 3} & {\scriptsize Changing model output or evaluation metric thresholds after observing outcome.} & {\scriptsize Model Evaluation
+
+Model Application} & {\scriptsize Model Performance Metric
+
+Model Output} \\ 
+ & {\scriptsize 4} & {\scriptsize Changing random seed and refitting model after seeing results to improve model performance.} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Model Specification
+
+Model Tuning} \\ 
+ & {\scriptsize 6} & {\scriptsize Changing the relative weighting of model performance metrics after observing model results, when there are multiple model evaluation analyses.} & {\scriptsize Model Evaluation} & {\scriptsize Model Performance Metric} \\ 
+ & {\scriptsize 11} & {\scriptsize Discretising continuous variables after observing model checking / model performance results.} & {\scriptsize Model Construction
+
+Model Evaluation
+
+Model Application} & {\scriptsize Data Processing} \\ 
+ & {\scriptsize 12} & {\scriptsize Dredging fitted models for statistical significance or other outcome variable.} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Model Selection
+
+Model Performance Metric} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{4}{=}{Sample Curation}} & {\scriptsize 8} & {\scriptsize Collecting new data and refitting model after observing model evaluation / model checking results (optional stopping rules).} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Data Collection
+
+Data Processing} \\ 
+ & {\scriptsize 23} & {\scriptsize Focusing only on data that seemingly supports expectation or hypotheses, and disregarding data that does not corroborate hypotheses or expectation (even if present).} & {\scriptsize Model Construction} & {\scriptsize —} \\ 
+ & {\scriptsize 27} & {\scriptsize Missing data hacking: changing the strategy to handle missing data after fitting the model and observing model checking / model performance evaluation results.} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Data Processing} \\ 
+ & {\scriptsize 30} & {\scriptsize Modifying exclusion criteria or excluding data points, such as outliers or other values, without justification and prior planning, i.e. after fitting model and observing model evaluation / model checking results.} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Data Processing
+
+Model Performance Metric} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{1}{=}{Selective Debugging}} & {\scriptsize 14} & {\scriptsize Error checking only when unexpected or anomalous results are produced.} & {\scriptsize Model Construction
+
+Model Evaluation
+
+Model Application} & {\scriptsize Model Verification} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries \scriptsize \multirow[t]{2}{=}{Selective Reporting}} & {\scriptsize 37} & {\scriptsize Selective reporting of robustness checks in support of main results.} & {\scriptsize Model Evaluation} & {\scriptsize Robustness Checks} \\ 
+ & {\scriptsize 40} & {\scriptsize Selectively reporting performance metrics that increase perception of performance after fitting model and/or observing model evaluation / model checking results.} & {\scriptsize Model Construction
+
+Model Evaluation} & {\scriptsize Model Performance Metric} \\ 
+\bottomrule
+
+\end{longtable}
+
+\endgroup
+
+\end{landscape}
+
+\section{Synthetic Example Code}\label{sec-QRP-app-synth-code}
+
+Code used to generate synthetic worked example in
+Figure~\ref{fig-synthetic-example}.
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(easystats)}
+\FunctionTok{library}\NormalTok{(patchwork)}
+\FunctionTok{library}\NormalTok{(gt)}
+\FunctionTok{library}\NormalTok{(gtExtras)}
+\FunctionTok{library}\NormalTok{(grDevices)}
+\FunctionTok{library}\NormalTok{(marquee)}
+
+\CommentTok{\# {-}{-}{-}{-} Simulate Data {-}{-}{-}{-}}
+
+\CommentTok{\# Generate synthetic data}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{habitat\_quality }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\CommentTok{\# True relationship with some noise}
+\NormalTok{abundance }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{+} \FloatTok{1.5} \SpecialCharTok{*}\NormalTok{ habitat\_quality }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{habitat\_quality =}\NormalTok{ habitat\_quality,}
+  \AttributeTok{abundance =}\NormalTok{ abundance}
+\NormalTok{)}
+
+\CommentTok{\# Define management scenarios \& expected values under each scenario}
+\NormalTok{management\_scenarios }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{action =} \FunctionTok{c}\NormalTok{(}\StringTok{"Action A"}\NormalTok{, }\StringTok{"Action B"}\NormalTok{),}
+  \AttributeTok{habitat\_quality\_mean =} \FunctionTok{c}\NormalTok{(}\FloatTok{6.0}\NormalTok{, }\FloatTok{6.5}\NormalTok{), }\CommentTok{\# Small difference initially}
+  \AttributeTok{habitat\_quality\_sd =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{habitat\_values }\OtherTok{\textless{}{-}}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{habitat\_values =} \FunctionTok{list}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, habitat\_quality\_mean, habitat\_quality\_sd))}
+\NormalTok{  )}
+
+\CommentTok{\# Stage 1: Initial simple model (defensible)}
+\NormalTok{model\_initial }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(abundance }\SpecialCharTok{\textasciitilde{}}\NormalTok{ habitat\_quality, }\AttributeTok{data =}\NormalTok{ data)}
+
+\CommentTok{\# Predict for management scenarios}
+\NormalTok{pred\_initial }\OtherTok{\textless{}{-}}\NormalTok{ habitat\_values }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(}
+      \FunctionTok{predict}\NormalTok{(}
+\NormalTok{        model\_initial,}
+        \AttributeTok{newdata =} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{habitat\_quality =}\NormalTok{ habitat\_values),}
+        \AttributeTok{interval =} \StringTok{"prediction"}
+\NormalTok{      )}
+\NormalTok{    ),}
+    \AttributeTok{pred\_mean =} \FunctionTok{mean}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{]),}
+    \AttributeTok{pred\_lower =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.025}\NormalTok{),}
+    \AttributeTok{pred\_upper =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.975}\NormalTok{),}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{]),}
+    \AttributeTok{model =} \StringTok{"Initial Model"}\NormalTok{,}
+    \AttributeTok{stage =} \StringTok{"Stage 1: A Priori Model"}
+\NormalTok{  )}
+
+\CommentTok{\# Stage 2: Overfitted model (model fishing)}
+\CommentTok{\# Add polynomial and interaction terms to artificially reduce uncertainty}
+\NormalTok{model\_overfitted }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}
+\NormalTok{  abundance }\SpecialCharTok{\textasciitilde{}} \FunctionTok{poly}\NormalTok{(habitat\_quality, }\DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{I}\NormalTok{(habitat\_quality}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ (habitat\_quality }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{)),}
+  \AttributeTok{data =}\NormalTok{ data}
+\NormalTok{)}
+
+\NormalTok{pred\_overfitted }\OtherTok{\textless{}{-}}\NormalTok{ habitat\_values }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(}
+      \FunctionTok{predict}\NormalTok{(}
+\NormalTok{        model\_overfitted,}
+        \AttributeTok{newdata =} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{habitat\_quality =}\NormalTok{ habitat\_values),}
+        \AttributeTok{interval =} \StringTok{"prediction"}
+\NormalTok{      )}
+\NormalTok{    ),}
+    \AttributeTok{pred\_mean =} \FunctionTok{mean}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{]),}
+    \AttributeTok{pred\_lower =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.025}\NormalTok{),}
+    \AttributeTok{pred\_upper =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.975}\NormalTok{),}
+    \AttributeTok{stage =} \StringTok{"Stage 2: Model Fishing"}\NormalTok{,}
+    \AttributeTok{model =} \StringTok{"Overfitted Model"}\NormalTok{,}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{])}
+\NormalTok{  )}
+
+\CommentTok{\# Stage 3: Scenario hacking {-} artificially increase difference}
+\NormalTok{management\_scenarios\_hacked }\OtherTok{\textless{}{-}}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{habitat\_quality\_mean =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{      action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \FloatTok{5.5}\NormalTok{, }\CommentTok{\# Artificially reduced}
+\NormalTok{      action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \FloatTok{7.5} \CommentTok{\# Artificially increased}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\NormalTok{pred\_hacked }\OtherTok{\textless{}{-}}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{habitat\_values =} \FunctionTok{list}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}
+      \DecValTok{1000}\NormalTok{,}
+\NormalTok{      habitat\_quality\_mean,}
+\NormalTok{      habitat\_quality\_sd}
+\NormalTok{    )),}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(}
+      \FunctionTok{predict}\NormalTok{(}
+\NormalTok{        model\_initial,}
+        \AttributeTok{newdata =} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{habitat\_quality =}\NormalTok{ habitat\_values),}
+        \AttributeTok{interval =} \StringTok{"prediction"}
+\NormalTok{      )}
+\NormalTok{    ),}
+    \AttributeTok{pred\_mean =} \FunctionTok{mean}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{]),}
+    \AttributeTok{pred\_lower =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.025}\NormalTok{),}
+    \AttributeTok{pred\_upper =} \FunctionTok{quantile}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{], }\FloatTok{0.975}\NormalTok{),}
+    \AttributeTok{stage =} \StringTok{"Stage 3: Scenario Hacking"}\NormalTok{,}
+    \AttributeTok{model =} \StringTok{"Scenario Hacked"}\NormalTok{,}
+    \AttributeTok{predictions =} \FunctionTok{list}\NormalTok{(predictions[, }\DecValTok{1}\NormalTok{])}
+\NormalTok{  )}
+
+
+\CommentTok{\# Get descriptive statistics for violin plots}
+\NormalTok{all\_predictions }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+\NormalTok{  pred\_hacked }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(model, action, pred\_mean, pred\_lower, pred\_upper, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{action\_color =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#0072B2"}\NormalTok{,}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#2C5F41"}
+\NormalTok{      )}
+\NormalTok{    ),}
+\NormalTok{  pred\_initial }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(model, action, pred\_mean, pred\_lower, pred\_upper, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{action\_color =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#56B4E9"}\NormalTok{,}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#009E73"}
+\NormalTok{      )}
+\NormalTok{    ),}
+\NormalTok{  pred\_overfitted }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(model, action, pred\_mean, pred\_lower, pred\_upper, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{action\_color =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#56B4E9"}\NormalTok{,}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#009E73"}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{stage =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{      stage,}
+      \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}
+        \StringTok{"Stage 1: A Priori Model"}\NormalTok{,}
+        \StringTok{"Stage 2: Model Fishing"}\NormalTok{,}
+        \StringTok{"Stage 3: Scenario Hacking"}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\CommentTok{\# Plot Coefficients}
+\NormalTok{pred\_distributions }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+  \CommentTok{\# Stage 1: Initial model}
+\NormalTok{  pred\_initial }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(action, predictions, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{unnest}\NormalTok{(predictions),}
+  \CommentTok{\# Stage 2: Overfitted model}
+\NormalTok{  pred\_overfitted }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{rowwise}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(action, predictions, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{unnest}\NormalTok{(predictions),}
+  \CommentTok{\# Stage 3: Scenario hacked}
+\NormalTok{  pred\_hacked }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(action, predictions, stage) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{unnest}\NormalTok{(predictions)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{stage =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{      stage,}
+      \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}
+        \StringTok{"Stage 1: A Priori Model"}\NormalTok{,}
+        \StringTok{"Stage 2: Model Fishing"}\NormalTok{,}
+        \StringTok{"Stage 3: Scenario Hacking"}
+\NormalTok{      )}
+\NormalTok{    ),}
+    \AttributeTok{action\_color =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{      stage }\SpecialCharTok{\%in\%}
+        \FunctionTok{c}\NormalTok{(}\StringTok{"Stage 1: A Priori Model"}\NormalTok{, }\StringTok{"Stage 2: Model Fishing"}\NormalTok{) }\SpecialCharTok{\&}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#56B4E9"}\NormalTok{,}
+\NormalTok{      stage }\SpecialCharTok{\%in\%}
+        \FunctionTok{c}\NormalTok{(}\StringTok{"Stage 1: A Priori Model"}\NormalTok{, }\StringTok{"Stage 2: Model Fishing"}\NormalTok{) }\SpecialCharTok{\&}
+\NormalTok{        action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#009E73"}\NormalTok{,}
+\NormalTok{      stage }\SpecialCharTok{==} \StringTok{"Stage 3: Scenario Hacking"} \SpecialCharTok{\&}\NormalTok{ action }\SpecialCharTok{==} \StringTok{"Action A"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#0072B2"}\NormalTok{,}
+\NormalTok{      stage }\SpecialCharTok{==} \StringTok{"Stage 3: Scenario Hacking"} \SpecialCharTok{\&}\NormalTok{ action }\SpecialCharTok{==} \StringTok{"Action B"} \SpecialCharTok{\textasciitilde{}} \StringTok{"\#2C5F41"}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\CommentTok{\# {-}{-}{-}{-} Construct Plots {-}{-}{-}{-}}
+\CommentTok{\# Violin Plots}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(pred\_distributions, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ action, }\AttributeTok{y =}\NormalTok{ predictions)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_violin}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{I}\NormalTok{(action\_color)), }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{trim =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =} \FunctionTok{I}\NormalTok{(action\_color)), }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_summary}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{color =} \FunctionTok{I}\NormalTok{(action\_color)),}
+    \AttributeTok{fun =}\NormalTok{ mean,}
+    \AttributeTok{geom =} \StringTok{"point"}\NormalTok{,}
+    \AttributeTok{size =} \DecValTok{3}\NormalTok{,}
+    \AttributeTok{shape =} \DecValTok{18}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{stage, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{y =} \StringTok{"Predicted Species Abundance"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Management Action"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+\NormalTok{  hrbrthemes}\SpecialCharTok{::}\FunctionTok{theme\_ipsum\_rc}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+    \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{),}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{),}
+    \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{strip.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+    \AttributeTok{legend.position =} \StringTok{"none"}
+\NormalTok{  )}
+
+
+\NormalTok{effect\_sizes }\OtherTok{\textless{}{-}}\NormalTok{ all\_predictions }\SpecialCharTok{|\textgreater{}} \CommentTok{\# Calculate effect sizes at each stage}
+  \FunctionTok{select}\NormalTok{(stage, action, pred\_mean) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ action, }\AttributeTok{values\_from =}\NormalTok{ pred\_mean) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{difference =} \StringTok{\textasciigrave{}}\AttributeTok{Action B}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}} \StringTok{\textasciigrave{}}\AttributeTok{Action A}\StringTok{\textasciigrave{}}\NormalTok{,}
+    \AttributeTok{effect\_size =}\NormalTok{ difference }\SpecialCharTok{/} \DecValTok{2} \CommentTok{\# Rough standardization}
+\NormalTok{  )}
+
+\CommentTok{\# Model comparison plot showing overfitting with management actions}
+\NormalTok{model\_comparison }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{habitat\_quality =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{initial\_pred =} \FunctionTok{predict}\NormalTok{(model\_initial, }\AttributeTok{newdata =}\NormalTok{ .),}
+    \AttributeTok{overfitted\_pred =} \FunctionTok{predict}\NormalTok{(model\_overfitted, }\AttributeTok{newdata =}\NormalTok{ .)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_longer}\NormalTok{(}
+    \AttributeTok{cols =} \FunctionTok{c}\NormalTok{(initial\_pred, overfitted\_pred),}
+    \AttributeTok{names\_to =} \StringTok{"model\_type"}\NormalTok{,}
+    \AttributeTok{values\_to =} \StringTok{"prediction"}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{model\_type =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{      model\_type }\SpecialCharTok{==} \StringTok{"initial\_pred"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Initial Model"}\NormalTok{,}
+\NormalTok{      model\_type }\SpecialCharTok{==} \StringTok{"overfitted\_pred"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Overfitted Model"}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ data,}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ habitat\_quality, }\AttributeTok{y =}\NormalTok{ abundance),}
+    \AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"grey50"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}
+    \AttributeTok{data =}\NormalTok{ model\_comparison,}
+    \FunctionTok{aes}\NormalTok{(}
+      \AttributeTok{x =}\NormalTok{ habitat\_quality,}
+      \AttributeTok{y =}\NormalTok{ prediction,}
+      \AttributeTok{color =}\NormalTok{ model\_type,}
+      \AttributeTok{linetype =}\NormalTok{ model\_type}
+\NormalTok{    ),}
+    \AttributeTok{linewidth =} \DecValTok{1}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \CommentTok{\# Initial management actions}
+  \FunctionTok{geom\_vline}\NormalTok{(}
+    \AttributeTok{xintercept =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{linetype =} \StringTok{"solid"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#56B4E9"}\NormalTok{,}
+    \AttributeTok{linewidth =} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{alpha =} \FloatTok{0.7}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}
+    \AttributeTok{xintercept =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{linetype =} \StringTok{"solid"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#009E73"}\NormalTok{,}
+    \AttributeTok{linewidth =} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{alpha =} \FloatTok{0.7}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \CommentTok{\# Add hacked actions}
+  \FunctionTok{geom\_vline}\NormalTok{(}
+    \AttributeTok{xintercept =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#0072B2"}\NormalTok{,}
+    \AttributeTok{linewidth =} \FloatTok{1.2}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}
+    \AttributeTok{xintercept =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#2C5F41"}\NormalTok{,}
+    \AttributeTok{linewidth =} \FloatTok{1.2}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \CommentTok{\# Arrows showing the manipulation}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"segment"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{xend =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{16}\NormalTok{,}
+    \AttributeTok{yend =} \DecValTok{16}\NormalTok{,}
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"\#0072B2"}\NormalTok{,}
+    \AttributeTok{linewidth =} \DecValTok{1}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"segment"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{xend =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{16}\NormalTok{,}
+    \AttributeTok{yend =} \DecValTok{16}\NormalTok{,}
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"\#2C5F41"}\NormalTok{,}
+    \AttributeTok{linewidth =} \DecValTok{1}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{x =} \StringTok{"Habitat Quality"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Predicted Species Abundance"}\NormalTok{,}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+\NormalTok{  hrbrthemes}\SpecialCharTok{::}\FunctionTok{theme\_ipsum\_rc}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{legend.position =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.99}\NormalTok{, }\FloatTok{0.01}\NormalTok{),}
+    \AttributeTok{legend.justification =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+    \AttributeTok{legend.background =} \FunctionTok{element\_rect}\NormalTok{(}
+      \AttributeTok{fill =} \StringTok{"white"}\NormalTok{,}
+      \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+      \AttributeTok{linewidth =} \FloatTok{0.5}
+\NormalTok{    ),}
+    \AttributeTok{legend.margin =} \FunctionTok{margin}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{),}
+    \AttributeTok{legend.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{),}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
+    \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{),}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{),}
+    \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}
+    \StringTok{"Model Version"}\NormalTok{,}
+    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Initial Model"} \OtherTok{=} \StringTok{"\#E69F00"}\NormalTok{, }\StringTok{"Overfitted Model"} \OtherTok{=} \StringTok{"\#D55E00"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_linetype\_manual}\NormalTok{(}
+    \StringTok{"Model Version"}\NormalTok{,}
+    \AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Initial Model"} \OtherTok{=} \StringTok{"solid"}\NormalTok{, }\StringTok{"Overfitted Model"} \OtherTok{=} \StringTok{"dashed"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \CommentTok{\# Action labels}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"text"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{19}\NormalTok{,}
+    \AttributeTok{label =} \StringTok{"Initial}\SpecialCharTok{\textbackslash{}n}\StringTok{Action A"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#56B4E9"}\NormalTok{,}
+    \AttributeTok{size =} \FloatTok{3.5}\NormalTok{,}
+    \AttributeTok{hjust =} \FloatTok{1.1}\NormalTok{,}
+    \AttributeTok{fontface =} \StringTok{"bold"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"text"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{19}\NormalTok{,}
+    \AttributeTok{label =} \StringTok{"Initial}\SpecialCharTok{\textbackslash{}n}\StringTok{Action B"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#009E73"}\NormalTok{,}
+    \AttributeTok{size =} \FloatTok{3.5}\NormalTok{,}
+    \AttributeTok{hjust =} \SpecialCharTok{{-}}\FloatTok{0.3}\NormalTok{,}
+    \AttributeTok{fontface =} \StringTok{"bold"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"text"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{19}\NormalTok{,}
+    \AttributeTok{label =} \StringTok{"Hacked}\SpecialCharTok{\textbackslash{}n}\StringTok{Action A"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#0072B2"}\NormalTok{,}
+    \AttributeTok{size =} \FloatTok{3.5}\NormalTok{,}
+    \AttributeTok{hjust =} \FloatTok{1.3}\NormalTok{,}
+    \AttributeTok{fontface =} \StringTok{"bold"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}
+    \StringTok{"text"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ management\_scenarios\_hacked }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{pluck}\NormalTok{(}\StringTok{"habitat\_quality\_mean"}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{y =} \DecValTok{19}\NormalTok{,}
+    \AttributeTok{label =} \StringTok{"Hacked}\SpecialCharTok{\textbackslash{}n}\StringTok{Action B"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"\#2C5F41"}\NormalTok{,}
+    \AttributeTok{size =} \FloatTok{3.5}\NormalTok{,}
+    \AttributeTok{hjust =} \SpecialCharTok{{-}}\FloatTok{0.3}\NormalTok{,}
+    \AttributeTok{fontface =} \StringTok{"bold"}
+\NormalTok{  )}
+
+\CommentTok{\# Table of Summary Statistics}
+\NormalTok{metric\_labs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"R2"} \OtherTok{=} \StringTok{"R\^{}2"}\NormalTok{,}
+  \StringTok{"R2 adjusted"} \OtherTok{=} \StringTok{"\{R\^{}2\}\_\{adjusted\}"}\NormalTok{,}
+  \StringTok{"AIC wt"} \OtherTok{=} \StringTok{"\{AIC\}\_\{wt\}"}\NormalTok{,}
+  \StringTok{"AICc wt"} \OtherTok{=} \StringTok{"\{AICc\}\_\{wt\}"}\NormalTok{,}
+  \StringTok{"BIC wt"} \OtherTok{=} \StringTok{"\{BIC\}\_\{wt\}"}\NormalTok{,}
+  \StringTok{"Sigma"} \OtherTok{=} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sigma"}
+\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{map\_chr}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ glue}\SpecialCharTok{::}\FunctionTok{glue}\NormalTok{(}\StringTok{"$\{.\}$"}\NormalTok{))}
+
+\NormalTok{performance\_table }\OtherTok{\textless{}{-}}
+\NormalTok{  performance}\SpecialCharTok{::}\FunctionTok{compare\_performance}\NormalTok{(}
+\NormalTok{    model\_initial,}
+\NormalTok{    model\_overfitted,}
+    \AttributeTok{rank =} \ConstantTok{TRUE}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Model) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{Name =}\NormalTok{ stringr}\SpecialCharTok{::}\FunctionTok{str\_replace}\NormalTok{(}
+\NormalTok{      Name,}
+      \StringTok{"model\_overfitted"}\NormalTok{,}
+      \StringTok{"Overfitted Model"}
+\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{      stringr}\SpecialCharTok{::}\FunctionTok{str\_replace}\NormalTok{(., }\StringTok{"model\_initial"}\NormalTok{, }\StringTok{"Initial Model"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Name), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{round}\NormalTok{(.x, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{))) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Name) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ Name, }\AttributeTok{values\_from =}\NormalTok{ value) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{name =} \FunctionTok{str\_replace}\NormalTok{(name, }\StringTok{"\_"}\NormalTok{, }\StringTok{" "}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{name =} \FunctionTok{recode}\NormalTok{(name, }\SpecialCharTok{!!!}\NormalTok{metric\_labs)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{name =} \FunctionTok{vec\_fmt\_markdown}\NormalTok{(name)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{gt}\NormalTok{(}\AttributeTok{rowname\_col =} \StringTok{"name"}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{text\_transform}\NormalTok{(gt}\SpecialCharTok{::}\NormalTok{md, }\FunctionTok{cells\_row\_groups}\NormalTok{()) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{fmt\_markdown}\NormalTok{(}\AttributeTok{columns =}\NormalTok{ name, }\AttributeTok{rows =} \FunctionTok{contains}\NormalTok{(}\StringTok{"$"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_header}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Stage 2: Model Fishing"}\NormalTok{,}
+    \AttributeTok{subtitle =}\NormalTok{ glue}\SpecialCharTok{::}\FunctionTok{glue}\NormalTok{(}
+      \StringTok{"The modeller compares the two models "}\NormalTok{,}
+      \StringTok{"and chooses the overfitted model based on these statistics."}
+\NormalTok{    )}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_fill}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#D55E00"}\NormalTok{),}
+    \AttributeTok{locations =} \FunctionTok{cells\_body}\NormalTok{(}\AttributeTok{columns =} \StringTok{"Overfitted Model"}\NormalTok{, }\AttributeTok{rows =} \FunctionTok{everything}\NormalTok{())}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_fill}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#E69F00"}\NormalTok{),}
+    \AttributeTok{locations =} \FunctionTok{cells\_body}\NormalTok{(}\AttributeTok{columns =} \StringTok{"Initial Model"}\NormalTok{, }\AttributeTok{rows =} \FunctionTok{everything}\NormalTok{())}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#D55E00"}\NormalTok{),}
+    \AttributeTok{locations =} \FunctionTok{cells\_column\_labels}\NormalTok{(}\AttributeTok{columns =} \StringTok{"Overfitted Model"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#E69F00"}\NormalTok{),}
+    \AttributeTok{locations =} \FunctionTok{cells\_column\_labels}\NormalTok{(}\AttributeTok{columns =} \StringTok{"Initial Model"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}
+      \AttributeTok{font =} \FunctionTok{google\_font}\NormalTok{(}\StringTok{"Chivo"}\NormalTok{),}
+      \AttributeTok{size =} \StringTok{"medium"}\NormalTok{,}
+      \AttributeTok{weight =} \StringTok{"bolder"}
+\NormalTok{    ),}
+    \AttributeTok{locations =} \FunctionTok{cells\_column\_labels}\NormalTok{()}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}
+      \AttributeTok{font =} \FunctionTok{google\_font}\NormalTok{(}\StringTok{"Cairo"}\NormalTok{),}
+      \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+      \AttributeTok{size =} \StringTok{"medium"}\NormalTok{,}
+      \AttributeTok{weight =} \DecValTok{500}
+\NormalTok{    ),}
+    \AttributeTok{locations =} \FunctionTok{cells\_body}\NormalTok{()}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}
+      \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+      \AttributeTok{font =} \FunctionTok{google\_font}\NormalTok{(}\StringTok{"Cairo"}\NormalTok{),}
+      \AttributeTok{size =} \StringTok{"medium"}\NormalTok{,}
+      \AttributeTok{weight =} \DecValTok{400}
+\NormalTok{    ),}
+    \AttributeTok{locations =} \FunctionTok{cells\_stub}\NormalTok{()}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}
+      \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+      \AttributeTok{font =} \FunctionTok{google\_font}\NormalTok{(}\StringTok{"Roboto Condensed"}\NormalTok{),}
+      \AttributeTok{size =} \StringTok{"large"}\NormalTok{,}
+      \AttributeTok{weight =} \DecValTok{400}
+\NormalTok{    ),}
+    \AttributeTok{locations =} \FunctionTok{cells\_title}\NormalTok{(}\AttributeTok{groups =} \StringTok{"title"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}
+      \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+      \AttributeTok{font =} \FunctionTok{google\_font}\NormalTok{(}\StringTok{"Cairo"}\NormalTok{),}
+      \AttributeTok{size =} \StringTok{"medium"}\NormalTok{,}
+      \AttributeTok{weight =} \DecValTok{400}
+\NormalTok{    ),}
+    \AttributeTok{locations =} \FunctionTok{cells\_title}\NormalTok{(}\AttributeTok{groups =} \StringTok{"subtitle"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{cols\_width}\NormalTok{(}\FunctionTok{stub}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \FunctionTok{px}\NormalTok{(}\DecValTok{170}\NormalTok{), }\FunctionTok{everything}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \FunctionTok{px}\NormalTok{(}\DecValTok{100}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_style}\NormalTok{(}
+    \AttributeTok{style =} \FunctionTok{cell\_text}\NormalTok{(}\AttributeTok{weight =} \StringTok{"bold"}\NormalTok{),}
+    \AttributeTok{locations =} \FunctionTok{cells\_body}\NormalTok{(}
+      \AttributeTok{rows =}\NormalTok{ name }\SpecialCharTok{==} \StringTok{"Performance Score"}\NormalTok{,}
+      \AttributeTok{columns =} \StringTok{"Overfitted Model"}
+\NormalTok{    )}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{tab\_stub\_indent}\NormalTok{(}\AttributeTok{rows =}\NormalTok{ name }\SpecialCharTok{!=} \StringTok{"Performance Score"}\NormalTok{, }\AttributeTok{indent =} \DecValTok{5}\NormalTok{)}
+
+\CommentTok{\# {-}{-}{-}{-}{-} Construct Patchwork Plot {-}{-}{-}{-}{-}}
+
+\NormalTok{tmp }\OtherTok{\textless{}{-}} \FunctionTok{tempfile}\NormalTok{(}\AttributeTok{fileext =} \StringTok{".png"}\NormalTok{)}
+\NormalTok{gtExtras}\SpecialCharTok{::}\FunctionTok{gtsave\_extra}\NormalTok{(}
+\NormalTok{  performance\_table,}
+\NormalTok{  tmp,}
+  \AttributeTok{zoom =} \DecValTok{2}\NormalTok{,}
+  \AttributeTok{expand =} \DecValTok{0}\NormalTok{,}
+  \AttributeTok{vwidth =} \DecValTok{420}\NormalTok{,}
+\NormalTok{)}
+\NormalTok{table\_png }\OtherTok{\textless{}{-}}\NormalTok{ png}\SpecialCharTok{::}\FunctionTok{readPNG}\NormalTok{(tmp, }\AttributeTok{native =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{patch }\OtherTok{\textless{}{-}}\NormalTok{ (p1 }\SpecialCharTok{+}\NormalTok{ table\_png) }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{widths =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{combined\_plot }\OtherTok{\textless{}{-}}\NormalTok{ patch }\SpecialCharTok{/}
+\NormalTok{  p3 }\SpecialCharTok{+}
+  \FunctionTok{plot\_annotation}\NormalTok{(}\AttributeTok{tag\_levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+
+\FunctionTok{ggsave}\NormalTok{(}
+  \AttributeTok{filename =}\NormalTok{ here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"synthetic\_example\_QRPs.pdf"}\NormalTok{),}
+  \AttributeTok{device =}\NormalTok{ grDevices}\SpecialCharTok{::}\NormalTok{cairo\_pdf,}
+\NormalTok{  combined\_plot,}
+  \AttributeTok{width =} \DecValTok{17}\NormalTok{,}
+  \AttributeTok{height =} \DecValTok{12}\NormalTok{,}
+  \AttributeTok{dpi =} \DecValTok{600}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\normalsize
+
+
+
+
+\end{document}
